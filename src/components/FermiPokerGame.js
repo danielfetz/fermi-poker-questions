@@ -19,6 +19,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
   const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
+  const [categoryInfoVisible, setCategoryInfoVisible] = useState(true);
   
   // Refs for dropdown handling
   const menuRef = useRef(null);
@@ -72,7 +73,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
-  const shouldShowCategoryInfo = currentQuestionIndex === 0 && 
+  const shouldShowCategoryInfo = categoryInfoVisible && 
+                               currentQuestionIndex === 0 && 
                                !categoryInfoSeen[currentCategoryPath.join('/')];
 
   // Get display name for current category
@@ -98,6 +100,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     
     return name;
   };
+
+  // Reset category info visibility when changing categories
+  useEffect(() => {
+    setCategoryInfoVisible(true);
+  }, [currentCategoryPath]);
 
   const toggleCategoryExpanded = (categoryKey) => {
     setExpandedCategories(prev => ({
@@ -188,6 +195,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   };
 
   const closeCategoryInfo = () => {
+    setCategoryInfoVisible(false);
     setCategoryInfoSeen(prev => ({
       ...prev,
       [currentCategoryPath.join('/')]: true
