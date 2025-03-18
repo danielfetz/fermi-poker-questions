@@ -19,7 +19,7 @@ const FermiPokerIntro = ({ startGame }) => {
   };
 
   return (
-    <div className="intro-section">
+    <div className="intro-section mb-20">
       <div className="intro-header text-center mb-6">
         <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2">Welcome to Fermi Poker</h2>
         <p className="text-medium-brown dark:text-golden-light">A game of numerical estimation and strategic betting</p>
@@ -153,8 +153,8 @@ const FermiPokerIntro = ({ startGame }) => {
         )}
       </div>
       
-      {/* Start Game Button */}
-      <div className="start-game-container">
+      {/* Fixed Start Game Button */}
+      <div className="fixed-start-button">
         <button 
           onClick={startGame}
           className="start-game-button"
