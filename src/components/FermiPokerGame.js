@@ -18,8 +18,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
+  const [showCategoryInfo, setShowCategoryInfo] = useState(true);
   const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
-  const [categoryInfoVisible, setCategoryInfoVisible] = useState(true);
   
   // Refs for dropdown handling
   const menuRef = useRef(null);
@@ -73,7 +73,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
-  const shouldShowCategoryInfo = categoryInfoVisible && 
+  const shouldShowCategoryInfo = showCategoryInfo && 
                                currentQuestionIndex === 0 && 
                                !categoryInfoSeen[currentCategoryPath.join('/')];
 
@@ -100,11 +100,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     
     return name;
   };
-
-  // Reset category info visibility when changing categories
-  useEffect(() => {
-    setCategoryInfoVisible(true);
-  }, [currentCategoryPath]);
 
   const toggleCategoryExpanded = (categoryKey) => {
     setExpandedCategories(prev => ({
@@ -195,7 +190,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   };
 
   const closeCategoryInfo = () => {
-    setCategoryInfoVisible(false);
     setCategoryInfoSeen(prev => ({
       ...prev,
       [currentCategoryPath.join('/')]: true
@@ -334,7 +328,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       {/* Category Info Banner */}
       {shouldShowCategoryInfo && (
         <div className="category-info-banner mb-4">
-          <div className="flex justify-between items-start mb-2">
+          <div className="flex justify-between items-start mb-1">
             <h3 className="font-display font-bold text-lg">{getCurrentCategoryName()}</h3>
             <button 
               onClick={closeCategoryInfo}
@@ -355,17 +349,14 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
           {currentQuestion.question}
         </h2>
-        <div className="text-xs mb-3 font-medium italic flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1.5 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-          </svg>
+        <div className="text-xs mb-3 font-medium italic">
           {currentQuestion.category}
         </div>
       </div>
       
-      {/* Hint and Answer Container - rows on mobile, grid on desktop */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 relative z-10">
-        {/* Hints (side by side on desktop) */}
+      {/* Hint and Answer Container - always vertical for hints */}
+      <div className="grid grid-cols-1 gap-3.5 sm:gap-4 relative z-10">
+        {/* Hints (vertical layout) */}
         {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
           <div key={index} className="card-container">
             <div 
@@ -396,7 +387,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         ))}
         
         {/* Answer - same size as hints */}
-        <div className="card-container sm:col-span-2">
+        <div className="card-container">
           <div 
             className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
             onClick={() => !answerRevealed && startFlip('answer')}
