@@ -72,6 +72,17 @@ html, body {
   border: 2px solid var(--dark-border);
 }
 
+/* Border Styles with explicit width and style */
+.border-b {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.border-t {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
 .light .border-b, .light .border-t {
   border-color: var(--soft-brown);
 }
@@ -1409,14 +1420,6 @@ html, body {
 
 .border {
   border-width: 1px;
-}
-
-.border-b {
-  border-bottom-width: 1px;
-}
-
-.border-t {
-  border-top-width: 1px;
 }
 
 .rounded-lg {
