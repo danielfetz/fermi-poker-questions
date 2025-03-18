@@ -18,7 +18,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
-  const [showCategoryInfo, setShowCategoryInfo] = useState(true);
+  // Fixed the unused variable by using const instead of useState
+  const showCategoryInfo = true;
   const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
   
   // Refs for dropdown handling
