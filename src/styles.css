@@ -80,12 +80,12 @@ html, body {
   border-color: var(--dark-border);
 }
 
-/* Category Info Banner */
+/* Category Info Banner - Reduced padding */
 .category-info-banner {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--soft-brown);
   border-radius: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   position: relative;
   backdrop-filter: blur(4px);
 }
@@ -599,7 +599,7 @@ html, body {
   border-color: var(--ornamental-dark);
 }
 
-/* Intro Section Styling - Enhanced */
+/* Intro Section Styling - Reduced Padding */
 .intro-section {
   position: relative;
   z-index: 10;
@@ -625,7 +625,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   text-align: left;
   transition: all 0.2s;
 }
@@ -639,10 +639,10 @@ html, body {
 }
 
 .dropdown-content {
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 0.5rem 1rem 0.75rem;
   border-top: 1px solid var(--hint-border);
   animation: fadeIn 0.3s ease-out;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .dark .dropdown-content {
@@ -650,8 +650,8 @@ html, body {
 }
 
 .dropdown-content p, .dropdown-content li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
 /* Fixed Start Game Button */
@@ -1101,6 +1101,10 @@ html, body {
   margin-top: 0.5rem;
 }
 
+.space-y-1 > * + * {
+  margin-top: 0.25rem;
+}
+
 .relative {
   position: relative;
 }
@@ -1205,6 +1209,10 @@ html, body {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mb-6 {
@@ -1439,6 +1447,12 @@ html, body {
   transition-duration: 150ms;
 }
 
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1474,6 +1488,14 @@ html, body {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover\:text-golden-accent:hover {
+  color: var(--golden-accent);
+}
+
 /* Responsive utilities */
 @media (min-width: 640px) {
   .sm\:px-4 {
@@ -1498,14 +1520,6 @@ html, body {
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
-  }
-  
-  .sm\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-  
-  .sm\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   
   .sm\:gap-4 {
