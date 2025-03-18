@@ -1,3 +1,9 @@
+/* Reset margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 /* Custom Color Variables */
 :root {
   --warm-cream: #FEF9F0;
@@ -593,23 +599,25 @@
   border-color: var(--ornamental-dark);
 }
 
-/* Intro Section Styling */
+/* Intro Section Styling - Enhanced */
 .intro-section {
   position: relative;
   z-index: 10;
 }
 
 .intro-dropdown {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 0.75rem;
   border: 1px solid var(--soft-brown);
   overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .dark .intro-dropdown {
-  background-color: rgba(45, 38, 30, 0.5);
+  background-color: rgba(45, 38, 30, 0.7);
   border-color: var(--dark-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-header {
@@ -631,9 +639,10 @@
 }
 
 .dropdown-content {
-  padding: 0.5rem 1.25rem 1.25rem;
+  padding: 1rem 1.25rem 1.25rem;
   border-top: 1px solid var(--hint-border);
   animation: fadeIn 0.3s ease-out;
+  line-height: 1.6;
 }
 
 .dark .dropdown-content {
@@ -641,30 +650,35 @@
 }
 
 .dropdown-content p, .dropdown-content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   line-height: 1.6;
 }
 
-/* Start Game Button */
-.start-game-container {
+/* Fixed Start Game Button */
+.fixed-start-button {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+  z-index: 100;
 }
 
 .start-game-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 2rem;
+  padding: 0.875rem 2.5rem;
   font-weight: 600;
   font-size: 1.125rem;
   border-radius: 0.5rem;
   transition: all 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
+  min-width: 200px;
 }
 
 .light .start-game-button {
@@ -683,18 +697,29 @@
   background-color: var(--golden-dark);
   color: var(--warm-cream);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .dark .start-game-button:hover {
   background-color: var(--golden-accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .start-game-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-game-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
 }
 
 /* Card Styling */
@@ -1184,6 +1209,10 @@
 
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mt-4 {
