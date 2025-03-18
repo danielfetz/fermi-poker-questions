@@ -20,13 +20,13 @@ const FermiPokerIntro = ({ startGame }) => {
 
   return (
     <div className="intro-section mb-20">
-      <div className="intro-header text-center mb-6">
+      <div className="intro-header text-center mb-5">
         <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2">Welcome to Fermi Poker</h2>
         <p className="text-medium-brown dark:text-golden-light">A game of numerical estimation and strategic betting</p>
       </div>
       
       {/* Game concept dropdown */}
-      <div className="intro-dropdown mb-4">
+      <div className="intro-dropdown mb-3">
         <button 
           className="dropdown-header"
           onClick={() => toggleSection('gameConcept')}
@@ -50,7 +50,7 @@ const FermiPokerIntro = ({ startGame }) => {
       </div>
       
       {/* Gameplay dropdown */}
-      <div className="intro-dropdown mb-4">
+      <div className="intro-dropdown mb-3">
         <button 
           className="dropdown-header"
           onClick={() => toggleSection('gameplay')}
@@ -68,7 +68,7 @@ const FermiPokerIntro = ({ startGame }) => {
         
         {expandedSections.gameplay && (
           <div className="dropdown-content">
-            <ol className="list-decimal pl-5 space-y-2">
+            <ol className="list-decimal pl-5 space-y-1">
               {introContent.gameplay.content.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
@@ -78,7 +78,7 @@ const FermiPokerIntro = ({ startGame }) => {
       </div>
       
       {/* Multiple Questions dropdown */}
-      <div className="intro-dropdown mb-4">
+      <div className="intro-dropdown mb-3">
         <button 
           className="dropdown-header"
           onClick={() => toggleSection('multipleQuestions')}
@@ -102,7 +102,7 @@ const FermiPokerIntro = ({ startGame }) => {
       </div>
       
       {/* Meta-Game dropdown */}
-      <div className="intro-dropdown mb-4">
+      <div className="intro-dropdown mb-3">
         <button 
           className="dropdown-header"
           onClick={() => toggleSection('metaGame')}
@@ -126,7 +126,7 @@ const FermiPokerIntro = ({ startGame }) => {
       </div>
       
       {/* Strategy Tips dropdown */}
-      <div className="intro-dropdown mb-6">
+      <div className="intro-dropdown mb-5">
         <button 
           className="dropdown-header"
           onClick={() => toggleSection('strategy')}
@@ -144,7 +144,7 @@ const FermiPokerIntro = ({ startGame }) => {
         
         {expandedSections.strategy && (
           <div className="dropdown-content">
-            <ul className="list-disc pl-5 space-y-2">
+            <ul className="list-disc pl-5 space-y-1">
               {introContent.strategy.content.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
