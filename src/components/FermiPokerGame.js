@@ -20,6 +20,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [skipConfirmation, setSkipConfirmation] = useState(false);
   const [showCategoryInfo, setShowCategoryInfo] = useState(true);
   const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
+  const [shuffledQuestions, setShuffledQuestions] = useState({});
   
   // Refs for dropdown handling
   const menuRef = useRef(null);
@@ -27,6 +28,14 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   // Helper function to get current questions based on category path
   const getCurrentQuestions = () => {
+    const categoryKey = currentCategoryPath.join('/');
+    
+    // If we have already shuffled questions for this category, use them
+    if (shuffledQuestions[categoryKey]) {
+      return shuffledQuestions[categoryKey];
+    }
+    
+    // Otherwise, get the original questions
     let category = questionSets[currentCategoryPath[0]];
     
     if (currentCategoryPath.length > 1) {
@@ -69,6 +78,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     }
     
     return category.description;
+  };
+
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
   };
 
   const currentQuestions = getCurrentQuestions();
@@ -204,6 +223,35 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   };
 
   const changeCategory = (categoryPath) => {
+    // Get questions for new category
+    let category = questionSets[categoryPath[0]];
+    
+    if (categoryPath.length > 1) {
+      for (let i = 1; i < categoryPath.length; i++) {
+        if (category.subcategories) {
+          category = category.subcategories.find(sub => sub.key === categoryPath[i]);
+        }
+        
+        if (i === categoryPath.length - 1 && category.subcategories) {
+          const subCategory = category.subcategories.find(sub => sub.key === categoryPath[i]);
+          if (subCategory && subCategory.questions) {
+            category = subCategory;
+          }
+        }
+      }
+    }
+    
+    const categoryKey = categoryPath.join('/');
+    
+    // Shuffle questions if they haven't been shuffled yet
+    if (!shuffledQuestions[categoryKey] && category.questions) {
+      const shuffled = shuffleArray(category.questions);
+      setShuffledQuestions(prev => ({
+        ...prev,
+        [categoryKey]: shuffled
+      }));
+    }
+    
     setCurrentCategoryPath(categoryPath);
     setCurrentQuestionIndex(0);
     setRevealedHints([false, false]);
@@ -224,6 +272,18 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+  }, []);
+
+  // Initialize shuffled questions for the first category
+  useEffect(() => {
+    const initialCategoryKey = currentCategoryPath.join('/');
+    const initialQuestions = getCurrentQuestions();
+    
+    if (initialQuestions.length > 0 && !shuffledQuestions[initialCategoryKey]) {
+      setShuffledQuestions({
+        [initialCategoryKey]: shuffleArray(initialQuestions)
+      });
+    }
   }, []);
 
   // Recursive function to render category menu items
