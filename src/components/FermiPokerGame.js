@@ -18,8 +18,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
-  // Fixed the unused variable by using const instead of useState
-  const showCategoryInfo = true;
   const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
   
   // Refs for dropdown handling
@@ -74,8 +72,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
-  const shouldShowCategoryInfo = showCategoryInfo && 
-                               currentQuestionIndex === 0 && 
+  const shouldShowCategoryInfo = currentQuestionIndex === 0 && 
                                !categoryInfoSeen[currentCategoryPath.join('/')];
 
   // Get display name for current category
@@ -351,7 +348,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           {currentQuestion.question}
         </h2>
         <div className="text-xs mb-3 font-medium italic flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1.5 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1.5 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
           </svg>
           {currentQuestion.category}
