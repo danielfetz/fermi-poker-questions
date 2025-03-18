@@ -17,6 +17,10 @@ const App = () => {
     setShowIntro(false);
   };
 
+  const returnToHome = () => {
+    setShowIntro(true);
+  };
+
   return (
     <div className={`min-h-screen font-primary py-2 geometric-background ${darkMode ? 'dark' : 'light'}`}>
       {/* Geometric background patterns - static designs */}
@@ -60,7 +64,10 @@ const App = () => {
       
         {/* Header */}
         <header className="text-center py-3 mb-4">
-          <h1 className="text-3xl sm:text-4xl font-display font-bold mb-1">
+          <h1 
+            className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors" 
+            onClick={returnToHome}
+          >
             {showIntro ? "Fermi Poker" : "Fermi Questions"}
           </h1>
           <div className="flex justify-center">
