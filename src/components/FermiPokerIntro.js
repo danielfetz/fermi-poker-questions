@@ -4,10 +4,10 @@ import { introContent } from '../data/introContent';
 const FermiPokerIntro = ({ startGame }) => {
   const [expandedSections, setExpandedSections] = useState({
     gameConcept: true, // Open by default
-    gameplay: false,
-    multipleQuestions: false,
-    metaGame: false,
-    strategy: false
+    gameplay: true,
+    multipleQuestions: true,
+    metaGame: true,
+    strategy: true
   });
 
   // Toggle expanded sections in intro
