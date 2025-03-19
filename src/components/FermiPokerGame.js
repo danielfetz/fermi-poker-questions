@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const FermiPokerGame = ({ questionSets, darkMode }) => {
-  const [currentCategoryPath, setCurrentCategoryPath] = useState(['general']);
+const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToCategories }) => {
+  const [currentCategoryPath, setCurrentCategoryPath] = useState(initialCategoryPath || ['general']);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [revealedHints, setRevealedHints] = useState([false, false]);
   const [answerRevealed, setAnswerRevealed] = useState(false);
@@ -475,17 +475,28 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       </div>
       
-      {/* Navigation Controls */}
+      {/* Navigation Controls - Updated with Categories button */}
       <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
-        <button
-          onClick={handleSkipClick}
-          className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-          </svg>
-          Skip/Next
-        </button>
+        <div className="flex space-x-2">
+          <button
+            onClick={returnToCategories}
+            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Categories
+          </button>
+          <button
+            onClick={handleSkipClick}
+            className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+            </svg>
+            Skip/Next
+          </button>
+        </div>
         
         <div className="text-xs font-medium flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
@@ -494,64 +505,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           Question {currentQuestionIndex + 1} of {currentQuestions.length}
         </div>
       </div>
-      
-      {/* Category Menu Portal - Rendered at the root level to avoid z-index issues */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50" style={{ pointerEvents: 'none' }}>
-          <div 
-            ref={menuRef}
-            className="absolute category-menu-container" 
-            style={{ 
-              pointerEvents: 'auto',
-              top: buttonRef.current ? buttonRef.current.getBoundingClientRect().bottom + window.scrollY + 5 : '20px',
-              left: buttonRef.current ? buttonRef.current.getBoundingClientRect().left + window.scrollX : '20px',
-            }}
-          >
-            <div className="category-menu">
-              <div className="menu-header">
-                <h3 className="font-bold">Select Category</h3>
-                <button 
-                  onClick={() => setMenuOpen(false)}
-                  className="text-medium-brown hover:text-rich-brown dark:text-golden-accent dark:hover:text-golden-light"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-              <div className="menu-content">
-                {Object.entries(questionSets).map(([key, category]) => 
-                  renderCategoryItems(category, key)
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* Hint order error notification - Fixed z-index and solid background */}
-      {showHintError && (
-        <div className="fixed inset-x-0 top-4 mx-auto w-80 notification error-notification">
-          <div className="flex items-center">
-            <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-            </svg>
-            <p className="text-sm font-medium">Please reveal Hint 1 first!</p>
-          </div>
-        </div>
-      )}
-      
-      {/* Answer error notification - Fixed z-index and solid background */}
-      {showAnswerError && (
-        <div className="fixed inset-x-0 top-4 mx-auto w-80 notification answer-notification">
-          <div className="flex items-center">
-            <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-            </svg>
-            <p className="text-sm font-medium">Explore both hints before revealing the answer!</p>
-          </div>
-        </div>
-      )}
       
       {/* Skip confirmation modal with opaque background */}
       {showSkipConfirm && (
