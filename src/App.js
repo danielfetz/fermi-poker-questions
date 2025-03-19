@@ -27,9 +27,10 @@ const App = () => {
   return (
     <Router>
       <div className={`min-h-screen font-primary py-2 geometric-background ${darkMode ? 'dark' : 'light'}`}>
-        {/* Geometric background patterns - static designs */}
+        {/* Geometric background patterns - enhanced with more shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="patterns">
+            {/* Original patterns */}
             <div className="pattern-circle-1"></div>
             <div className="pattern-circle-2"></div>
             <div className="pattern-circle-3"></div>
@@ -43,6 +44,14 @@ const App = () => {
             <div className="pattern-line-1"></div>
             <div className="pattern-line-2"></div>
             <div className="pattern-wave"></div>
+            
+            {/* New patterns for top left corner and below */}
+            <div className="pattern-triangle-topleft"></div>
+            <div className="pattern-circle-topleft"></div>
+            <div className="pattern-rhombus"></div>
+            <div className="pattern-pentagon"></div>
+            <div className="pattern-small-circles"></div>
+            <div className="pattern-cross"></div>
           </div>
         </div>
         
