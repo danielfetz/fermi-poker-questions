@@ -1559,10 +1559,7 @@ button {
   }
 }
 
-
-/* Add these styles to src/styles.css */
-
-/* Category Selection Styling */
+/* Enhanced Category Selection Styling */
 .category-card {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--soft-brown);
@@ -1577,14 +1574,21 @@ button {
 }
 
 .category-card:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-color: var(--golden-accent);
 }
 
 .dark .category-card:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  border-color: var(--golden-accent);
+}
+
+.subcategories {
+  border-left: 2px solid var(--golden-accent);
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.dark .subcategories {
+  border-left-color: var(--golden-dark);
 }
 
 /* Animation for view transitions */
@@ -1592,13 +1596,25 @@ button {
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Grid utilities for category selection */
-@media (min-width: 640px) {
-  .sm\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Additional utility classes */
+.ml-4 {
+  margin-left: 1rem;
 }
 
-.space-x-2 > * + * {
-  margin-left: 0.5rem;
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
