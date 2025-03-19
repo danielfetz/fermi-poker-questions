@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-ro
 import FermiPokerIntro from './components/FermiPokerIntro';
 import CategorySelection from './components/CategorySelection';
 import FermiPokerGame from './components/FermiPokerGame';
+import ScrollToTop from './components/ScrollToTop';
 import { createQuestionSets } from './data/questionSets';
 import './styles.css';
 
@@ -26,13 +27,14 @@ const App = () => {
 
   return (
     <Router>
+      {/* This ScrollToTop component will scroll to top when route changes */}
+      <ScrollToTop />
+      
       <div className={`min-h-screen font-primary py-2 geometric-background ${darkMode ? 'dark' : 'light'}`}>
         {/* Geometric background patterns - enhanced with more shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="patterns">
             {/* Original patterns */}
-            <div className="pattern-circle-1"></div>
-            <div className="pattern-circle-2"></div>
             <div className="pattern-circle-3"></div>
             <div className="pattern-triangle-1"></div>
             <div className="pattern-triangle-2"></div>
@@ -43,7 +45,6 @@ const App = () => {
             <div className="pattern-dots-2"></div>
             <div className="pattern-line-1"></div>
             <div className="pattern-line-2"></div>
-            <div className="pattern-wave"></div>
             
             {/* New patterns for top left corner and below */}
             <div className="pattern-triangle-topleft"></div>
