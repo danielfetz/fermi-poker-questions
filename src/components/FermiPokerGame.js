@@ -18,8 +18,7 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
-  const [showCategoryInfo, setShowCategoryInfo] = useState(true);
-  const [categoryInfoSeen, setCategoryInfoSeen] = useState({});
+  // Removed category info banner state variables
   const [shuffledQuestions, setShuffledQuestions] = useState({});
   
   // Refs for dropdown handling
@@ -59,42 +58,8 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
     return category.questions || [];
   };
 
-  // Helper function to get current category description
-  const getCurrentCategoryDescription = () => {
-    let category = questionSets[currentCategoryPath[0]];
-    
-    if (currentCategoryPath.length > 1) {
-      for (let i = 1; i < currentCategoryPath.length; i++) {
-        if (category.subcategories) {
-          const subCategory = category.subcategories.find(sub => sub.key === currentCategoryPath[i]);
-          if (subCategory) {
-            if (i === currentCategoryPath.length - 1) {
-              return subCategory.description;
-            }
-            category = subCategory;
-          }
-        }
-      }
-    }
-    
-    return category.description;
-  };
-
-  // Fisher-Yates shuffle algorithm
-  const shuffleArray = (array) => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-  };
-
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
-  const shouldShowCategoryInfo = showCategoryInfo && 
-                               currentQuestionIndex === 0 && 
-                               !categoryInfoSeen[currentCategoryPath.join('/')];
 
   // Get display name for current category
   const getCurrentCategoryName = () => {
@@ -208,13 +173,6 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
     setShowSkipConfirm(false);
   };
 
-  const closeCategoryInfo = () => {
-    setCategoryInfoSeen(prev => ({
-      ...prev,
-      [currentCategoryPath.join('/')]: true
-    }));
-  };
-
   const nextQuestion = () => {
     const nextIndex = (currentQuestionIndex + 1) % currentQuestions.length;
     setCurrentQuestionIndex(nextIndex);
@@ -286,6 +244,16 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
     }
   }, []);
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
   // Recursive function to render category menu items
   const renderCategoryItems = (category, categoryKey, path = [], depth = 0) => {
     const currentPath = [...path, categoryKey];
@@ -353,17 +321,16 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
     <>
       {/* Top navigation bar - combines category selector and stats */}
       <div className="flex flex-wrap justify-between items-center border-b pb-3 mb-4 relative z-10">
-        {/* Completely redesigned category dropdown system */}
+        {/* Replaced dropdown with Back to Categories button */}
         <div className="relative">
           <button 
-            ref={buttonRef}
-            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium shadow-md hover:bg-dark-brown transition-all flex items-center"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={returnToCategories}
+            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
           >
-            <span className="mr-1.5">{getCurrentCategoryName()}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
+            Back to Categories
           </button>
         </div>
         
@@ -385,23 +352,7 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
         </div>
       </div>
       
-      {/* Category Info Banner */}
-      {shouldShowCategoryInfo && (
-        <div className="category-info-banner mb-4">
-          <div className="flex justify-between items-start mb-1">
-            <h3 className="font-display font-bold text-lg">{getCurrentCategoryName()}</h3>
-            <button 
-              onClick={closeCategoryInfo}
-              className="text-medium-brown hover:text-rich-brown dark:text-golden-accent dark:hover:text-golden-light"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          <p className="text-sm">{getCurrentCategoryDescription()}</p>
-        </div>
-      )}
+      {/* Removed category info banner */}
       
       {/* Question section */}
       <div className="mb-4 relative z-10">
@@ -475,18 +426,9 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
         </div>
       </div>
       
-      {/* Navigation Controls - Updated with Categories button */}
+      {/* Navigation Controls - Removed Back to Categories button */}
       <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
         <div className="flex space-x-2">
-          <button
-            onClick={returnToCategories}
-            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Categories
-          </button>
           <button
             onClick={handleSkipClick}
             className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
