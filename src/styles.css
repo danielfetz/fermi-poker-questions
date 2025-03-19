@@ -646,7 +646,7 @@ button {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0.05rem 1rem;
   text-align: left;
   transition: all 0.2s;
   background-color: var(--main-bg);
@@ -675,6 +675,7 @@ button {
 
 .dark .dropdown-content {
   border-color: var(--dark-border);
+  background-color: rgba(45, 38, 30, 0.7);
 }
 
 .dropdown-content p, .dropdown-content li {
@@ -711,7 +712,7 @@ button {
 }
 
 .light .start-game-button {
-  background-color: rgba(249, 240, 220, 0.8);
+  background-color: rgb(250 243 227);
   color: var(--rich-brown);
   border: 1px solid var(--soft-brown);
 }
