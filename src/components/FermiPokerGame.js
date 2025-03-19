@@ -371,7 +371,7 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
         {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
           <div key={index} className="card-container">
             <div 
-              className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''} ${!revealedHints[index] && ((index === 0) || (index === 1 && revealedHints[0])) ? 'shake-subtle' : ''}`}
+              className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''}`}
               onClick={() => !revealedHints[index] && startFlip(`hint${index}`)}
             >
               <div className="card-front hint-front">
@@ -400,7 +400,7 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
         {/* Answer - same size as hints */}
         <div className="card-container">
           <div 
-            className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''} ${!answerRevealed && revealedHints.every(h => h) ? 'shake-subtle' : ''}`}
+            className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
             onClick={() => !answerRevealed && startFlip('answer')}
           >
             <div className="card-front answer-front">
@@ -449,29 +449,29 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
       </div>
 
       {/* Hint order error notification - Fixed z-index and solid background */}
-        {showHintError && (
-          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification error-notification">
-            <div className="flex items-center">
-              <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-              </svg>
-              <p className="text-sm font-medium">Please reveal Hint 1 first!</p>
-            </div>
-          </div>
-        )}
-        
-        {/* Answer error notification - Fixed z-index and solid background */}
-        {showAnswerError && (
-          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification answer-notification">
-            <div className="flex items-center">
-              <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-              </svg>
-              <p className="text-sm font-medium">Explore both hints before revealing the answer!</p>
-            </div>
-          </div>
-        )}
-      
+       {showHintError && (
+         <div className="fixed inset-x-0 top-4 mx-auto w-80 notification error-notification">
+           <div className="flex items-center">
+             <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
+               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
+             </svg>
+             <p className="text-sm font-medium">Please reveal Hint 1 first!</p>
+           </div>
+         </div>
+       )}
+       
+       {/* Answer error notification - Fixed z-index and solid background */}
+       {showAnswerError && (
+         <div className="fixed inset-x-0 top-4 mx-auto w-80 notification answer-notification">
+           <div className="flex items-center">
+             <svg className="h-5 w-5 mr-2.5 notification-icon" fill="currentColor" viewBox="0 0 20 20">
+               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
+             </svg>
+             <p className="text-sm font-medium">Explore both hints before revealing the answer!</p>
+           </div>
+         </div>
+       )}
+
       {/* Skip confirmation modal with opaque background */}
       {showSkipConfirm && (
         <div 
