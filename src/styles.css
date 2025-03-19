@@ -711,9 +711,9 @@ button {
 }
 
 .light .start-game-button {
-  background-color: var(--golden-accent);
+  background-color: rgba(249, 240, 220, 0.8);
   color: var(--rich-brown);
-  border: 2px solid var(--golden-dark);
+  border: 1px solid var(--soft-brown);
 }
 
 .dark .start-game-button {
