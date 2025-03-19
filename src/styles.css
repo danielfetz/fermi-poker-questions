@@ -68,20 +68,13 @@ button {
 
 .light .main-bg {
   background-color: var(--main-bg);
-  border: 2px solid var(--light-border);
 }
 
 .dark .main-bg {
   background-color: var(--dark-surface);
-  border: 2px solid var(--dark-border);
 }
 
 /* Border Styles with explicit width and style */
-.border {
-  border-width: 1px;
-  border-bottom-style: solid;
-}
-
 .border-b {
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -1435,6 +1428,7 @@ button {
 
 .border {
   border-width: 1px;
+  border-bottom-style: solid;
 }
 
 .rounded-lg {
