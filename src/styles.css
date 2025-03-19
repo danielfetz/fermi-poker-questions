@@ -1594,6 +1594,8 @@ button {
 /* Animation for view transitions */
 .category-selection {
   animation: fadeIn 0.3s ease-out;
+  position: relative;
+  z-index: 5;
 }
 
 /* Additional utility classes */
