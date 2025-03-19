@@ -11,6 +11,15 @@ const App = () => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+
+  // Update theme-color meta tag based on dark mode state
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeColorMeta) {
+    themeColorMeta.setAttribute(
+      'content', 
+      newDarkMode ? '#1F1A15' : '#F7E8D0'  // dark-bg or cream-tan
+    );
+  }
   };
 
   const startGame = () => {
