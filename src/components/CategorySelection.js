@@ -16,9 +16,9 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
   const renderCategory = (category, categoryKey, path = [], depth = 0) => {
     const currentPath = [...path, categoryKey];
     const isExpanded = expandedCategories[categoryKey];
-    const hasSubcategories = category.isParent && 
-                          category.subcategories && 
-                          category.subcategories.length > 0;
+    
+    // Modified to check only for the existence of subcategories, not requiring isParent flag
+    const hasSubcategories = category.subcategories && category.subcategories.length > 0;
     
     return (
       <div 
