@@ -1620,26 +1620,3 @@ button {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
-
-/* Subtle tilt animation - faster with smaller angle */
-@keyframes subtleTilt {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(-0.4deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(0.4deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.shake-subtle {
-  animation: subtleTilt 0.8s ease-in-out infinite;
-  transform-origin: center center;
-}
-
-.card.flipped.shake-subtle {
-  animation: none; /* Prevent animation on flipped cards */
-}
-
-/* Ensure the tilt animation doesn't interfere with the flip animation */
-.card.flipping {
-  animation: none !important;
-}
