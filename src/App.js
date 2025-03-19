@@ -68,7 +68,7 @@ const App = () => {
             className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors" 
             onClick={returnToHome}
           >
-            {showIntro ? "Fermi Poker" : "Fermi Questions"}
+            fermi.poker
           </h1>
           <div className="flex justify-center">
             <div className="w-24 h-1 bg-golden-accent rounded-full"></div>
