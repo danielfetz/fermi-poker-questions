@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
+const CategorySelection = ({ questionSets, selectCategory }) => {
+  const navigate = useNavigate();
   // State to track expanded categories
   const [expandedCategories, setExpandedCategories] = useState({});
 
@@ -10,6 +12,14 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
       ...prev,
       [categoryKey]: !prev[categoryKey]
     }));
+  };
+
+  // Navigate to the game with the selected category
+  const handleSelectCategory = (categoryPath) => {
+    selectCategory(categoryPath);
+    // Convert the path array to a URL path format
+    const urlPath = categoryPath.join('/');
+    navigate(`/play/${urlPath}`);
   };
 
   // Recursive function to render category with its subcategories
@@ -85,7 +95,7 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
       
       <div className="text-center mt-8">
         <button
-          onClick={returnToIntro}
+          onClick={() => navigate('/')}
           className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center mx-auto"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
