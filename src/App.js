@@ -10,6 +10,7 @@ const App = () => {
   const [showIntro, setShowIntro] = useState(true);
 
   const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
     setDarkMode(!darkMode);
 
   // Update theme-color meta tag based on dark mode state
