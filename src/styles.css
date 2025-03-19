@@ -1620,3 +1620,27 @@ button {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+
+/* Add these CSS rules to your styles.css file */
+
+/* Subtle shaking animation */
+@keyframes subtleShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+.shake-subtle {
+  animation: subtleShake 2s ease-in-out infinite;
+}
+
+.card.flipped.shake-subtle {
+  animation: none; /* Prevent animation on flipped cards */
+}
+
+/* Ensure the shake animation doesn't interfere with the flip animation */
+.card.flipping {
+  animation: none !important;
+}
