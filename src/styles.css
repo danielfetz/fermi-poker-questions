@@ -51,6 +51,10 @@ html, body {
   font-family: 'Newsreader', serif;
 }
 
+button {
+  font-family: 'Lora', serif;
+}
+
 /* Light/Dark Mode Switching */
 .light {
   color: var(--rich-brown);
@@ -73,6 +77,11 @@ html, body {
 }
 
 /* Border Styles with explicit width and style */
+.border {
+  border-width: 1px;
+  border-bottom-style: solid;
+}
+
 .border-b {
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -689,12 +698,13 @@ html, body {
   padding: 0.875rem 2.5rem;
   font-weight: 600;
   font-size: 1.125rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
   min-width: 200px;
+  font-family: 'Lora', serif;
 }
 
 .light .start-game-button {
