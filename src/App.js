@@ -76,7 +76,7 @@ const App = () => {
           </div>
         
           {/* Header with Link for navigation */}
-          <header className="text-center py-3 mb-4">
+          <header className="text-center pt-28 pb-3 mb-4">
             <Link 
               to="/"
               className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors"
