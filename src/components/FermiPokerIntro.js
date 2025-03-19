@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { introContent } from '../data/introContent';
 
-const FermiPokerIntro = ({ startGame }) => {
+const FermiPokerIntro = () => {
+  const navigate = useNavigate();
   const [expandedSections, setExpandedSections] = useState({
-    gameConcept: true, // Open by default
+    gameConcept: true,
     gameplay: true,
     multipleQuestions: true,
     metaGame: true,
@@ -16,6 +18,10 @@ const FermiPokerIntro = ({ startGame }) => {
       ...prev,
       [section]: !prev[section]
     }));
+  };
+
+  const goToCategories = () => {
+    navigate('/categories');
   };
 
   return (
@@ -156,7 +162,7 @@ const FermiPokerIntro = ({ startGame }) => {
       {/* Fixed Start Game Button */}
       <div className="fixed-start-button">
         <button 
-          onClick={startGame}
+          onClick={goToCategories}
           className="start-game-button"
         >
           <span className="mr-2">See questions</span>
