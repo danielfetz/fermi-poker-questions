@@ -52,6 +52,12 @@ html, body {
 }
 
 button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit; /* Inherit from parent to prevent default blue */
+  border-style: solid;
   font-family: 'Lora', serif;
 }
 
