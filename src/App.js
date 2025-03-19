@@ -47,7 +47,6 @@ const App = () => {
             
             {/* New patterns for top left corner and below */}
             <div className="pattern-triangle-topleft"></div>
-            <div className="pattern-circle-topleft"></div>
             <div className="pattern-rhombus"></div>
             <div className="pattern-pentagon"></div>
             <div className="pattern-small-circles"></div>
