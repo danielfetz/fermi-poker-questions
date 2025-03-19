@@ -364,6 +364,108 @@ button {
   border-color: var(--dark-border);
 }
 
+/* Top left corner triangle */
+.pattern-triangle-topleft {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 20px;
+  left: 20px;
+  background-color: var(--rich-brown);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.035;
+  transform: rotate(-15deg);
+}
+
+.dark .pattern-triangle-topleft {
+  background-color: var(--golden-accent);
+  opacity: 0.06;
+}
+
+/* Top left circle */
+.pattern-circle-topleft {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  top: 80px;
+  left: 80px;
+  border: 3px solid var(--golden-accent);
+  opacity: 0.15;
+}
+
+.dark .pattern-circle-topleft {
+  opacity: 0.1;
+}
+
+/* Rhombus below top left */
+.pattern-rhombus {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 150px;
+  left: 40px;
+  background-color: var(--golden-accent);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.04;
+  transform: rotate(15deg);
+}
+
+.dark .pattern-rhombus {
+  background-color: var(--rich-brown);
+  opacity: 0.07;
+}
+
+/* Bottom left pentagon */
+.pattern-pentagon {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  bottom: 140px;
+  left: 50px;
+  background-color: var(--rich-brown);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  opacity: 0.03;
+}
+
+.dark .pattern-pentagon {
+  background-color: var(--golden-accent);
+  opacity: 0.05;
+}
+
+/* Small scattered circles */
+.pattern-small-circles {
+  position: absolute;
+  width: 180px;
+  height: 200px;
+  top: 250px;
+  left: 120px;
+  background-image: radial-gradient(var(--golden-accent) 3px, transparent 3px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+}
+
+.dark .pattern-small-circles {
+  opacity: 0.07;
+}
+
+/* Cross pattern */
+.pattern-cross {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 180px;
+  left: 200px;
+  background: 
+    linear-gradient(to right, transparent 35%, var(--golden-accent) 35%, var(--golden-accent) 65%, transparent 65%) no-repeat center / 100% 20%, 
+    linear-gradient(to bottom, transparent 35%, var(--golden-accent) 35%, var(--golden-accent) 65%, transparent 65%) no-repeat center / 20% 100%;
+  opacity: 0.08;
+}
+
+.dark .pattern-cross {
+  opacity: 0.06;
+}
+
 /* Complex Static Geometric Background */
 .geometric-background {
   position: relative;
