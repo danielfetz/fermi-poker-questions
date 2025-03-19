@@ -347,12 +347,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </button>
       );
     }
-  // Skip modal backdrop click handler
-  const handleBackdropClick = (e) => {
-    // Only close if actually clicking the backdrop (not the modal itself)
-    if (e.target === e.currentTarget) {
-      setShowSkipConfirm(false);
-    }
   };
 
   return (
@@ -559,11 +553,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       )}
       
-      {/* Skip confirmation modal with opaque background - updated with click handler */}
+      {/* Skip confirmation modal with opaque background */}
       {showSkipConfirm && (
         <div 
           className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={handleBackdropClick}
         >
           <div className="skip-modal rounded-xl shadow-xl p-4 max-w-sm w-full mx-4 border">
             <h3 className="text-lg font-display font-bold mb-2 flex items-center">
