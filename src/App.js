@@ -1,34 +1,45 @@
 import React, { useState } from 'react';
 import FermiPokerIntro from './components/FermiPokerIntro';
 import FermiPokerGame from './components/FermiPokerGame';
+import CategorySelection from './components/CategorySelection';
 import { createQuestionSets } from './data/questionSets';
 import './styles.css';
 
 const App = () => {
   const questionSets = createQuestionSets();
   const [darkMode, setDarkMode] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
+  const [currentView, setCurrentView] = useState('intro'); // 'intro', 'categories', or 'game'
+  const [selectedCategoryPath, setSelectedCategoryPath] = useState(['general']);
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
-    setDarkMode(!darkMode);
+    setDarkMode(newDarkMode);
 
-  // Update theme-color meta tag based on dark mode state
-  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-  if (themeColorMeta) {
-    themeColorMeta.setAttribute(
-      'content', 
-      newDarkMode ? '#1F1A15' : '#F7E8D0'  // dark-bg or cream-tan
-    );
-  }
+    // Update theme-color meta tag based on dark mode state
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute(
+        'content', 
+        newDarkMode ? '#1F1A15' : '#F7E8D0'  // dark-bg or cream-tan
+      );
+    }
   };
 
-  const startGame = () => {
-    setShowIntro(false);
+  const startGameFlow = () => {
+    setCurrentView('categories');
   };
 
-  const returnToHome = () => {
-    setShowIntro(true);
+  const returnToIntro = () => {
+    setCurrentView('intro');
+  };
+
+  const selectCategory = (categoryPath) => {
+    setSelectedCategoryPath(categoryPath);
+    setCurrentView('game');
+  };
+
+  const returnToCategories = () => {
+    setCurrentView('categories');
   };
 
   return (
@@ -76,7 +87,7 @@ const App = () => {
         <header className="text-center py-3 mb-4">
           <h1 
             className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors" 
-            onClick={returnToHome}
+            onClick={returnToIntro}
           >
             fermi.poker
           </h1>
@@ -93,15 +104,28 @@ const App = () => {
             <div className="content-pattern-2"></div>
           </div>
           
-          {showIntro ? (
-            <FermiPokerIntro startGame={startGame} />
-          ) : (
-            <FermiPokerGame questionSets={questionSets} darkMode={darkMode} />
+          {currentView === 'intro' && (
+            <FermiPokerIntro startGame={startGameFlow} />
+          )}
+          {currentView === 'categories' && (
+            <CategorySelection 
+              questionSets={questionSets} 
+              selectCategory={selectCategory} 
+              returnToIntro={returnToIntro} 
+            />
+          )}
+          {currentView === 'game' && (
+            <FermiPokerGame 
+              questionSets={questionSets} 
+              darkMode={darkMode} 
+              initialCategoryPath={selectedCategoryPath}
+              returnToCategories={returnToCategories}
+            />
           )}
         </div>
         
         <footer className="text-center text-xs py-2 font-medium">
-          Fermi {showIntro ? "Poker" : "Questions"} — <span className="italic">A tool for estimation practice</span>
+          Fermi {currentView === 'intro' ? "Poker" : "Questions"} — <span className="italic">A tool for estimation practice</span>
         </footer>
       </div>
       

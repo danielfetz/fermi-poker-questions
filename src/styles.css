@@ -1558,3 +1558,65 @@ button {
     gap: 1rem;
   }
 }
+
+/* Enhanced Category Selection Styling */
+.category-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--soft-brown);
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dark .category-card {
+  background-color: rgba(45, 38, 30, 0.7);
+  border-color: var(--dark-border);
+}
+
+.category-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark .category-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.subcategories {
+  border-left: 2px solid var(--golden-accent);
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.dark .subcategories {
+  border-left-color: var(--golden-dark);
+}
+
+/* Animation for view transitions */
+.category-selection {
+  animation: fadeIn 0.3s ease-out;
+  position: relative;
+  z-index: 5;
+}
+
+/* Additional utility classes */
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
