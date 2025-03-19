@@ -59,6 +59,7 @@ button {
   color: inherit; /* Inherit from parent to prevent default blue */
   border-style: solid;
   font-family: 'Lora', serif;
+  cursor: pointer;
 }
 
 /* Light/Dark Mode Switching */
