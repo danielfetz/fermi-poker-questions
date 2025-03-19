@@ -1558,3 +1558,47 @@ button {
     gap: 1rem;
   }
 }
+
+
+/* Add these styles to src/styles.css */
+
+/* Category Selection Styling */
+.category-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--soft-brown);
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dark .category-card {
+  background-color: rgba(45, 38, 30, 0.7);
+  border-color: var(--dark-border);
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: var(--golden-accent);
+}
+
+.dark .category-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-color: var(--golden-accent);
+}
+
+/* Animation for view transitions */
+.category-selection {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Grid utilities for category selection */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
