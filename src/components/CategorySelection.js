@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CategorySelection = ({ questionSets, selectCategory }) => {
+const CategorySelection = ({ questionSets }) => {
   const navigate = useNavigate();
   // State to track expanded categories
   const [expandedCategories, setExpandedCategories] = useState({});
@@ -16,7 +16,6 @@ const CategorySelection = ({ questionSets, selectCategory }) => {
 
   // Navigate to the game with the selected category
   const handleSelectCategory = (categoryPath) => {
-    selectCategory(categoryPath);
     // Convert the path array to a URL path format
     const urlPath = categoryPath.join('/');
     navigate(`/play/${urlPath}`);
@@ -59,7 +58,7 @@ const CategorySelection = ({ questionSets, selectCategory }) => {
             )}
             {(category.questions && category.questions.length > 0) && (
               <button
-                onClick={() => selectCategory(currentPath)}
+                onClick={() => handleSelectCategory(currentPath)}
                 className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
               >
                 Play
