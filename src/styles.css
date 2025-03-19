@@ -643,8 +643,8 @@ button {
   padding: 0 1rem;
   text-align: left;
   transition: all 0.2s;
-  background-color: rgba(255, 255, 255, 0.7); /* Match intro-dropdown background */
-  button: 0;
+  background-color: var(--main-bg);
+  border: none;
 }
 
 .dark .dropdown-header {
@@ -664,6 +664,7 @@ button {
   border-top: 1px solid var(--hint-border);
   animation: fadeIn 0.3s ease-out;
   line-height: 1.5;
+  background-color: var(--main-bg);
 }
 
 .dark .dropdown-content {
