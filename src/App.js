@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import FermiPokerIntro from './components/FermiPokerIntro';
-import FermiPokerGame from './components/FermiPokerGame';
 import CategorySelection from './components/CategorySelection';
+import FermiPokerGame from './components/FermiPokerGame';
 import { createQuestionSets } from './data/questionSets';
 import './styles.css';
 
 const App = () => {
   const questionSets = createQuestionSets();
   const [darkMode, setDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState('intro'); // 'intro', 'categories', or 'game'
   const [selectedCategoryPath, setSelectedCategoryPath] = useState(['general']);
 
   const toggleDarkMode = () => {
@@ -25,21 +25,8 @@ const App = () => {
     }
   };
 
-  const startGameFlow = () => {
-    setCurrentView('categories');
-  };
-
-  const returnToIntro = () => {
-    setCurrentView('intro');
-  };
-
   const selectCategory = (categoryPath) => {
     setSelectedCategoryPath(categoryPath);
-    setCurrentView('game');
-  };
-
-  const returnToCategories = () => {
-    setCurrentView('categories');
   };
 
   return (
@@ -83,50 +70,62 @@ const App = () => {
           </button>
         </div>
       
-        {/* Header */}
-        <header className="text-center py-3 mb-4">
-          <h1 
-            className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors" 
-            onClick={returnToIntro}
-          >
-            fermi.poker
-          </h1>
-          <div className="flex justify-center">
-            <div className="w-24 h-1 bg-golden-accent rounded-full"></div>
-          </div>
-        </header>
-        
-        {/* Main content area */}
-        <div className="main-bg rounded-xl shadow-xl p-4 sm:p-5 relative overflow-hidden">
-          {/* Content background pattern */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden content-pattern-container">
-            <div className="content-pattern-1"></div>
-            <div className="content-pattern-2"></div>
+        {/* Header with Link for navigation */}
+        <Router>
+          <header className="text-center py-3 mb-4">
+            <h1 
+              className="text-3xl sm:text-4xl font-display font-bold mb-1 cursor-pointer hover:text-golden-accent transition-colors" 
+              onClick={() => window.location.href = '/'}
+            >
+              fermi.poker
+            </h1>
+            <div className="flex justify-center">
+              <div className="w-24 h-1 bg-golden-accent rounded-full"></div>
+            </div>
+          </header>
+          
+          {/* Main content area */}
+          <div className="main-bg rounded-xl shadow-xl p-4 sm:p-5 relative overflow-hidden">
+            {/* Content background pattern */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden content-pattern-container">
+              <div className="content-pattern-1"></div>
+              <div className="content-pattern-2"></div>
+            </div>
+            
+            <Routes>
+              <Route 
+                path="/" 
+                element={<FermiPokerIntro />} 
+              />
+              <Route 
+                path="/categories" 
+                element={
+                  <CategorySelection 
+                    questionSets={questionSets} 
+                    selectCategory={selectCategory} 
+                  />
+                } 
+              />
+              <Route 
+                path="/play/:categoryPath+" 
+                element={
+                  <FermiPokerGame 
+                    questionSets={questionSets} 
+                    darkMode={darkMode} 
+                  />
+                } 
+              />
+              <Route 
+                path="*" 
+                element={<Navigate to="/" replace />} 
+              />
+            </Routes>
           </div>
           
-          {currentView === 'intro' && (
-            <FermiPokerIntro startGame={startGameFlow} />
-          )}
-          {currentView === 'categories' && (
-            <CategorySelection 
-              questionSets={questionSets} 
-              selectCategory={selectCategory} 
-              returnToIntro={returnToIntro} 
-            />
-          )}
-          {currentView === 'game' && (
-            <FermiPokerGame 
-              questionSets={questionSets} 
-              darkMode={darkMode} 
-              initialCategoryPath={selectedCategoryPath}
-              returnToCategories={returnToCategories}
-            />
-          )}
-        </div>
-        
-        <footer className="text-center text-xs py-2 font-medium">
-          Fermi {currentView === 'intro' ? "Poker" : "Questions"} — <span className="italic">A tool for estimation practice</span>
-        </footer>
+          <footer className="text-center text-xs py-2 font-medium">
+            Fermi Poker — <span className="italic">A tool for estimation practice</span>
+          </footer>
+        </Router>
       </div>
       
       {/* Import Google Fonts */}
