@@ -1621,26 +1621,25 @@ button {
   padding-bottom: 0.25rem;
 }
 
-/* Add these CSS rules to your styles.css file */
-
-/* Subtle shaking animation */
-@keyframes subtleShake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  50% { transform: translateX(0); }
-  75% { transform: translateX(2px); }
-  100% { transform: translateX(0); }
+/* Subtle tilt animation */
+@keyframes subtleTilt {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-0.7deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(0.7deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .shake-subtle {
-  animation: subtleShake 2s ease-in-out infinite;
+  animation: subtleTilt 3s ease-in-out infinite;
+  transform-origin: center center;
 }
 
 .card.flipped.shake-subtle {
   animation: none; /* Prevent animation on flipped cards */
 }
 
-/* Ensure the shake animation doesn't interfere with the flip animation */
+/* Ensure the tilt animation doesn't interfere with the flip animation */
 .card.flipping {
   animation: none !important;
 }
