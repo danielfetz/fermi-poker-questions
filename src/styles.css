@@ -7,7 +7,7 @@ html, body {
 /* Custom Color Variables */
 :root {
   --warm-cream: #FEF9F0;
-  --cream-tan: #F7E8D0;
+  --cream-tan: #F8F4EB;
   --main-bg: #FFFCF7;
   --soft-brown: #D9C7A7;
   --medium-brown: #99805D;
@@ -363,7 +363,7 @@ header.pt-28 {
   background-color: transparent;
   color: var(--rich-brown);
   transition: all 0.2s;
-  border: 1px solid transparent;
+  border: 1px solid var(--soft-brown);
 }
 
 .dark .dark-mode-toggle {
