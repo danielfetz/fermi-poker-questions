@@ -117,6 +117,21 @@ button {
   border-color: var(--dark-border);
 }
 
+/* Header link styling */
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+/* Ensure the header has proper top padding */
+header.pt-28 {
+  padding-top: 28px;
+}
+
 /* Category Menu Styling - Portal Implementation */
 .category-menu-container {
   width: 300px;
