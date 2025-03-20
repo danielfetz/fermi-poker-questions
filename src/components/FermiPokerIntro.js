@@ -27,8 +27,8 @@ const FermiPokerIntro = () => {
   return (
     <div className="intro-section mb-20">
       <div className="intro-header text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2 sm:mt-4">What is Fermi Poker?</h2>
-        <p className="text-medium-brown dark:text-golden-light">Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions.</p>
+        <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2">What is Fermi Poker?</h2>
+        <p className="text-medium-brown dark:text-golden-light leading-normal">Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions.</p>
       </div>
       
       {/* Game concept dropdown */}
