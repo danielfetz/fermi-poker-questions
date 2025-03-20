@@ -83,7 +83,7 @@ const CategorySelection = ({ questionSets }) => {
     <div className="category-selection mb-20">
       <div className="text-center mb-8">
         <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2">Select a Category</h2>
-        <p className="text-medium-brown dark:text-golden-light">Choose a category to start practicing with Fermi questions</p>
+        <p className="text-medium-brown dark:text-golden-light leading-normal">Choose a category to start practicing with Fermi questions</p>
       </div>
       
       <div className="categories-container">
