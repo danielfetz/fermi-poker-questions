@@ -56,7 +56,9 @@ const CategorySelection = ({ questionSets }) => {
                 {isExpanded ? 'Hide' : 'Show'} Subcategories
               </button>
             )}
-            {(category.questions && category.questions.length > 0) && (
+            
+            {/* Show Play button for both categories with direct questions AND categories with subcategories */}
+            {((category.questions && category.questions.length > 0) || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
                 className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
