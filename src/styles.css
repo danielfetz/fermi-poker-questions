@@ -1607,6 +1607,7 @@ header.pt-28 {
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+    margin-top: 1rem;
   }
   
   .sm\:gap-4 {
