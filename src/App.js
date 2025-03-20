@@ -20,7 +20,7 @@ const App = () => {
     if (themeColorMeta) {
       themeColorMeta.setAttribute(
         'content', 
-        newDarkMode ? '#1F1A15' : '#F7E8D0'  // dark-bg or cream-tan
+        newDarkMode ? '#1F1A15' : '#F8F4EB'  // dark-bg or cream-tan
       );
     }
   };
