@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToCategories }) => {
-  const [currentCategoryPath, setCurrentCategoryPath] = useState(initialCategoryPath || ['general']);
+const FermiPokerGame = ({ questionSets, darkMode }) => {
+  const navigate = useNavigate();
+  const { "*": categoryPathParam } = useParams(); // Get the category path from URL
+  
+  // Parse the categoryPath from the URL
+  const parsedCategoryPath = categoryPathParam ? categoryPathParam.split('/') : ['general'];
+  
+  const [currentCategoryPath, setCurrentCategoryPath] = useState(parsedCategoryPath);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [revealedHints, setRevealedHints] = useState([false, false]);
   const [answerRevealed, setAnswerRevealed] = useState(false);
@@ -18,7 +25,6 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
-  // Removed category info banner state variables
   const [shuffledQuestions, setShuffledQuestions] = useState({});
   
   // Refs for dropdown handling
@@ -210,11 +216,15 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
       }));
     }
     
+    // Update state
     setCurrentCategoryPath(categoryPath);
     setCurrentQuestionIndex(0);
     setRevealedHints([false, false]);
     setAnswerRevealed(false);
     setMenuOpen(false);
+    
+    // Update URL
+    navigate(`/play/${categoryPath.join('/')}`);
   };
 
   // Close menu when clicking outside
@@ -317,6 +327,11 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
     }
   };
 
+  // Return to categories page
+  const returnToCategories = () => {
+    navigate('/categories');
+  };
+
   return (
     <>
       {/* Top navigation bar - combines category selector and stats */}
@@ -351,8 +366,6 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
           </div>
         </div>
       </div>
-      
-      {/* Removed category info banner */}
       
       {/* Question section */}
       <div className="mb-4 relative z-10">
@@ -426,7 +439,7 @@ const FermiPokerGame = ({ questionSets, darkMode, initialCategoryPath, returnToC
         </div>
       </div>
       
-      {/* Navigation Controls - Removed Back to Categories button */}
+      {/* Navigation Controls */}
       <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
         <div className="flex space-x-2">
           <button

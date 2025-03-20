@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
+const CategorySelection = ({ questionSets }) => {
+  const navigate = useNavigate();
   // State to track expanded categories
   const [expandedCategories, setExpandedCategories] = useState({});
 
@@ -10,6 +12,13 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
       ...prev,
       [categoryKey]: !prev[categoryKey]
     }));
+  };
+
+  // Navigate to the game with the selected category
+  const handleSelectCategory = (categoryPath) => {
+    // Convert the path array to a URL path format
+    const urlPath = categoryPath.join('/');
+    navigate(`/play/${urlPath}`);
   };
 
   // Recursive function to render category with its subcategories
@@ -28,7 +37,7 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
         <div className="flex justify-between items-center">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg">{category.name}</h3>
-            <p className="text-sm mb-2">{category.description}</p>
+            <p className="text-sm mb-2 leading-normal">{category.description}</p>
             <div className="text-xs font-medium flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
@@ -49,7 +58,7 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
             )}
             {(category.questions && category.questions.length > 0) && (
               <button
-                onClick={() => selectCategory(currentPath)}
+                onClick={() => handleSelectCategory(currentPath)}
                 className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
               >
                 Play
@@ -85,7 +94,7 @@ const CategorySelection = ({ questionSets, selectCategory, returnToIntro }) => {
       
       <div className="text-center mt-8">
         <button
-          onClick={returnToIntro}
+          onClick={() => navigate('/')}
           className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center mx-auto"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

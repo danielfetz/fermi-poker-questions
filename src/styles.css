@@ -7,7 +7,7 @@ html, body {
 /* Custom Color Variables */
 :root {
   --warm-cream: #FEF9F0;
-  --cream-tan: #F7E8D0;
+  --cream-tan: #F8F4EB;
   --main-bg: #FFFCF7;
   --soft-brown: #D9C7A7;
   --medium-brown: #99805D;
@@ -59,6 +59,7 @@ button {
   color: inherit; /* Inherit from parent to prevent default blue */
   border-style: solid;
   font-family: 'Lora', serif;
+  cursor: pointer;
 }
 
 /* Light/Dark Mode Switching */
@@ -114,6 +115,21 @@ button {
 .dark .category-info-banner {
   background-color: rgba(45, 38, 30, 0.7);
   border-color: var(--dark-border);
+}
+
+/* Header link styling */
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+/* Ensure the header has proper top padding */
+header.pt-28 {
+  padding-top: 28px;
 }
 
 /* Category Menu Styling - Portal Implementation */
@@ -347,11 +363,13 @@ button {
   background-color: transparent;
   color: var(--rich-brown);
   transition: all 0.2s;
-  border: 1px solid transparent;
+  border: 1px solid var(--soft-brown);
+  width: 37.5px;
 }
 
 .dark .dark-mode-toggle {
   color: var(--golden-accent);
+  border-color: var(--dark-border);
 }
 
 .dark-mode-toggle:hover {
@@ -362,6 +380,92 @@ button {
 .dark .dark-mode-toggle:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: var(--dark-border);
+}
+
+/* Top left corner triangle */
+.pattern-triangle-topleft {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 20px;
+  left: 20px;
+  background-color: var(--rich-brown);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.035;
+  transform: rotate(-15deg);
+}
+
+.dark .pattern-triangle-topleft {
+  background-color: var(--golden-accent);
+  opacity: 0.06;
+}
+
+/* Rhombus below top left */
+.pattern-rhombus {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 150px;
+  left: 40px;
+  background-color: var(--golden-accent);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.04;
+  transform: rotate(15deg);
+}
+
+.dark .pattern-rhombus {
+  background-color: var(--rich-brown);
+  opacity: 0.07;
+}
+
+/* Bottom left pentagon */
+.pattern-pentagon {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  bottom: 140px;
+  left: 50px;
+  background-color: var(--rich-brown);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  opacity: 0.03;
+}
+
+.dark .pattern-pentagon {
+  background-color: var(--golden-accent);
+  opacity: 0.05;
+}
+
+/* Small scattered circles */
+.pattern-small-circles {
+  position: absolute;
+  width: 180px;
+  height: 200px;
+  top: 250px;
+  left: 120px;
+  background-image: radial-gradient(var(--golden-accent) 3px, transparent 3px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+}
+
+.dark .pattern-small-circles {
+  opacity: 0.07;
+}
+
+/* Cross pattern */
+.pattern-cross {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 180px;
+  left: 200px;
+  background: 
+    linear-gradient(to right, transparent 35%, var(--golden-accent) 35%, var(--golden-accent) 65%, transparent 65%) no-repeat center / 100% 20%, 
+    linear-gradient(to bottom, transparent 35%, var(--golden-accent) 35%, var(--golden-accent) 65%, transparent 65%) no-repeat center / 20% 100%;
+  opacity: 0.08;
+}
+
+.dark .pattern-cross {
+  opacity: 0.06;
 }
 
 /* Complex Static Geometric Background */
@@ -377,37 +481,6 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-/* Pattern Elements - Large Background */
-.pattern-circle-1 {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  top: -100px;
-  left: -100px;
-  background: radial-gradient(circle, var(--golden-light) 0%, transparent 70%);
-  opacity: 0.4;
-}
-
-.dark .pattern-circle-1 {
-  opacity: 0.15;
-}
-
-.pattern-circle-2 {
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  bottom: -50px;
-  right: -50px;
-  background: radial-gradient(circle, var(--golden-light) 0%, transparent 70%);
-  opacity: 0.3;
-}
-
-.dark .pattern-circle-2 {
-  opacity: 0.1;
 }
 
 .pattern-circle-3 {
@@ -565,24 +638,6 @@ button {
 .dark .pattern-line-2 {
   background-color: var(--golden-accent);
   opacity: 0.06;
-}
-
-.pattern-wave {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  bottom: 0;
-  left: 0;
-  background-image: 
-    repeating-radial-gradient(circle at 0 50%, transparent 0, var(--golden-light) 30px),
-    repeating-radial-gradient(circle at 80px 50%, transparent 0, var(--golden-light) 30px);
-  background-size: 80px 50px;
-  background-position: 0 0, 40px 0;
-  opacity: 0.1;
-}
-
-.dark .pattern-wave {
-  opacity: 0.08;
 }
 
 /* Content Pattern - inside the main content area */
@@ -1291,7 +1346,7 @@ button {
 }
 
 .max-w-4xl {
-  max-width: 50rem;
+  max-width: 45rem;
 }
 
 .max-w-sm {
@@ -1430,6 +1485,10 @@ button {
   line-height: 1.375;
 }
 
+.leading-normal {
+  line-height: 1.5;
+}
+
 .grid {
   display: grid;
 }
@@ -1552,6 +1611,7 @@ button {
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+    margin-top: 1rem;
   }
   
   .sm\:gap-4 {
