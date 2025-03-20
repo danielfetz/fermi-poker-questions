@@ -364,10 +364,12 @@ header.pt-28 {
   color: var(--rich-brown);
   transition: all 0.2s;
   border: 1px solid var(--soft-brown);
+  width: 37.5px;
 }
 
 .dark .dark-mode-toggle {
   color: var(--golden-accent);
+  border-color: var(--dark-border);
 }
 
 .dark-mode-toggle:hover {
