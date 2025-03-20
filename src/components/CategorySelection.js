@@ -37,7 +37,7 @@ const CategorySelection = ({ questionSets }) => {
         <div className="flex justify-between items-center">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg">{category.name}</h3>
-            <p className="text-sm mb-2">{category.description}</p>
+            <p className="text-sm mb-2 leading-normal">{category.description}</p>
             <div className="text-xs font-medium flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
