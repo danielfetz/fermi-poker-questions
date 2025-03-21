@@ -16,10 +16,8 @@ html, body {
   --golden-light: #F6E3B7;
   --golden-accent: #D4A244;
   --golden-dark: #B38728;
-  --hint-front: #F9F0DC;
   --hint-back: #FDFAF4;
   --hint-border: #D9C7A7;
-  --answer-front: #F6E3B7;
   --answer-back: #FEFBF5;
   --answer-border: #D4A244;
   --hover-light: #FCF5E8;
@@ -959,7 +957,6 @@ header.pt-28 {
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: var(--hint-front);
   color: var(--golden-dark);
   border: 1px solid var(--golden-accent);
   border-radius: 50%;
@@ -1041,7 +1038,6 @@ header.pt-28 {
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: var(--answer-front);
   color: var(--dark-brown);
   border: 1px solid var(--golden-dark);
   border-radius: 50%;
@@ -1109,7 +1105,6 @@ header.pt-28 {
 
 /* Specific Card Colors */
 .light .hint-front {
-  background-color: var(--hint-front);
   border: 1px solid var(--hint-border);
   color: var(--rich-brown);
 }
@@ -1133,7 +1128,6 @@ header.pt-28 {
 }
 
 .light .answer-front {
-  background-color: var(--answer-front);
   border: 1px solid var(--answer-border);
   color: var(--rich-brown);
 }
