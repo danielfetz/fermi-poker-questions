@@ -51,17 +51,6 @@ html, body {
   font-family: 'Newsreader', serif;
 }
 
-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  color: inherit; /* Inherit from parent to prevent default blue */
-  border-style: solid;
-  font-family: 'Lora', serif;
-  cursor: pointer;
-}
-
 /* Light/Dark Mode Switching */
 .light {
   color: var(--rich-brown);
@@ -81,6 +70,19 @@ button {
 .dark .main-bg {
   background-color: var(--dark-surface);
   border: 2px solid var(--dark-border);
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit; /* Inherit from parent to prevent default blue */
+  border-style: solid;
+  font-family: 'Lora', serif;
+  cursor: pointer;
+  background: var(--main-bg);
+  border: 1px solid #8080803d;
 }
 
 /* Border Styles with explicit width and style */
