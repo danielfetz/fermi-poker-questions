@@ -293,7 +293,7 @@ export const createQuestionSets = () => {
               category: "Personal Finance"
             }
           ]
-        }
+        },
 {
   key: "businessIndustry",
   name: "Business & Industry",
