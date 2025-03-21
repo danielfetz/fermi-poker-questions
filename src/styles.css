@@ -85,6 +85,10 @@ button {
   border: 1px solid #8080803d;
 }
 
+.dark button {
+  background: var(--dark-soft);
+}
+
 /* Border Styles with explicit width and style */
 .border-b {
   border-bottom-width: 1px;
