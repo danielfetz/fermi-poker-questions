@@ -32,11 +32,11 @@ const CategorySelection = ({ questionSets }) => {
     return (
       <div 
         key={categoryKey}
-        className={`main-bg p-4 rounded-lg border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
+        className={`category-card p-4 rounded-lg border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
       >
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+        <div className="flex justify-between items-center">
           <div className="flex-1">
-            <h3 className="font-display font-bold text-lg my-0">{category.name}</h3>
+            <h3 className="font-display font-bold text-lg">{category.name}</h3>
             <p className="text-sm mb-2">{category.description}</p>
             <div className="text-xs font-medium flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
@@ -47,26 +47,25 @@ const CategorySelection = ({ questionSets }) => {
             </div>
           </div>
           
-          <div className="mt-3 sm:mt-0 sm:ml-2 w-full sm:w-auto">
-            <div className="flex flex-wrap gap-2 sm:justify-end">
-              {hasSubcategories && (
-                <button
-                  onClick={() => toggleCategoryExpanded(categoryKey)}
-                  className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md"
-                >
-                  {isExpanded ? 'Hide' : 'Show'} Subcategories
-                </button>
-              )}
-              
-              {((category.questions && category.questions.length > 0) || hasSubcategories) && (
-                <button
-                  onClick={() => handleSelectCategory(currentPath)}
-                  className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
-                >
-                  Play
-                </button>
-              )}
-            </div>
+          <div className="flex space-x-2">
+            {hasSubcategories && (
+              <button
+                onClick={() => toggleCategoryExpanded(categoryKey)}
+                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md"
+              >
+                {isExpanded ? 'Hide' : 'Show'} Subcategories
+              </button>
+            )}
+            
+            {/* Show Play button for both categories with direct questions AND categories with subcategories */}
+            {((category.questions && category.questions.length > 0) || hasSubcategories) && (
+              <button
+                onClick={() => handleSelectCategory(currentPath)}
+                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
+              >
+                Play
+              </button>
+            )}
           </div>
         </div>
         
