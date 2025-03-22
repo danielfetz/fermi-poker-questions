@@ -582,37 +582,6 @@ header.pt-28 {
   opacity: 0.05;
 }
 
-.pattern-dots-1 {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 70%;
-  right: 40%;
-  background-image: radial-gradient(var(--rich-brown) 2px, transparent 2px);
-  background-size: 15px 15px;
-  opacity: 0.2;
-}
-
-.dark .pattern-dots-1 {
-  background-image: radial-gradient(var(--golden-accent) 2px, transparent 2px);
-  opacity: 0.1;
-}
-
-.pattern-dots-2 {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  top: 10%;
-  left: 40%;
-  background-image: radial-gradient(var(--golden-accent) 1.5px, transparent 1.5px);
-  background-size: 12px 12px;
-  opacity: 0.15;
-}
-
-.dark .pattern-dots-2 {
-  opacity: 0.1;
-}
-
 .pattern-line-1 {
   position: absolute;
   width: 250px;
