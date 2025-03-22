@@ -1590,11 +1590,9 @@ header.pt-28 {
 
 /* Enhanced Category Selection Styling */
 .category-card {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--main-bg);
   border: 1px solid var(--soft-brown);
   transition: all 0.2s;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .dark .category-card {
