@@ -32,7 +32,7 @@ const CategorySelection = ({ questionSets }) => {
     return (
       <div 
         key={categoryKey}
-        className={`category-card p-4 rounded-lg border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
+        className={`category-card p-4 rounded-xl border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
       >
         <div className="flex justify-between items-center">
           <div className="flex-1">
