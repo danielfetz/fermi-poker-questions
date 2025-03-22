@@ -49,7 +49,6 @@ const App = () => {
             <div className="pattern-rhombus"></div>
             <div className="pattern-pentagon"></div>
             <div className="pattern-small-circles"></div>
-            <div className="pattern-cross"></div>
           </div>
         </div>
         
