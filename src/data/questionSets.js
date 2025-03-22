@@ -293,7 +293,41 @@ export const createQuestionSets = () => {
               category: "Personal Finance"
             }
           ]
-        }
+        },
+{
+  key: "businessIndustry",
+  name: "Business & Industry",
+  description: "These questions explore corporate metrics, market sizes, and industrial output, helping to understand the scale of commercial activities.",
+  questions: [
+    {
+      question: "How many cars did Tesla produce in 2024?",
+      hints: [
+        "Tesla's production capacity across all factories was approximately 2.3 million vehicles annually at the end of 2023, but most factories weren't at full capacity year-round.",
+        "In 2022, Tesla produced approximately 1.37 million vehicles."
+      ],
+      answer: "Tesla produced 1.77 million cars in 2024.",
+      category: "Business & Industry"
+    },
+    {
+      question: "What was Walmart's net profit margin in 2024? (in percentage)",
+      hints: [
+        "Walmart's total revenue was approximately $648 billion in 2024, with a net income of around $15.5 billion.",
+        "Retailers like Target typically have net margins of 3-4%, while Amazon's retail operations run on margins below 2%."
+      ],
+      answer: "Walmart's net profit margin was 2.63% in 2024.",
+      category: "Business & Industry"
+    },
+    {
+      question: "How many bicycles are sold annually in the US?",
+      hints: [
+        "The US bicycle industry had annual sales of approximately $7 billion, with an average retail price of around $400 per bicycle.",
+        "In a typical year, bicycle sales equal about 5-6% of the US population size, though this varies with economic conditions and trends."
+      ],
+      answer: "Approximately 15-18 million bicycles are sold annually in the US.",
+      category: "Business & Industry"
+    }
+  ]
+}
       ]
     },
     technology: {

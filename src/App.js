@@ -41,8 +41,6 @@ const App = () => {
             <div className="pattern-square-1"></div>
             <div className="pattern-square-2"></div>
             <div className="pattern-hexagon"></div>
-            <div className="pattern-dots-1"></div>
-            <div className="pattern-dots-2"></div>
             <div className="pattern-line-1"></div>
             <div className="pattern-line-2"></div>
             
@@ -51,7 +49,6 @@ const App = () => {
             <div className="pattern-rhombus"></div>
             <div className="pattern-pentagon"></div>
             <div className="pattern-small-circles"></div>
-            <div className="pattern-cross"></div>
           </div>
         </div>
         

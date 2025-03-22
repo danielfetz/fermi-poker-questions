@@ -32,7 +32,7 @@ const CategorySelection = ({ questionSets }) => {
     return (
       <div 
         key={categoryKey}
-        className={`category-card p-4 rounded-lg border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
+        className={`category-card p-4 rounded-xl border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
       >
         <div className="flex justify-between items-center">
           <div className="flex-1">
@@ -56,7 +56,9 @@ const CategorySelection = ({ questionSets }) => {
                 {isExpanded ? 'Hide' : 'Show'} Subcategories
               </button>
             )}
-            {(category.questions && category.questions.length > 0) && (
+            
+            {/* Show Play button for both categories with direct questions AND categories with subcategories */}
+            {((category.questions && category.questions.length > 0) || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
                 className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"

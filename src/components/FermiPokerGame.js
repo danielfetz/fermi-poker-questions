@@ -31,6 +31,25 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
+  // Function to collect questions from a category and all its subcategories
+  const collectQuestionsFromCategory = (category) => {
+    let questions = [];
+    
+    // Add direct questions from the category
+    if (category.questions) {
+      questions = [...questions, ...category.questions];
+    }
+    
+    // Add questions from subcategories
+    if (category.subcategories) {
+      for (const subcat of category.subcategories) {
+        questions = [...questions, ...collectQuestionsFromCategory(subcat)];
+      }
+    }
+    
+    return questions;
+  };
+
   // Helper function to get current questions based on category path
   const getCurrentQuestions = () => {
     const categoryKey = currentCategoryPath.join('/');
@@ -51,17 +70,15 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           return category.questions;
         }
         
-        // Handle nested subcategories
-        if (i === currentCategoryPath.length - 1 && category.subcategories) {
-          const subCategory = category.subcategories.find(sub => sub.key === currentCategoryPath[i]);
-          if (subCategory && subCategory.questions) {
-            return subCategory.questions;
-          }
+        // If category not found, return empty array
+        if (!category) {
+          return [];
         }
       }
     }
     
-    return category.questions || [];
+    // Collect questions from the category and all its subcategories
+    return collectQuestionsFromCategory(category);
   };
 
   const currentQuestions = getCurrentQuestions();
