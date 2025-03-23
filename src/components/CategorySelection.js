@@ -73,7 +73,7 @@ const CategorySelection = ({ questionSets }) => {
                 <span>{totalQuestionCount} questions</span>
               </div>
               
-              {/* Subcategories count - only show if has subcategories */}
+          /* Subcategories count - maybe add in the future
               {hasSubcategories && (
                 <div className="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
@@ -82,6 +82,7 @@ const CategorySelection = ({ questionSets }) => {
                   <span>{category.subcategories.length} subcategories</span>
                 </div>
               )}
+          */
             </div>
           </div>
           
