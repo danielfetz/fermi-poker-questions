@@ -1591,6 +1591,10 @@ header.pt-28 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+.category-card h3 {
+  margin: 0;
+}
+
 .subcategories {
   border-left: 2px solid var(--golden-accent);
   padding-left: 0.5rem;
