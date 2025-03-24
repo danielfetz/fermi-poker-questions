@@ -14,6 +14,25 @@ const CategorySelection = ({ questionSets }) => {
     }));
   };
 
+  // Function to count total questions in a category including all subcategories
+  const countTotalQuestions = (category) => {
+    let count = 0;
+    
+    // Add direct questions from this category
+    if (category.questions) {
+      count += category.questions.length;
+    }
+    
+    // Add questions from subcategories
+    if (category.subcategories) {
+      for (const subcat of category.subcategories) {
+        count += countTotalQuestions(subcat);
+      }
+    }
+    
+    return count;
+  };
+
   // Navigate to the game with the selected category
   const handleSelectCategory = (categoryPath) => {
     // Convert the path array to a URL path format
@@ -26,8 +45,13 @@ const CategorySelection = ({ questionSets }) => {
     const currentPath = [...path, categoryKey];
     const isExpanded = expandedCategories[categoryKey];
     
-    // Modified to check only for the existence of subcategories, not requiring isParent flag
+    // Check if category has subcategories
     const hasSubcategories = category.subcategories && category.subcategories.length > 0;
+    
+    // Calculate question counts
+    const directQuestionCount = category.questions ? category.questions.length : 0;
+    const totalQuestionCount = countTotalQuestions(category);
+    const subcategoryQuestionCount = totalQuestionCount - directQuestionCount;
     
     return (
       <div 
@@ -36,14 +60,18 @@ const CategorySelection = ({ questionSets }) => {
       >
         <div className="flex justify-between items-center">
           <div className="flex-1">
-            <h3 className="font-display font-bold text-lg">{category.name}</h3>
+            <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
             <p className="text-sm mb-2">{category.description}</p>
-            <div className="text-xs font-medium flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-              </svg>
-              {category.questions ? `${category.questions.length} questions` : hasSubcategories ? 'Has subcategories' : '0 questions'}
+            
+            <div className="text-xs font-medium flex flex-wrap items-center gap-3">
+              {/* Questions count */}
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+                </svg>
+                <span>{totalQuestionCount} questions</span>
+              </div>
             </div>
           </div>
           
@@ -58,7 +86,7 @@ const CategorySelection = ({ questionSets }) => {
             )}
             
             {/* Show Play button for both categories with direct questions AND categories with subcategories */}
-            {((category.questions && category.questions.length > 0) || hasSubcategories) && (
+            {(directQuestionCount > 0 || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
                 className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
