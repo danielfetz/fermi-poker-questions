@@ -677,7 +677,7 @@ header.pt-28 {
 }
 
 .dropdown-content {
-  padding: 0.5rem 1rem 0.75rem;
+  padding: 0rem 1rem 0.5rem;
   border-top: 1px solid var(--hint-border);
   animation: fadeIn 0.3s ease-out;
   line-height: 1.5;
