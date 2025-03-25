@@ -61,7 +61,7 @@ const CategorySelection = ({ questionSets }) => {
         <div className="flex justify-between items-center">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
-            <p className="text-sm mb-2">{category.description}</p>
+            <p className="text-base mb-2">{category.description}</p>
             
             <div className="text-xs font-medium flex flex-wrap items-center gap-3">
               {/* Questions count */}
@@ -79,7 +79,7 @@ const CategorySelection = ({ questionSets }) => {
             {hasSubcategories && (
               <button
                 onClick={() => toggleCategoryExpanded(categoryKey)}
-                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md"
+                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-base font-medium hover:bg-dark-brown transition-all shadow-md"
               >
                 {isExpanded ? 'Hide' : 'Show'} Subcategories
               </button>
@@ -89,7 +89,7 @@ const CategorySelection = ({ questionSets }) => {
             {(directQuestionCount > 0 || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
-                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
+                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-base font-medium hover:bg-golden-dark transition-all shadow-md"
               >
                 Play
               </button>
