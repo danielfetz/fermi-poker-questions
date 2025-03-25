@@ -63,7 +63,7 @@ const CategorySelection = ({ questionSets }) => {
             <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
             <p className="text-base mb-2 mt-3">{category.description}</p>
             
-            <div className="text-xs font-medium flex flex-wrap items-center gap-3">
+            <div className="text-xs font-medium flex flex-wrap items-center gap-3 mt-3">
               {/* Questions count */}
               <div className="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
