@@ -1653,10 +1653,5 @@ header.pt-28 {
   .category-buttons-wrapper button {
     width: 100%;
     margin-left: 0 !important;
-    margin-bottom: 8px;
-  }
-  
-  .category-buttons-wrapper button:last-child {
-    margin-bottom: 0;
   }
 }
