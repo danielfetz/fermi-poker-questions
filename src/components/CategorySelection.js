@@ -61,7 +61,7 @@ const CategorySelection = ({ questionSets }) => {
         <div className="flex justify-between items-center category-content-wrapper">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
-            <p className="text-base mb-2">{category.description}</p>
+            <p className="text-base mb-2 mt-3">{category.description}</p>
             
             <div className="text-xs font-medium flex flex-wrap items-center gap-3">
               {/* Questions count */}
