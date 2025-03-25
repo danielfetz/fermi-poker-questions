@@ -51,17 +51,17 @@ const CategorySelection = ({ questionSets }) => {
     // Calculate question counts
     const directQuestionCount = category.questions ? category.questions.length : 0;
     const totalQuestionCount = countTotalQuestions(category);
-    const subcategoryQuestionCount = totalQuestionCount - directQuestionCount;
     
     return (
       <div 
         key={categoryKey}
         className={`category-card p-4 rounded-xl border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
       >
-        <div className="flex justify-between items-center">
+        {/* Added wrapper classes for responsive styling */}
+        <div className="flex justify-between items-center category-content-wrapper">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
-            <p className="text-sm mb-2">{category.description}</p>
+            <p className="text-base mb-2">{category.description}</p>
             
             <div className="text-xs font-medium flex flex-wrap items-center gap-3">
               {/* Questions count */}
@@ -75,11 +75,12 @@ const CategorySelection = ({ questionSets }) => {
             </div>
           </div>
           
-          <div className="flex space-x-2">
+          {/* Added wrapper class for responsive button layout */}
+          <div className="flex space-x-2 category-buttons-wrapper">
             {hasSubcategories && (
               <button
                 onClick={() => toggleCategoryExpanded(categoryKey)}
-                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md"
+                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-base font-medium hover:bg-dark-brown transition-all shadow-md"
               >
                 {isExpanded ? 'Hide' : 'Show'} Subcategories
               </button>
@@ -89,7 +90,7 @@ const CategorySelection = ({ questionSets }) => {
             {(directQuestionCount > 0 || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
-                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-sm font-medium hover:bg-golden-dark transition-all shadow-md"
+                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-base font-medium hover:bg-golden-dark transition-all shadow-md"
               >
                 Play
               </button>

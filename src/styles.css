@@ -1634,3 +1634,24 @@ header.pt-28 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+
+/* Responsive Category Cards - more conservative approach */
+@media (max-width: 639px) {
+  /* On small screens only, make these changes */
+  .category-content-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .category-buttons-wrapper {
+    flex-direction: column-reverse;
+    width: 100%;
+    margin-top: 12px;
+    gap: 8px;
+  }
+  
+  .category-buttons-wrapper button {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}
