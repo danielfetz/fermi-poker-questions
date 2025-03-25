@@ -1635,68 +1635,27 @@ header.pt-28 {
   padding-bottom: 0.25rem;
 }
 
-/* Responsive Category Cards */
-.category-card-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.category-buttons-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 12px;
-  gap: 8px;
-}
-
-.category-button-action {
-  width: 100%;
-  padding: 6px 8px;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s;
-}
-
-.dark .category-button-action {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-}
-
-.subcategory-button {
-  background-color: var(--rich-brown);
-  color: var(--warm-cream);
-}
-
-.subcategory-button:hover {
-  background-color: var(--dark-brown);
-}
-
-.play-button {
-  background-color: var(--golden-accent);
-  color: var(--warm-cream);
-}
-
-.play-button:hover {
-  background-color: var(--golden-dark);
-}
-
-/* Media queries for larger screens */
-@media (min-width: 640px) {
-  .category-card-content {
-    flex-direction: row;
-    justify-content: space-between;
+/* Responsive Category Cards - more conservative approach */
+@media (max-width: 639px) {
+  /* On small screens only, make these changes */
+  .category-content-wrapper {
+    flex-direction: column;
     align-items: flex-start;
   }
   
-  .category-buttons-container {
-    width: auto;
-    flex-direction: row;
-    margin-top: 0;
-    margin-left: 8px;
+  .category-buttons-wrapper {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 12px;
   }
   
-  .category-button-action {
-    width: auto;
+  .category-buttons-wrapper button {
+    width: 100%;
+    margin-right: 0 !important;
+    margin-bottom: 8px;
+  }
+  
+  .category-buttons-wrapper button:last-child {
+    margin-bottom: 0;
   }
 }
