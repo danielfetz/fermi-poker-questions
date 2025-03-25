@@ -1636,18 +1636,23 @@ header.pt-28 {
 }
 
 /* Responsive Category Cards - more conservative approach */
+.category-content-wrapper {
+  gap: 10px;
+}
+
 @media (max-width: 639px) {
   /* On small screens only, make these changes */
   .category-content-wrapper {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0;
   }
   
   .category-buttons-wrapper {
     flex-direction: column-reverse;
     width: 100%;
     margin-top: 12px;
-    gap: 8px;
+    gap: 6px;
   }
   
   .category-buttons-wrapper button {
