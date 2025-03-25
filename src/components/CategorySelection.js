@@ -51,15 +51,14 @@ const CategorySelection = ({ questionSets }) => {
     // Calculate question counts
     const directQuestionCount = category.questions ? category.questions.length : 0;
     const totalQuestionCount = countTotalQuestions(category);
-    const subcategoryQuestionCount = totalQuestionCount - directQuestionCount;
     
     return (
       <div 
         key={categoryKey}
         className={`category-card p-4 rounded-xl border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
       >
-        {/* Modified to use flex-col on small screens and flex-row on larger screens */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start">
+        {/* Using custom CSS classes for responsive layout */}
+        <div className="category-card-content">
           <div className="flex-1">
             <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
             <p className="text-base mb-2">{category.description}</p>
@@ -76,12 +75,12 @@ const CategorySelection = ({ questionSets }) => {
             </div>
           </div>
           
-          {/* Modified buttons container to stack vertically on small screens */}
-          <div className="flex flex-col space-y-2 w-full sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2 mt-3 sm:mt-0">
+          {/* Using custom CSS classes for responsive button layout */}
+          <div className="category-buttons-container">
             {hasSubcategories && (
               <button
                 onClick={() => toggleCategoryExpanded(categoryKey)}
-                className="w-full px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-base font-medium hover:bg-dark-brown transition-all shadow-md"
+                className="category-button-action subcategory-button"
               >
                 {isExpanded ? 'Hide' : 'Show'} Subcategories
               </button>
@@ -91,7 +90,7 @@ const CategorySelection = ({ questionSets }) => {
             {(directQuestionCount > 0 || hasSubcategories) && (
               <button
                 onClick={() => handleSelectCategory(currentPath)}
-                className="w-full px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-base font-medium hover:bg-golden-dark transition-all shadow-md"
+                className="category-button-action play-button"
               >
                 Play
               </button>
