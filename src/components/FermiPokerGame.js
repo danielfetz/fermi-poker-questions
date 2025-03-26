@@ -357,7 +357,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         <div className="relative">
           <button 
             onClick={returnToCategories}
-            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-sm font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -461,7 +461,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         <div className="flex space-x-2">
           <button
             onClick={handleSkipClick}
-            className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+            className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
