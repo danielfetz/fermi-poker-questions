@@ -1396,6 +1396,11 @@ header.pt-28 {
   line-height: 1.25rem;
 }
 
+.text-1rem {
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
