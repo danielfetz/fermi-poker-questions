@@ -52,9 +52,9 @@ const App = () => {
           </div>
         </div>
         
-        <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-4">
+        <div className="relative z-10 max-w-4xl mx-auto py-2 px-3 sm:px-4">
           {/* Dark mode toggle */}
-          <div className="absolute top-2 right-4 z-20">
+          <div className="absolute top-4 right-4 z-20">
             <button 
               onClick={toggleDarkMode} 
               className="dark-mode-toggle"
