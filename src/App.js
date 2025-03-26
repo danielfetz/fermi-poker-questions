@@ -30,7 +30,7 @@ const App = () => {
       {/* This ScrollToTop component will scroll to top when route changes */}
       <ScrollToTop />
       
-      <div className={`min-h-screen font-primary py-2 geometric-background ${darkMode ? 'dark' : 'light'}`}>
+      <div className={`min-h-screen font-primary geometric-background ${darkMode ? 'dark' : 'light'}`}>
         {/* Geometric background patterns - enhanced with more shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="patterns">
