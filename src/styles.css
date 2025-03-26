@@ -293,12 +293,12 @@ header.pt-28 {
 /* Skip modal styling */
 .light .skip-modal {
   background-color: var(--warm-cream);
-  border-color: var(--soft-brown);
+  border: 1px solid var(--soft-brown);
 }
 
 .dark .skip-modal {
   background-color: var(--dark-surface);
-  border-color: var(--dark-border);
+  border: 1px solid var(--dark-border);
 }
 
 .light .modal-text {
