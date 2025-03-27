@@ -85,10 +85,8 @@ const App = () => {
               className="settings-toggle"
               aria-label="Settings"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <circle cx="5" cy="10" r="1.5" />
-                <circle cx="10" cy="10" r="1.5" />
-                <circle cx="15" cy="10" r="1.5" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M4 5h12M6 10h10M4 15h12" />
               </svg>
             </button>
             
