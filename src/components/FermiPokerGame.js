@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { introContent } from '../data/introContent';
 
 const FermiPokerGame = ({ questionSets, darkMode }) => {
   const navigate = useNavigate();
@@ -19,17 +20,35 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   });
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
-  const [hintsUsed, setHintsUsed] = useState(0);
-  const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const [showHintError, setShowHintError] = useState(false);
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState({});
   
+  // Rules modal state
+  const [showRulesModal, setShowRulesModal] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({
+    gameConcept: true,
+    gameplay: true,
+    multipleQuestions: true,
+    metaGame: true,
+    strategy: true
+  });
+  
+  // Toggle expanded sections in rules modal
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+  
   // Refs for dropdown handling
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const rulesModalRef = useRef(null);
+  const rulesButtonRef = useRef(null);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -157,12 +176,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         const newRevealedHints = [...revealedHints];
         newRevealedHints[hintIndex] = true;
         setRevealedHints(newRevealedHints);
-        setHintsUsed(hintsUsed + 1);
       }, 500); // Half-way through flip
     } else if (element === 'answer') {
       setTimeout(() => {
         setAnswerRevealed(true);
-        setQuestionsAnswered(questionsAnswered + 1);
       }, 500); // Half-way through flip
     }
     
@@ -250,6 +267,12 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       if (menuRef.current && !menuRef.current.contains(event.target) && 
           buttonRef.current && !buttonRef.current.contains(event.target)) {
         setMenuOpen(false);
+      }
+      
+      if (rulesModalRef.current && !rulesModalRef.current.contains(event.target) && 
+          rulesButtonRef.current && !rulesButtonRef.current.contains(event.target) &&
+          !event.target.closest('.rules-modal')) {
+        setShowRulesModal(false);
       }
     }
     
@@ -351,9 +374,9 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   return (
     <>
-      {/* Top navigation bar - combines category selector and stats */}
+      {/* Top navigation bar - combines category selector and help icon */}
       <div className="flex flex-wrap justify-between items-center border-b pb-3 mb-4 relative z-10">
-        {/* Replaced dropdown with Back to Categories button */}
+        {/* Back to Categories button */}
         <div className="relative">
           <button 
             onClick={returnToCategories}
@@ -366,21 +389,18 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </button>
         </div>
         
-        {/* Stats */}
-        <div className="flex text-xs font-medium">
-          <div className="mr-4 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-              <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+        {/* Rules Icon - Replaces Stats */}
+        <div>
+          <button
+            ref={rulesButtonRef}
+            onClick={() => setShowRulesModal(true)}
+            className="rules-button flex items-center justify-center w-8 h-8 rounded-full border border-golden-accent text-golden-accent hover:bg-golden-accent hover:text-warm-cream transition-all"
+            aria-label="Show game rules"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {questionsAnswered}
-          </div>
-          <div className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z" />
-            </svg>
-            {hintsUsed}
-          </div>
+          </button>
         </div>
       </div>
       
@@ -478,7 +498,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       </div>
 
-      {/* Hint order error notification - Fixed z-index and solid background */}
+      {/* Hint order error notification */}
        {showHintError && (
          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification error-notification">
            <div className="flex items-center">
@@ -490,7 +510,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
          </div>
        )}
        
-       {/* Answer error notification - Fixed z-index and solid background */}
+       {/* Answer error notification */}
        {showAnswerError && (
          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification answer-notification">
            <div className="flex items-center">
@@ -502,7 +522,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
          </div>
        )}
 
-      {/* Skip confirmation modal with opaque background */}
+      {/* Skip confirmation modal */}
       {showSkipConfirm && (
         <div 
           className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
@@ -539,6 +559,165 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 className="px-3 py-1.5 confirm-btn rounded-lg text-sm font-medium"
               >
                 Skip
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Rules Modal */}
+      {showRulesModal && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div 
+            ref={rulesModalRef}
+            className="rules-modal rounded-xl shadow-xl p-4 max-w-lg w-full mx-4 border max-h-90vh overflow-y-auto"
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-display font-bold">Fermi Poker Rules</h3>
+              <button 
+                onClick={() => setShowRulesModal(false)}
+                className="text-medium-brown dark:text-golden-light hover:text-golden-accent transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Game concept dropdown */}
+            <div className="intro-dropdown mb-3">
+              <button 
+                className="dropdown-header"
+                onClick={() => toggleSection('gameConcept')}
+              >
+                <h3 className="font-display font-bold text-lg">{introContent.gameConcept.title}</h3>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-5 w-5 transition-transform ${expandedSections.gameConcept ? 'transform rotate-180' : ''}`} 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {expandedSections.gameConcept && (
+                <div className="dropdown-content">
+                  <p>{introContent.gameConcept.content}</p>
+                </div>
+              )}
+            </div>
+            
+            {/* Gameplay dropdown */}
+            <div className="intro-dropdown mb-3">
+              <button 
+                className="dropdown-header"
+                onClick={() => toggleSection('gameplay')}
+              >
+                <h3 className="font-display font-bold text-lg">{introContent.gameplay.title}</h3>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-5 w-5 transition-transform ${expandedSections.gameplay ? 'transform rotate-180' : ''}`} 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {expandedSections.gameplay && (
+                <div className="dropdown-content">
+                  <ol className="list-decimal pl-5 space-y-1">
+                    {introContent.gameplay.content.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </div>
+            
+            {/* Multiple Questions dropdown */}
+            <div className="intro-dropdown mb-3">
+              <button 
+                className="dropdown-header"
+                onClick={() => toggleSection('multipleQuestions')}
+              >
+                <h3 className="font-display font-bold text-lg">{introContent.multipleQuestions.title}</h3>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-5 w-5 transition-transform ${expandedSections.multipleQuestions ? 'transform rotate-180' : ''}`} 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {expandedSections.multipleQuestions && (
+                <div className="dropdown-content">
+                  <p>{introContent.multipleQuestions.content}</p>
+                </div>
+              )}
+            </div>
+            
+            {/* Meta-Game dropdown */}
+            <div className="intro-dropdown mb-3">
+              <button 
+                className="dropdown-header"
+                onClick={() => toggleSection('metaGame')}
+              >
+                <h3 className="font-display font-bold text-lg">{introContent.metaGame.title}</h3>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-5 w-5 transition-transform ${expandedSections.metaGame ? 'transform rotate-180' : ''}`} 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {expandedSections.metaGame && (
+                <div className="dropdown-content">
+                  <p>{introContent.metaGame.content}</p>
+                </div>
+              )}
+            </div>
+            
+            {/* Strategy Tips dropdown */}
+            <div className="intro-dropdown mb-4">
+              <button 
+                className="dropdown-header"
+                onClick={() => toggleSection('strategy')}
+              >
+                <h3 className="font-display font-bold text-lg">{introContent.strategy.title}</h3>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-5 w-5 transition-transform ${expandedSections.strategy ? 'transform rotate-180' : ''}`} 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {expandedSections.strategy && (
+                <div className="dropdown-content">
+                  <ul className="list-disc pl-5 space-y-1">
+                    {introContent.strategy.content.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setShowRulesModal(false)}
+                className="px-3.5 py-1.5 bg-golden-accent text-warm-cream rounded-lg text-1rem font-medium hover:bg-golden-dark transition-all shadow-md"
+              >
+                Got it
               </button>
             </div>
           </div>
