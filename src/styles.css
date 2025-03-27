@@ -1745,8 +1745,6 @@ header.pt-28 {
 }
 
 
-
-
 /* Rules Button Styling */
 .rules-button {
   background-color: transparent;
@@ -1786,6 +1784,7 @@ header.pt-28 {
 /* Rules Modal Styling */
 .rules-modal {
   animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  max-width: 400px !important; /* Control width on desktop */
 }
 
 .light .rules-modal {
@@ -1800,6 +1799,24 @@ header.pt-28 {
 
 .max-h-90vh {
   max-height: 90vh;
+}
+
+/* Close button for the rules modal */
+.rules-close-btn {
+  color: var(--medium-brown);
+  transition: all 0.2s;
+}
+
+.dark .rules-close-btn {
+  color: var(--dark-text);
+}
+
+.light .rules-close-btn:hover {
+  background-color: var(--hover-light);
+}
+
+.dark .rules-close-btn:hover {
+  background-color: var(--dark-soft);
 }
 
 @keyframes modalAppear {
@@ -1823,29 +1840,52 @@ header.pt-28 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Enhanced dropdowns for rules modal */
+/* Enhanced dropdowns for rules modal - match existing styling */
 .rules-modal .intro-dropdown {
   margin-bottom: 0.75rem;
-  border-width: 1px;
-  border-style: solid;
-}
-
-.light .rules-modal .intro-dropdown {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-color: var(--soft-brown);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.75rem;
+  border: 1px solid var(--soft-brown);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .dark .rules-modal .intro-dropdown {
-  background-color: rgba(45, 38, 30, 0.4);
+  background-color: rgba(45, 38, 30, 0.7);
   border-color: var(--dark-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .rules-modal .dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   padding: 0.75rem 1rem;
+  text-align: left;
+  transition: all 0.2s;
+  background-color: transparent;
+  border: none;
+}
+
+.light .rules-modal .dropdown-header:hover {
+  background-color: rgba(249, 240, 220, 0.8);
+}
+
+.dark .rules-modal .dropdown-header:hover {
+  background-color: rgba(74, 64, 51, 0.5);
 }
 
 .rules-modal .dropdown-content {
   padding: 0.5rem 1rem 1rem;
+  border-top: 1px solid var(--hint-border);
+  animation: fadeIn 0.3s ease-out;
+  line-height: 1.5;
+}
+
+.dark .rules-modal .dropdown-content {
+  border-color: var(--dark-border);
 }
 
 /* Scrollbar styling for modal */
