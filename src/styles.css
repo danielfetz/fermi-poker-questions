@@ -1699,8 +1699,12 @@ header.pt-28 {
 
 /* Settings Menu */
 .settings-menu {
-  min-width: 200px;
+  min-width: 160px;
+  width: max-content;
+  max-width: calc(100vw - 60px); /* Ensure it stays in viewport */
   animation: menuAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  position: absolute;
+  transform: translateX(-90%); /* Move it left to keep it in view */
 }
 
 .light .settings-menu {
