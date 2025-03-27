@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { introContent } from '../data/introContent';
+import RulesModal from './RulesModal';
 
 const FermiPokerGame = ({ questionSets, darkMode }) => {
   const navigate = useNavigate();
@@ -28,26 +28,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   
   // Rules modal state
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const [expandedSections, setExpandedSections] = useState({
-    gameConcept: true,
-    gameplay: true,
-    multipleQuestions: true,
-    metaGame: true,
-    strategy: true
-  });
-  
-  // Toggle expanded sections in rules modal
-  const toggleSection = (section) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
   
   // Refs for dropdown handling
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
-  const rulesModalRef = useRef(null);
   const rulesButtonRef = useRef(null);
 
   // Function to collect questions from a category and all its subcategories
@@ -102,30 +86,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
-
-  // Get display name for current category
-  const getCurrentCategoryName = () => {
-    if (currentCategoryPath.length === 1) {
-      return questionSets[currentCategoryPath[0]].name;
-    }
-    
-    let category = questionSets[currentCategoryPath[0]];
-    let name = category.name;
-    
-    for (let i = 1; i < currentCategoryPath.length; i++) {
-      if (category.subcategories) {
-        const subCategory = category.subcategories.find(sub => sub.key === currentCategoryPath[i]);
-        if (subCategory) {
-          if (i === currentCategoryPath.length - 1) {
-            return subCategory.name;
-          }
-          category = subCategory;
-        }
-      }
-    }
-    
-    return name;
-  };
 
   const toggleCategoryExpanded = (categoryKey) => {
     setExpandedCategories(prev => ({
@@ -268,12 +228,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           buttonRef.current && !buttonRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
-      
-      if (rulesModalRef.current && !rulesModalRef.current.contains(event.target) && 
-          rulesButtonRef.current && !rulesButtonRef.current.contains(event.target) &&
-          !event.target.closest('.rules-modal')) {
-        setShowRulesModal(false);
-      }
     }
     
     document.addEventListener('mousedown', handleClickOutside);
@@ -304,69 +258,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     return newArray;
   };
 
-  // Recursive function to render category menu items
-  const renderCategoryItems = (category, categoryKey, path = [], depth = 0) => {
-    const currentPath = [...path, categoryKey];
-    const isCurrentCategory = currentCategoryPath.join('/') === currentPath.join('/');
-    const isExpanded = expandedCategories[categoryKey];
-    
-    // For parent categories with subcategories
-    if (category.isParent && category.subcategories && category.subcategories.length > 0) {
-      return (
-        <div key={categoryKey} className="category-item">
-          <button
-            className={`category-button depth-${depth} ${isCurrentCategory ? 'active' : ''}`}
-            onClick={() => toggleCategoryExpanded(categoryKey)}
-          >
-            <span className="flex-1 text-left">{category.name}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 transition-transform ${isExpanded ? 'transform rotate-180' : ''}`} 
-              viewBox="0 0 20 20" 
-              fill="currentColor"
-            >
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </button>
-          
-          {isExpanded && (
-            <div className="subcategories">
-              {category.subcategories.map(subcat => {
-                if (subcat.subcategories) {
-                  return renderCategoryItems(subcat, subcat.key, currentPath, depth + 1);
-                } else {
-                  return (
-                    <button
-                      key={subcat.key}
-                      className={`category-button depth-${depth + 1} ${currentCategoryPath.join('/') === [...currentPath, subcat.key].join('/') ? 'active' : ''}`}
-                      onClick={() => changeCategory([...currentPath, subcat.key])}
-                    >
-                      <span className="flex-1 text-left">{subcat.name}</span>
-                      <span className="text-xs opacity-70">({subcat.questions.length})</span>
-                    </button>
-                  );
-                }
-              })}
-            </div>
-          )}
-        </div>
-      );
-    } 
-    // For non-parent categories or categories without subcategories
-    else {
-      return (
-        <button
-          key={categoryKey}
-          className={`category-button depth-${depth} ${isCurrentCategory ? 'active' : ''}`}
-          onClick={() => changeCategory(currentPath)}
-        >
-          <span className="flex-1 text-left">{category.name}</span>
-          <span className="text-xs opacity-70">({category.questions.length})</span>
-        </button>
-      );
-    }
-  };
-
   // Return to categories page
   const returnToCategories = () => {
     navigate('/categories');
@@ -389,7 +280,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </button>
         </div>
         
-        {/* Rules Icon - Replaces Stats */}
+        {/* Rules Icon Button */}
         <div>
           <button
             ref={rulesButtonRef}
@@ -565,164 +456,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       )}
       
-      {/* Rules Modal */}
-      {showRulesModal && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
-          <div 
-            ref={rulesModalRef}
-            className="rules-modal rounded-xl shadow-xl p-4 max-w-lg w-full mx-4 border max-h-90vh overflow-y-auto"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-display font-bold">Fermi Poker Rules</h3>
-              <button 
-                onClick={() => setShowRulesModal(false)}
-                className="text-medium-brown dark:text-golden-light hover:text-golden-accent transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            {/* Game concept dropdown */}
-            <div className="intro-dropdown mb-3">
-              <button 
-                className="dropdown-header"
-                onClick={() => toggleSection('gameConcept')}
-              >
-                <h3 className="font-display font-bold text-lg">{introContent.gameConcept.title}</h3>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 transition-transform ${expandedSections.gameConcept ? 'transform rotate-180' : ''}`} 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              {expandedSections.gameConcept && (
-                <div className="dropdown-content">
-                  <p>{introContent.gameConcept.content}</p>
-                </div>
-              )}
-            </div>
-            
-            {/* Gameplay dropdown */}
-            <div className="intro-dropdown mb-3">
-              <button 
-                className="dropdown-header"
-                onClick={() => toggleSection('gameplay')}
-              >
-                <h3 className="font-display font-bold text-lg">{introContent.gameplay.title}</h3>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 transition-transform ${expandedSections.gameplay ? 'transform rotate-180' : ''}`} 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              {expandedSections.gameplay && (
-                <div className="dropdown-content">
-                  <ol className="list-decimal pl-5 space-y-1">
-                    {introContent.gameplay.content.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ol>
-                </div>
-              )}
-            </div>
-            
-            {/* Multiple Questions dropdown */}
-            <div className="intro-dropdown mb-3">
-              <button 
-                className="dropdown-header"
-                onClick={() => toggleSection('multipleQuestions')}
-              >
-                <h3 className="font-display font-bold text-lg">{introContent.multipleQuestions.title}</h3>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 transition-transform ${expandedSections.multipleQuestions ? 'transform rotate-180' : ''}`} 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              {expandedSections.multipleQuestions && (
-                <div className="dropdown-content">
-                  <p>{introContent.multipleQuestions.content}</p>
-                </div>
-              )}
-            </div>
-            
-            {/* Meta-Game dropdown */}
-            <div className="intro-dropdown mb-3">
-              <button 
-                className="dropdown-header"
-                onClick={() => toggleSection('metaGame')}
-              >
-                <h3 className="font-display font-bold text-lg">{introContent.metaGame.title}</h3>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 transition-transform ${expandedSections.metaGame ? 'transform rotate-180' : ''}`} 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              {expandedSections.metaGame && (
-                <div className="dropdown-content">
-                  <p>{introContent.metaGame.content}</p>
-                </div>
-              )}
-            </div>
-            
-            {/* Strategy Tips dropdown */}
-            <div className="intro-dropdown mb-4">
-              <button 
-                className="dropdown-header"
-                onClick={() => toggleSection('strategy')}
-              >
-                <h3 className="font-display font-bold text-lg">{introContent.strategy.title}</h3>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 transition-transform ${expandedSections.strategy ? 'transform rotate-180' : ''}`} 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              
-              {expandedSections.strategy && (
-                <div className="dropdown-content">
-                  <ul className="list-disc pl-5 space-y-1">
-                    {introContent.strategy.content.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            
-            <div className="flex justify-end">
-              <button 
-                onClick={() => setShowRulesModal(false)}
-                className="px-3.5 py-1.5 bg-golden-accent text-warm-cream rounded-lg text-1rem font-medium hover:bg-golden-dark transition-all shadow-md"
-              >
-                Got it
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Rules Modal Component */}
+      <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
     </>
   );
 };
