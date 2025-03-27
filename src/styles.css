@@ -1743,3 +1743,132 @@ header.pt-28 {
 .dark .settings-theme-toggle:hover {
   background-color: var(--dark-hover);
 }
+
+
+
+
+/* Rules Button Styling */
+.rules-button {
+  background-color: transparent;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light .rules-button {
+  border-color: var(--golden-accent);
+  color: var(--golden-accent);
+}
+
+.dark .rules-button {
+  border-color: var(--golden-accent);
+  color: var(--golden-accent);
+}
+
+.light .rules-button:hover {
+  background-color: var(--golden-accent);
+  color: var(--warm-cream);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dark .rules-button:hover {
+  background-color: var(--golden-accent);
+  color: var(--dark-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.rules-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Rules Modal Styling */
+.rules-modal {
+  animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.light .rules-modal {
+  background-color: var(--warm-cream);
+  border-color: var(--soft-brown);
+}
+
+.dark .rules-modal {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+
+.max-h-90vh {
+  max-height: 90vh;
+}
+
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* When rules modal is open, add slight blur to background */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark .backdrop-blur-sm {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced dropdowns for rules modal */
+.rules-modal .intro-dropdown {
+  margin-bottom: 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.light .rules-modal .intro-dropdown {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--soft-brown);
+}
+
+.dark .rules-modal .intro-dropdown {
+  background-color: rgba(45, 38, 30, 0.4);
+  border-color: var(--dark-border);
+}
+
+.rules-modal .dropdown-header {
+  padding: 0.75rem 1rem;
+}
+
+.rules-modal .dropdown-content {
+  padding: 0.5rem 1rem 1rem;
+}
+
+/* Scrollbar styling for modal */
+.rules-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.light .rules-modal::-webkit-scrollbar-track {
+  background: rgba(217, 199, 167, 0.2);
+  border-radius: 10px;
+}
+
+.light .rules-modal::-webkit-scrollbar-thumb {
+  background-color: var(--medium-brown);
+  border-radius: 10px;
+}
+
+.dark .rules-modal::-webkit-scrollbar-track {
+  background: rgba(61, 52, 40, 0.4);
+  border-radius: 10px;
+}
+
+.dark .rules-modal::-webkit-scrollbar-thumb {
+  background-color: var(--golden-dark);
+  border-radius: 10px;
+}
