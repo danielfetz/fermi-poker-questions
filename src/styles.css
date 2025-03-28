@@ -1745,40 +1745,39 @@ header.pt-28 {
 }
 
 
+
 /* Rules Button Styling */
 .rules-button {
-  background-color: transparent;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .light .rules-button {
-  border-color: var(--golden-accent);
-  color: var(--golden-accent);
+  background-color: var(--rich-brown);
+  border-color: var(--rich-brown);
+  color: var(--warm-cream);
 }
 
 .dark .rules-button {
-  border-color: var(--golden-accent);
-  color: var(--golden-accent);
+  background-color: var(--rich-brown);
+  border-color: var(--rich-brown);
+  color: var(--warm-cream);
 }
 
 .light .rules-button:hover {
-  background-color: var(--golden-accent);
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
   color: var(--warm-cream);
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .dark .rules-button:hover {
-  background-color: var(--golden-accent);
-  color: var(--dark-bg);
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
+  color: var(--warm-cream);
 }
 
 .rules-button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px);
 }
 
 /* Rules Modal Styling */
@@ -1803,20 +1802,26 @@ header.pt-28 {
 
 /* Close button for the rules modal */
 .rules-close-btn {
-  color: var(--medium-brown);
   transition: all 0.2s;
+  background-color: var(--rich-brown);
+  border: 1px solid var(--rich-brown);
+  color: var(--warm-cream);
 }
 
 .dark .rules-close-btn {
-  color: var(--dark-text);
+  background-color: var(--rich-brown);
+  border-color: var(--rich-brown);
+  color: var(--warm-cream);
 }
 
 .light .rules-close-btn:hover {
-  background-color: var(--hover-light);
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
 }
 
 .dark .rules-close-btn:hover {
-  background-color: var(--dark-soft);
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
 }
 
 @keyframes modalAppear {
@@ -1862,7 +1867,6 @@ header.pt-28 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.75rem 1rem;
   text-align: left;
   transition: all 0.2s;
   background-color: transparent;
