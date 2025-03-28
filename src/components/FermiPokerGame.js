@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import RulesModal from './RulesModal';
 
 const FermiPokerGame = ({ questionSets, darkMode }) => {
   const navigate = useNavigate();
@@ -19,17 +20,19 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   });
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
-  const [hintsUsed, setHintsUsed] = useState(0);
-  const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const [showHintError, setShowHintError] = useState(false);
   const [showAnswerError, setShowAnswerError] = useState(false);
   const [showSkipConfirm, setShowSkipConfirm] = useState(false);
   const [skipConfirmation, setSkipConfirmation] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState({});
   
+  // Rules modal state
+  const [showRulesModal, setShowRulesModal] = useState(false);
+  
   // Refs for dropdown handling
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const rulesButtonRef = useRef(null);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -84,30 +87,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const currentQuestions = getCurrentQuestions();
   const currentQuestion = currentQuestions[currentQuestionIndex] || {};
 
-  // Get display name for current category
-  const getCurrentCategoryName = () => {
-    if (currentCategoryPath.length === 1) {
-      return questionSets[currentCategoryPath[0]].name;
-    }
-    
-    let category = questionSets[currentCategoryPath[0]];
-    let name = category.name;
-    
-    for (let i = 1; i < currentCategoryPath.length; i++) {
-      if (category.subcategories) {
-        const subCategory = category.subcategories.find(sub => sub.key === currentCategoryPath[i]);
-        if (subCategory) {
-          if (i === currentCategoryPath.length - 1) {
-            return subCategory.name;
-          }
-          category = subCategory;
-        }
-      }
-    }
-    
-    return name;
-  };
-
   const toggleCategoryExpanded = (categoryKey) => {
     setExpandedCategories(prev => ({
       ...prev,
@@ -157,12 +136,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         const newRevealedHints = [...revealedHints];
         newRevealedHints[hintIndex] = true;
         setRevealedHints(newRevealedHints);
-        setHintsUsed(hintsUsed + 1);
       }, 500); // Half-way through flip
     } else if (element === 'answer') {
       setTimeout(() => {
         setAnswerRevealed(true);
-        setQuestionsAnswered(questionsAnswered + 1);
       }, 500); // Half-way through flip
     }
     
@@ -281,69 +258,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     return newArray;
   };
 
-  // Recursive function to render category menu items
-  const renderCategoryItems = (category, categoryKey, path = [], depth = 0) => {
-    const currentPath = [...path, categoryKey];
-    const isCurrentCategory = currentCategoryPath.join('/') === currentPath.join('/');
-    const isExpanded = expandedCategories[categoryKey];
-    
-    // For parent categories with subcategories
-    if (category.isParent && category.subcategories && category.subcategories.length > 0) {
-      return (
-        <div key={categoryKey} className="category-item">
-          <button
-            className={`category-button depth-${depth} ${isCurrentCategory ? 'active' : ''}`}
-            onClick={() => toggleCategoryExpanded(categoryKey)}
-          >
-            <span className="flex-1 text-left">{category.name}</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-4 w-4 transition-transform ${isExpanded ? 'transform rotate-180' : ''}`} 
-              viewBox="0 0 20 20" 
-              fill="currentColor"
-            >
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </button>
-          
-          {isExpanded && (
-            <div className="subcategories">
-              {category.subcategories.map(subcat => {
-                if (subcat.subcategories) {
-                  return renderCategoryItems(subcat, subcat.key, currentPath, depth + 1);
-                } else {
-                  return (
-                    <button
-                      key={subcat.key}
-                      className={`category-button depth-${depth + 1} ${currentCategoryPath.join('/') === [...currentPath, subcat.key].join('/') ? 'active' : ''}`}
-                      onClick={() => changeCategory([...currentPath, subcat.key])}
-                    >
-                      <span className="flex-1 text-left">{subcat.name}</span>
-                      <span className="text-xs opacity-70">({subcat.questions.length})</span>
-                    </button>
-                  );
-                }
-              })}
-            </div>
-          )}
-        </div>
-      );
-    } 
-    // For non-parent categories or categories without subcategories
-    else {
-      return (
-        <button
-          key={categoryKey}
-          className={`category-button depth-${depth} ${isCurrentCategory ? 'active' : ''}`}
-          onClick={() => changeCategory(currentPath)}
-        >
-          <span className="flex-1 text-left">{category.name}</span>
-          <span className="text-xs opacity-70">({category.questions.length})</span>
-        </button>
-      );
-    }
-  };
-
   // Return to categories page
   const returnToCategories = () => {
     navigate('/categories');
@@ -351,9 +265,9 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
   return (
     <>
-      {/* Top navigation bar - combines category selector and stats */}
+      {/* Top navigation bar - combines category selector and help icon */}
       <div className="flex flex-wrap justify-between items-center border-b pb-3 mb-4 relative z-10">
-        {/* Replaced dropdown with Back to Categories button */}
+        {/* Back to Categories button */}
         <div className="relative">
           <button 
             onClick={returnToCategories}
@@ -366,21 +280,18 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </button>
         </div>
         
-        {/* Stats */}
-        <div className="flex text-xs font-medium">
-          <div className="mr-4 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-              <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+        {/* Rules Icon Button */}
+        <div>
+          <button
+            ref={rulesButtonRef}
+            onClick={() => setShowRulesModal(true)}
+            className="rules-button flex items-center justify-center w-9 h-9 rounded-full border border-rich-brown"
+            aria-label="Show game rules"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {questionsAnswered}
-          </div>
-          <div className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z" />
-            </svg>
-            {hintsUsed}
-          </div>
+          </button>
         </div>
       </div>
       
@@ -494,7 +405,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       </div>
 
-      {/* Hint order error notification - Fixed z-index and solid background */}
+      {/* Hint order error notification */}
        {showHintError && (
          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification error-notification">
            <div className="flex items-center">
@@ -506,7 +417,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
          </div>
        )}
        
-       {/* Answer error notification - Fixed z-index and solid background */}
+       {/* Answer error notification */}
        {showAnswerError && (
          <div className="fixed inset-x-0 top-4 mx-auto w-80 notification answer-notification">
            <div className="flex items-center">
@@ -518,7 +429,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
          </div>
        )}
 
-      {/* Skip confirmation modal with opaque background */}
+      {/* Skip confirmation modal */}
       {showSkipConfirm && (
         <div 
           className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
@@ -560,6 +471,9 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </div>
         </div>
       )}
+      
+      {/* Rules Modal Component */}
+      <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
     </>
   );
 };
