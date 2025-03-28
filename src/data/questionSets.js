@@ -18,14 +18,18 @@ export const createQuestionSets = () => {
           description: "Ancient history spans from the beginning of recorded human history to the Early Middle Ages. These questions explore the scale of ancient civilizations, monuments, and historical events.",
           questions: [
             {
-              question: "How many blocks were used to build the Great Pyramid of Giza?",
-              hints: [
-                "The Great Pyramid of Giza is approximately 230 meters (756 ft) wide at the base and 146 meters (479 ft) tall.",
-                "The average limestone block used in the pyramid weighs about 2.5 tons and measures roughly 1 cubic meter."
-              ],
-              answer: "Approximately 2.3 million blocks were used to build the Great Pyramid of Giza.",
-              category: "Ancient History"
-            },
+  question: "How many blocks were used to build the Great Pyramid of Giza?",
+  hints: [
+    "The Great Pyramid of Giza is approximately 230 meters (756 ft) wide at the base and 146 meters (479 ft) tall.",
+    "The average limestone block used in the pyramid weighs about 2.5 tons and measures roughly 1 cubic meter."
+  ],
+  answer: "Approximately 2.3 million blocks were used to build the Great Pyramid of Giza.",
+  category: "Ancient History",
+  source: {
+    name: "Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+  }
+},
             {
               question: "What was the population of Rome at its peak in the 2nd century CE?",
               hints: [

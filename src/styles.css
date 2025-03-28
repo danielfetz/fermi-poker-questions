@@ -596,41 +596,6 @@ header.pt-28 {
   opacity: 0.06;
 }
 
-/* Content Pattern - inside the main content area */
-.content-pattern-container {
-  z-index: 5;
-}
-
-.content-pattern-1 {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: -50px;
-  right: -50px;
-  border-radius: 50%;
-  border: 2px solid var(--ornamental-light);
-  opacity: 0.5;
-}
-
-.dark .content-pattern-1 {
-  border-color: var(--ornamental-dark);
-}
-
-.content-pattern-2 {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  bottom: -50px;
-  left: -50px;
-  border-radius: 50%;
-  border: 2px solid var(--ornamental-light);
-  opacity: 0.5;
-}
-
-.dark .content-pattern-2 {
-  border-color: var(--ornamental-dark);
-}
-
 /* Intro Section Styling - Reduced Padding */
 .intro-section {
   position: relative;
@@ -905,10 +870,9 @@ header.pt-28 {
 
 .hint-number-small {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   color: var(--golden-dark);
   border: 1px solid var(--golden-accent);
   border-radius: 50%;
@@ -986,10 +950,9 @@ header.pt-28 {
 
 .answer-letter-small {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   color: var(--dark-brown);
   border: 1px solid var(--golden-dark);
   border-radius: 50%;
@@ -1214,6 +1177,10 @@ header.pt-28 {
   margin-right: 1rem;
 }
 
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
 .mr-1 {
   margin-right: 0.25rem;
 }
@@ -1395,6 +1362,11 @@ header.pt-28 {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-1xs {
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 .text-1rem {
@@ -1699,8 +1671,12 @@ header.pt-28 {
 
 /* Settings Menu */
 .settings-menu {
-  min-width: 200px;
+  min-width: 160px;
+  width: max-content;
+  max-width: calc(100vw - 20px); /* Ensure it stays in viewport */
   animation: menuAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  right: 0; /* Align with right edge of button */
+  position: absolute;
 }
 
 .light .settings-menu {
@@ -1738,4 +1714,197 @@ header.pt-28 {
 
 .dark .settings-theme-toggle:hover {
   background-color: var(--dark-hover);
+}
+
+
+/* Rules Button Styling */
+.rules-button {
+  transition: all 0.2s ease;
+  height: 34px;
+  width: 34px;
+}
+
+.rules-button svg {
+  flex-shrink: 0;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.light .rules-button {
+  background-color: var(--main-bg);
+  color: var(--rich-brown);
+}
+
+.dark .rules-button {
+  background-color: var(--dark-soft);
+  border-color: var(--rich-brown);
+  color: var(--dark-text);
+}
+
+.light .rules-button:hover {
+  background-color: var(--hover-light);
+}
+
+.dark .rules-button:hover {
+  background-color: var(--dark-hover);
+}
+
+.rules-button:active {
+  transform: translateY(1px);
+}
+
+/* Rules Modal Styling */
+.rules-modal {
+  animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  max-width: 400px !important; /* Control width on desktop */
+}
+
+.light .rules-modal {
+  background-color: var(--warm-cream);
+  border-color: var(--soft-brown);
+}
+
+.dark .rules-modal {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+
+.max-h-90vh {
+  max-height: 90vh;
+}
+
+/* Close button for the rules modal */
+.rules-close-btn {
+  transition: all 0.2s;
+  height: 34px;
+  width: 34px;
+}
+
+.rules-close-btn svg {
+  flex-shrink: 0;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.light .rules-close-btn {
+  background-color: var(--main-bg);
+  border-color: var(--soft-brown);
+  color: var(--rich-brown);
+}
+
+.dark .rules-close-btn {
+  background-color: var(--dark-soft);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.light .rules-close-btn:hover {
+  background-color: var(--hover-light);
+}
+
+.dark .rules-close-btn:hover {
+  background-color: var(--dark-hover);
+}
+
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* When rules modal is open, add slight blur to background */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark .backdrop-blur-sm {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced dropdowns for rules modal - match existing styling */
+.rules-modal .intro-dropdown {
+  margin-bottom: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.75rem;
+  border: 1px solid var(--soft-brown);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dark .rules-modal .intro-dropdown {
+  background-color: rgba(45, 38, 30, 0.7);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.rules-modal .dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s;
+  background-color: transparent;
+  border: none;
+}
+
+.light .rules-modal .dropdown-header:hover {
+  background-color: rgba(249, 240, 220, 0.8);
+}
+
+.dark .rules-modal .dropdown-header:hover {
+  background-color: rgba(74, 64, 51, 0.5);
+}
+
+.rules-modal .dropdown-content {
+  padding: 0.5rem 1rem 1rem;
+  border-top: 1px solid var(--hint-border);
+  animation: fadeIn 0.3s ease-out;
+  line-height: 1.5;
+}
+
+.dark .rules-modal .dropdown-content {
+  border-color: var(--dark-border);
+}
+
+
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.light .source-link {
+  border: 1px solid var(--soft-brown);
+  color: var(--rich-brown);
+}
+
+.dark .source-link {
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text);
+}
+
+.light .source-link:hover {
+  background-color: var(--golden-light);
+  border-color: var(--golden-dark);
+}
+
+.dark .source-link:hover {
+  background-color: var(--dark-soft);
+  border-color: var(--golden-accent);
+}
+
+.source-link:active {
+  transform: translateY(1px);
 }
