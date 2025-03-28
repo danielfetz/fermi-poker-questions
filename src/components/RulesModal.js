@@ -27,7 +27,7 @@ const RulesModal = ({ isOpen, onClose }) => {
           <h3 className="text-xl font-display font-bold">Fermi Poker Rules</h3>
           <button 
             onClick={onClose}
-            className="rules-close-btn rounded-lg w-9 h-9 flex items-center justify-center border bg-rich-brown text-warm-cream hover:bg-dark-brown transition-all shadow-md"
+            className="rules-close-btn rounded-full w-9 h-9 flex items-center justify-center border border-soft-brown"
             aria-label="Close rules"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
