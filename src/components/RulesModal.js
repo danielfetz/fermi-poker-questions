@@ -3,11 +3,11 @@ import { introContent } from '../data/introContent';
 
 const RulesModal = ({ isOpen, onClose }) => {
   const [expandedSections, setExpandedSections] = useState({
-    gameConcept: true,
-    gameplay: true,
-    multipleQuestions: true,
-    metaGame: true,
-    strategy: true
+    gameConcept: false,
+    gameplay: false,
+    multipleQuestions: false,
+    metaGame: false,
+    strategy: false
   });
 
   // Toggle expanded sections in rules modal
