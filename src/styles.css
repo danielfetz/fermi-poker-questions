@@ -1901,3 +1901,38 @@ header.pt-28 {
 .dark .rules-modal .dropdown-content {
   border-color: var(--dark-border);
 }
+
+
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.light .source-link {
+  border: 1px solid var(--golden-accent);
+  color: var(--golden-dark);
+}
+
+.dark .source-link {
+  border: 1px solid var(--golden-dark);
+  color: var(--golden-accent);
+}
+
+.light .source-link:hover {
+  background-color: var(--golden-light);
+  border-color: var(--golden-dark);
+}
+
+.dark .source-link:hover {
+  background-color: var(--dark-soft);
+  border-color: var(--golden-accent);
+}
+
+.source-link:active {
+  transform: translateY(1px);
+}
