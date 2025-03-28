@@ -596,41 +596,6 @@ header.pt-28 {
   opacity: 0.06;
 }
 
-/* Content Pattern - inside the main content area */
-.content-pattern-container {
-  z-index: 5;
-}
-
-.content-pattern-1 {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: -50px;
-  right: -50px;
-  border-radius: 50%;
-  border: 2px solid var(--ornamental-light);
-  opacity: 0.5;
-}
-
-.dark .content-pattern-1 {
-  border-color: var(--ornamental-dark);
-}
-
-.content-pattern-2 {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  bottom: -50px;
-  left: -50px;
-  border-radius: 50%;
-  border: 2px solid var(--ornamental-light);
-  opacity: 0.5;
-}
-
-.dark .content-pattern-2 {
-  border-color: var(--ornamental-dark);
-}
-
 /* Intro Section Styling - Reduced Padding */
 .intro-section {
   position: relative;
