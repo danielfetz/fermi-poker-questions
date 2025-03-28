@@ -1745,7 +1745,6 @@ header.pt-28 {
 }
 
 
-
 /* Rules Button Styling */
 .rules-button {
   transition: all 0.2s ease;
@@ -1753,27 +1752,23 @@ header.pt-28 {
 }
 
 .light .rules-button {
-  background-color: var(--rich-brown);
+  background-color: var(--main-bg);
   border-color: var(--rich-brown);
-  color: var(--warm-cream);
+  color: var(--rich-brown);
 }
 
 .dark .rules-button {
-  background-color: var(--rich-brown);
+  background-color: var(--dark-soft);
   border-color: var(--rich-brown);
-  color: var(--warm-cream);
+  color: var(--dark-text);
 }
 
 .light .rules-button:hover {
-  background-color: var(--dark-brown);
-  border-color: var(--dark-brown);
-  color: var(--warm-cream);
+  background-color: var(--hover-light);
 }
 
 .dark .rules-button:hover {
-  background-color: var(--dark-brown);
-  border-color: var(--dark-brown);
-  color: var(--warm-cream);
+  background-color: var(--dark-hover);
 }
 
 .rules-button:active {
@@ -1803,25 +1798,26 @@ header.pt-28 {
 /* Close button for the rules modal */
 .rules-close-btn {
   transition: all 0.2s;
-  background-color: var(--rich-brown);
-  border: 1px solid var(--rich-brown);
-  color: var(--warm-cream);
+}
+
+.light .rules-close-btn {
+  background-color: var(--main-bg);
+  border-color: var(--soft-brown);
+  color: var(--rich-brown);
 }
 
 .dark .rules-close-btn {
-  background-color: var(--rich-brown);
-  border-color: var(--rich-brown);
-  color: var(--warm-cream);
+  background-color: var(--dark-soft);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
 }
 
 .light .rules-close-btn:hover {
-  background-color: var(--dark-brown);
-  border-color: var(--dark-brown);
+  background-color: var(--hover-light);
 }
 
 .dark .rules-close-btn:hover {
-  background-color: var(--dark-brown);
-  border-color: var(--dark-brown);
+  background-color: var(--dark-hover);
 }
 
 @keyframes modalAppear {
@@ -1890,29 +1886,4 @@ header.pt-28 {
 
 .dark .rules-modal .dropdown-content {
   border-color: var(--dark-border);
-}
-
-/* Scrollbar styling for modal */
-.rules-modal::-webkit-scrollbar {
-  width: 8px;
-}
-
-.light .rules-modal::-webkit-scrollbar-track {
-  background: rgba(217, 199, 167, 0.2);
-  border-radius: 10px;
-}
-
-.light .rules-modal::-webkit-scrollbar-thumb {
-  background-color: var(--medium-brown);
-  border-radius: 10px;
-}
-
-.dark .rules-modal::-webkit-scrollbar-track {
-  background: rgba(61, 52, 40, 0.4);
-  border-radius: 10px;
-}
-
-.dark .rules-modal::-webkit-scrollbar-thumb {
-  background-color: var(--golden-dark);
-  border-radius: 10px;
 }
