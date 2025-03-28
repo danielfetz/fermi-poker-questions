@@ -1748,12 +1748,12 @@ header.pt-28 {
 /* Rules Button Styling */
 .rules-button {
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 34px;
+  width: 34px;
 }
 
 .light .rules-button {
   background-color: var(--main-bg);
-  border-color: var(--rich-brown);
   color: var(--rich-brown);
 }
 
@@ -1798,6 +1798,8 @@ header.pt-28 {
 /* Close button for the rules modal */
 .rules-close-btn {
   transition: all 0.2s;
+  height: 34px;
+  width: 34px;
 }
 
 .light .rules-close-btn {
