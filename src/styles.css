@@ -1752,6 +1752,12 @@ header.pt-28 {
   width: 34px;
 }
 
+.rules-button svg {
+  flex-shrink: 0;
+  min-width: 20px;
+  min-height: 20px;
+}
+
 .light .rules-button {
   background-color: var(--main-bg);
   color: var(--rich-brown);
@@ -1800,6 +1806,12 @@ header.pt-28 {
   transition: all 0.2s;
   height: 34px;
   width: 34px;
+}
+
+.rules-close-btn svg {
+  flex-shrink: 0;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .light .rules-close-btn {
