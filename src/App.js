@@ -154,11 +154,6 @@ const App = () => {
           
           {/* Main content area */}
           <div className="main-bg rounded-xl shadow-xl p-4 sm:p-5 relative overflow-hidden">
-            {/* Content background pattern */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden content-pattern-container">
-              <div className="content-pattern-1"></div>
-              <div className="content-pattern-2"></div>
-            </div>
             
             <Routes>
               <Route 
