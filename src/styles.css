@@ -928,7 +928,7 @@ header.pt-28 {
   border: 2px solid var(--golden-dark);
   border-radius: 50%;
   font-weight: bold;
-  font-size: 1.125rem;
+  font-size: 1rem;
   position: relative;
   z-index: 1;
 }
