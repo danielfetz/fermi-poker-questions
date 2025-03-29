@@ -921,10 +921,10 @@ header.pt-28 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--golden-light);
-  color: var(--dark-brown);
+  width: 36px;
+  height: 36px;
+  background-color: var(--warm-cream);
+  color: var(--golden-dark);
   border: 2px solid var(--golden-dark);
   border-radius: 50%;
   font-weight: bold;
@@ -934,16 +934,16 @@ header.pt-28 {
 }
 
 .dark .answer-letter {
-  background-color: var(--golden-dark);
-  color: var(--dark-bg);
+  background-color: var(--dark-soft);
+  color: var(--golden-accent);
   border-color: var(--golden-accent);
 }
 
 .answer-letter::before {
   content: "";
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid var(--golden-dark);
   opacity: 0.3;
@@ -1002,8 +1002,8 @@ header.pt-28 {
   }
   
   .answer-letter {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 }
 
