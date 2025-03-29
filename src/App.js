@@ -184,9 +184,6 @@ const App = () => {
             </Routes>
           </div>
           
-          <footer className="text-center text-xs py-2 font-medium">
-            Fermi Poker — <span className="italic">A tool for estimation practice</span>
-          </footer>
         </div>
         
         {/* Import Google Fonts */}
