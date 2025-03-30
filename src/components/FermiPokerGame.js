@@ -302,7 +302,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
           {currentQuestion.question}
         </h2>
-        <div className="text-1xs mb-3 font-medium italic">
+        <div className="text-1xs mb-3 mt-2 font-medium italic">
           {currentQuestion.category}
         </div>
       </div>
