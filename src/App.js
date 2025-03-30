@@ -58,7 +58,6 @@ const App = () => {
         {/* Geometric background patterns - enhanced with more shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="patterns">
-            {/* Original patterns */}
             <div className="pattern-circle-3"></div>
             <div className="pattern-triangle-1"></div>
             <div className="pattern-triangle-2"></div>
@@ -67,12 +66,6 @@ const App = () => {
             <div className="pattern-hexagon"></div>
             <div className="pattern-line-1"></div>
             <div className="pattern-line-2"></div>
-            
-            {/* New patterns for top left corner and below */}
-            <div className="pattern-triangle-topleft"></div>
-            <div className="pattern-rhombus"></div>
-            <div className="pattern-pentagon"></div>
-            <div className="pattern-small-circles"></div>
           </div>
         </div>
         
