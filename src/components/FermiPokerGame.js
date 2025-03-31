@@ -288,10 +288,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             className="rules-button flex items-center justify-center w-9 h-9 rounded-full border border-rich-brown"
             aria-label="Show game rules"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10 9a2 2 0 1 1 4 0c0 2-4 3-4 3"></path>
-              <path d="M12 16h.01"></path>
-            </svg>
+            
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <path d="M9 9a3 3 0 0 1 6 0c0 2-3 3-3 3v2"></path>
+  <circle cx="12" cy="17" r="0.5"></circle>
+</svg>
           </button>
         </div>
       </div>
