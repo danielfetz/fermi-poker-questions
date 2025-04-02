@@ -46,7 +46,7 @@ html, body {
 }
 
 .font-primary, .font-body {
-  font-family: 'Newsreader', serif;
+  font-family: 'Lora', serif;
 }
 
 /* Light/Dark Mode Switching */
@@ -1198,7 +1198,7 @@ header.pt-28 {
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .italic {
