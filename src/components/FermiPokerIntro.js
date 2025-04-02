@@ -102,6 +102,57 @@ const FermiPokerIntro = () => {
         </ul>
       </div>
       
+      {/* Meta-Game Option section */}
+      <div className="bg-golden-light bg-opacity-30 p-4 rounded-lg mb-6">
+        <h3 className="text-xl font-display font-bold mb-3">Meta-Game Option</h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>When playing in large groups, which might have very different skill levels, it might make sense to add another layer to the game so that it is more fun for everyone even if you have folded and are just watching.</li>
+          <li>In games with meta-game enabled, players can predict who will win each question. With 3 correct predictions, bankrupt players can rejoin the game with a small stack.</li>
+          <li>Players can't bet on themselves</li>
+        </ul>
+      </div>
+      
+      {/* Example Worked Through section */}
+      <div className="mb-6">
+        <h3 className="text-xl font-display font-bold mb-3">An Example Worked Far Too In-Depth</h3>
+        <div className="bg-white dark:bg-dark-surface p-4 rounded-lg">
+          <p className="mb-3">
+            It's hard to explain how to solve a Fermi Question, so let me show you one and walk you through it. Here's a classic, hoping that the pandemic didn't change the answer.
+          </p>
+          <p className="mb-3 font-bold italic">How many piano tuners are there in Chicago?</p>
+          <p className="mb-3">
+            To begin, we need the population of Chicago. The population turns out to be around 2.5 million, but keeping Remark 2.2 in mind, the metropolitan area is a bit higher, about 10 million. We'll go in between at about 5 million.
+          </p>
+          <p className="mb-3">
+            We'll first consider how many pianos there are in Chicago, and by extension, the demand of piano tuners for those pianos. The average household size in the US is about 2; there are many people who are single, some live with a partner, and some (fewer) have children as well. Let's then say that about 1 in 10 households own a piano that needs to be tuned yearly. This gives us about:
+          </p>
+          <div className="p-4 bg-gray-50 dark:bg-dark-soft rounded-lg mb-3">
+            5,000,000 people ÷ 2 people per household × 0.1 pianos per household = 250,000 pianos
+          </div>
+          <p className="mb-3">
+            Let's also consider that some business establishments have pianos: schools, churches, concert venues, recording studios, and so on. These are fewer in number than households, but more likely to have pianos. Let's say there are about 10,000 such establishments with pianos in Chicago.
+          </p>
+          <div className="p-4 bg-gray-50 dark:bg-dark-soft rounded-lg mb-3">
+            250,000 + 10,000 = 260,000 pianos in Chicago
+          </div>
+          <p className="mb-3">
+            Now, if a piano needs to be tuned once per year on average, and a tuner can tune, say, 5 pianos per day, working 5 days a week for 50 weeks a year, each tuner can service:
+          </p>
+          <div className="p-4 bg-gray-50 dark:bg-dark-soft rounded-lg mb-3">
+            5 pianos/day × 5 days/week × 50 weeks/year = 1,250 pianos per year per tuner
+          </div>
+          <p className="mb-3">
+            So the number of piano tuners needed in Chicago would be:
+          </p>
+          <div className="p-4 bg-gray-50 dark:bg-dark-soft rounded-lg mb-3">
+            260,000 pianos ÷ 1,250 pianos per tuner = 208 piano tuners
+          </div>
+          <p>
+            Rounding a bit, we'd estimate there are about 200 piano tuners in Chicago. The actual number is around 40-50, which is in the same order of magnitude. The discrepancy might be due to our generous estimates of Chicago's population, piano ownership rates, or tuning frequency.
+          </p>
+        </div>
+      </div>
+      
       {/* Fixed Start Game Button */}
       <div className="fixed-start-button">
         <button 
