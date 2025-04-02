@@ -454,6 +454,17 @@ header.pt-28 {
   line-height: 1.5;
 }
 
+/* New Intro Components */
+
+.highlight-section {
+  background-color: var(--cream-tan);
+}
+
+.dark .highlight-section {
+  background-color: var(--dark-soft);
+}
+
+
 /* Fixed Start Game Button */
 .fixed-start-button {
   position: fixed;
