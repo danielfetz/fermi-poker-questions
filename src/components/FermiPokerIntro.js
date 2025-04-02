@@ -153,6 +153,36 @@ const FermiPokerIntro = () => {
         </div>
       </div>
       
+      {/* Other Examples section */}
+      <div className="bg-golden-light bg-opacity-30 p-4 rounded-lg mb-6">
+        <h3 className="text-xl font-display font-bold mb-3">Other Examples:</h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>How many more years of life expectancy do women in Russia have compared to men?</li>
+          <li>For each person having died as a result of nuclear accidents in the past 50 years, how many have died as a result of air pollution from coal?</li>
+          <li>How many chickens are killed for meat every year (as of 2018)?</li>
+          <li>Launch cost per kilogram of payload into space?</li>
+        </ul>
+      </div>
+      
+      {/* Strategy Tips section */}
+      <div className="mb-6">
+        <h3 className="text-xl font-display font-bold mb-3">Strategy Tips</h3>
+        <p className="mb-3">
+          Getting better at Fermi Poker is closely linked to becoming better at rational thinking, world-modeling and understanding the cognitive biases that we have:
+        </p>
+        <ul className="list-disc pl-5 space-y-3">
+          <li>
+            <span className="font-bold">Bayesian updating:</span> Consider how the information you've gained from hints impacts the assumptions underlying your guess. And then fold or raise your bet accordingly, but don't do it all the time, because it will make it easy for people to predict you.
+          </li>
+          <li>
+            <span className="font-bold">World-modeling:</span> It will serve you well to memorize at least some numbers to build your sense of magnitude up. You need a baseline for the scale of various distances, populations, speeds, etc. before you can start making educated guesses about them. But unlike other trivia quiz games, rote memorization and obscure facts about celebrities aren't important in Fermi Poker.
+          </li>
+          <li>
+            <span className="font-bold">Opponent modeling:</span> As in standard poker, there is of course some importance in understand the ticks and general psychological profile of your opponent. But also here in Fermi Poker it's unique that you can observe in what categories your opponent(s) make good guesses, in which categories they are clueless, and then act accordingly. Of course, they might try to do some deception.
+          </li>
+        </ul>
+      </div>
+      
       {/* Fixed Start Game Button */}
       <div className="fixed-start-button">
         <button 
