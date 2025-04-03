@@ -78,7 +78,7 @@ const FermiPokerIntro = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {gameplaySteps.map((step, index) => (
             <div key={index} className="gameplay-steps p-4 rounded-xl">
-              <div className="text-golden-dark font-bold text-sm mb-1">{step.number}</div>
+              <div className="step-number">{step.number}</div>
               <h4 className="font-bold mb-2">{step.title}</h4>
               <p className="text-sm">{step.content}</p>
             </div>
@@ -114,8 +114,7 @@ const FermiPokerIntro = () => {
       
       {/* Example Worked Through section */}
       <div className="mb-6">
-        <h3 className="text-xl font-display font-bold mb-3">An Example Worked Far Too In-Depth</h3>
-        <div className="bg-white dark:bg-dark-surface p-4 rounded-lg">
+          <h3 className="text-xl font-display font-bold mb-3">An Example Worked Far Too In-Depth</h3>
           <p className="mb-3">
             It's hard to explain how to solve a Fermi Question, so let me show you one and walk you through it. Here's a classic, hoping that the pandemic didn't change the answer.
           </p>
@@ -150,7 +149,6 @@ const FermiPokerIntro = () => {
           <p>
             Rounding a bit, we'd estimate there are about 200 piano tuners in Chicago. The actual number is around 40-50, which is in the same order of magnitude. The discrepancy might be due to our generous estimates of Chicago's population, piano ownership rates, or tuning frequency.
           </p>
-        </div>
       </div>
       
       {/* Other Examples section */}
