@@ -464,6 +464,13 @@ header.pt-28 {
   background-color: var(--dark-soft);
 }
 
+.gameplay-steps {
+  border: 1px solid var(--hint-border);
+}
+
+.dark .gameplay-steps {
+  border: 1px solid var(--dark-border);
+}
 
 /* Fixed Start Game Button */
 .fixed-start-button {
