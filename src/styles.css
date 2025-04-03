@@ -51,7 +51,7 @@ html, body {
 
 /* Light/Dark Mode Switching */
 .light {
-  color: var(--rich-brown);
+  color: #3D3D3A;
   background-color: var(--cream-tan);
 }
 
