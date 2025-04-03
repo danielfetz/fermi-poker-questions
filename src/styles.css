@@ -472,6 +472,11 @@ header.pt-28 {
   border: 1px solid var(--dark-border);
 }
 
+.step-number {
+  color: var(--golden-dark);
+  font-size: 1.125rem;
+}
+
 /* Fixed Start Game Button */
 .fixed-start-button {
   position: fixed;
