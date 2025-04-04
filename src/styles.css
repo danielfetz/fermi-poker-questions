@@ -26,6 +26,8 @@ html, body {
   --error-bg: #FEE2E2;
   --error-border: #FECACA;
   --error-text: #B91C1C;
+  --darklight-border: #D3CFC8;
+  --graylight-border: #E0DFDB;
   
   /* Dark mode colors */
   --dark-bg: #1F1A15;
@@ -1460,10 +1462,10 @@ header.pt-28 {
 .settings-toggle {
   border-radius: 9999px;
   padding: 0.375rem;
-  background-color: transparent;
+  background-color: var(--main-bg);
   color: var(--rich-brown);
   transition: all 0.2s;
-  border: 1px solid var(--soft-brown);
+  border: 1px solid var(--darklight-border);
   width: 37.5px;
   height: 37.5px;
   display: flex;
@@ -1472,13 +1474,14 @@ header.pt-28 {
 }
 
 .dark .settings-toggle {
+  background-color: var(--dark-bg);
   color: var(--golden-accent);
   border-color: var(--dark-border);
 }
 
 .settings-toggle:hover {
   background-color: rgba(0, 0, 0, 0.05);
-  border-color: var(--soft-brown);
+  border-color: var(--darklight-border);
 }
 
 .dark .settings-toggle:hover {
