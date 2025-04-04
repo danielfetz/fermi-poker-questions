@@ -467,7 +467,7 @@ header.pt-28 {
 }
 
 .gameplay-steps {
-  border: 1px solid var(--hint-border);
+  border: 1px solid var(--graylight-border);
 }
 
 .dark .gameplay-steps {
@@ -1056,6 +1056,10 @@ header.pt-28 {
   margin-bottom: 5rem;
 }
 
+.mt-0 {
+  margin-top: 0rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1462,7 +1466,7 @@ header.pt-28 {
 .settings-toggle {
   border-radius: 9999px;
   padding: 0.375rem;
-  background-color: var(--main-bg);
+  background-color: var(--cream-tan);
   color: var(--rich-brown);
   transition: all 0.2s;
   border: 1px solid var(--darklight-border);
