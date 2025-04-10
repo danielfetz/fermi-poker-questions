@@ -101,7 +101,7 @@ button {
 }
 
 .light .border-b, .light .border-t {
-  border-color: var(--soft-brown);
+  border-color: var(--graylight-border);
 }
 
 .dark .border-b, .dark .border-t {
@@ -1122,6 +1122,10 @@ header.pt-28 {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .p-3 {
