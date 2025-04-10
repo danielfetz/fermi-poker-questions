@@ -26,6 +26,8 @@ html, body {
   --error-bg: #FEE2E2;
   --error-border: #FECACA;
   --error-text: #B91C1C;
+  --darklight-border: #D3CFC8;
+  --graylight-border: #E0DFDB;
   
   /* Dark mode colors */
   --dark-bg: #1F1A15;
@@ -46,12 +48,12 @@ html, body {
 }
 
 .font-primary, .font-body {
-  font-family: 'Newsreader', serif;
+  font-family: 'Lora', serif;
 }
 
 /* Light/Dark Mode Switching */
 .light {
-  color: var(--rich-brown);
+  color: #3D3D3A;
   background-color: var(--cream-tan);
 }
 
@@ -62,12 +64,12 @@ html, body {
 
 .light .main-bg {
   background-color: var(--main-bg);
-  border: 2px solid var(--light-border);
+  border: 1px solid var(--light-border);
 }
  
 .dark .main-bg {
   background-color: var(--dark-surface);
-  border: 2px solid var(--dark-border);
+  border: 1px solid var(--dark-border);
 }
 
 button {
@@ -452,6 +454,29 @@ header.pt-28 {
 .dropdown-content p, .dropdown-content li {
   margin-bottom: 0.5rem;
   line-height: 1.5;
+}
+
+/* New Intro Components */
+
+.highlight-section {
+  background-color: var(--cream-tan);
+}
+
+.dark .highlight-section {
+  background-color: var(--dark-soft);
+}
+
+.gameplay-steps {
+  border: 1px solid var(--graylight-border);
+}
+
+.dark .gameplay-steps {
+  border: 1px solid var(--dark-border);
+}
+
+.step-number {
+  color: var(--golden-dark);
+  font-size: 1.125rem;
 }
 
 /* Fixed Start Game Button */
@@ -897,6 +922,10 @@ header.pt-28 {
   margin-left: 0.5rem;
 }
 
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
+}
+
 .space-y-2 > * + * {
   margin-top: 0.5rem;
 }
@@ -959,6 +988,10 @@ header.pt-28 {
 
 .z-50 {
   z-index: 50;
+}
+
+.m-0 {
+  margin: 0;
 }
 
 .mx-auto {
@@ -1029,6 +1062,10 @@ header.pt-28 {
 
 .mb-20 {
   margin-bottom: 5rem;
+}
+
+.mt-0 {
+  margin-top: 0rem;
 }
 
 .mt-4 {
@@ -1128,6 +1165,10 @@ header.pt-28 {
   padding-bottom: 0.375rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .pb-3 {
   padding-bottom: 0.75rem;
 }
@@ -1198,7 +1239,7 @@ header.pt-28 {
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .italic {
@@ -1437,10 +1478,10 @@ header.pt-28 {
 .settings-toggle {
   border-radius: 9999px;
   padding: 0.375rem;
-  background-color: transparent;
+  background-color: var(--cream-tan);
   color: var(--rich-brown);
   transition: all 0.2s;
-  border: 1px solid var(--soft-brown);
+  border: 1px solid var(--darklight-border);
   width: 37.5px;
   height: 37.5px;
   display: flex;
@@ -1449,13 +1490,14 @@ header.pt-28 {
 }
 
 .dark .settings-toggle {
+  background-color: var(--dark-bg);
   color: var(--golden-accent);
   border-color: var(--dark-border);
 }
 
 .settings-toggle:hover {
   background-color: rgba(0, 0, 0, 0.05);
-  border-color: var(--soft-brown);
+  border-color: var(--darklight-border);
 }
 
 .dark .settings-toggle:hover {
