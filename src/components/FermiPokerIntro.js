@@ -57,7 +57,7 @@ const FermiPokerIntro = () => {
       {/* What is Fermi Poker section */}
       <div className="mb-6">
         <h2 className="text-2xl font-display font-bold pb-2 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
-        <p className="leading-normal">
+        <p className="leading-normalplus">
           Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions. 
           Test your estimation skills, strategic betting, and ability to update your prior assumptions as more information becomes available.
         </p>
@@ -66,7 +66,7 @@ const FermiPokerIntro = () => {
       {/* What Do You Need section */}
       <div className="highlight-section p-4 rounded-lg mb-6">
         <h3 className="font-bold mt-0 mb-3">What Do You Need?</h3>
-        <ul className="list-disc pl-5 m-0 space-y-3">
+        <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>You need at least one other player, but you can also play it with much larger groups</li>
           <li>Pen and paper, as well as poker chips (or some other play currency)</li>
         </ul>
@@ -105,7 +105,7 @@ const FermiPokerIntro = () => {
       {/* Meta-Game Option section */}
       <div className="highlight-section p-4 rounded-lg mb-6">
         <h3 className="font-bold mt-0 mb-3">Meta-Game Option</h3>
-        <ul className="list-disc pl-5 m-0 space-y-3">
+        <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>When playing in large groups, which might have very different skill levels, it might make sense to add another layer to the game so that it is more fun for everyone even if you have folded and are just watching.</li>
           <li>In games with meta-game enabled, players can predict who will win each question. With 3 correct predictions, bankrupt players can rejoin the game with a small stack.</li>
           <li>Players can't bet on themselves</li>
@@ -154,7 +154,7 @@ const FermiPokerIntro = () => {
       {/* Other Examples section */}
       <div className="highlight-section p-4 rounded-lg mb-6">
         <h3 className="font-bold mt-0 mb-3">Other Examples:</h3>
-        <ul className="list-disc pl-5 m-0 space-y-3">
+        <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>How many more years of life expectancy do women in Russia have compared to men?</li>
           <li>For each person having died as a result of nuclear accidents in the past 50 years, how many have died as a result of air pollution from coal?</li>
           <li>How many chickens are killed for meat every year (as of 2018)?</li>
