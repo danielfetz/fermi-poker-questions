@@ -74,7 +74,7 @@ const FermiPokerIntro = () => {
       
       {/* Example Gameplay section */}
       <div className="mb-6">
-        <h3 className="text-xl font-display font-bold mb-4">Example Gameplay</h3>
+        <h3 className="text-xl font-display font-bold mb-4">How to Play</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {gameplaySteps.map((step, index) => (
             <div key={index} className="gameplay-steps p-4 rounded-xl">
