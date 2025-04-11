@@ -505,12 +505,12 @@ header.pt-28 {
   overflow: hidden;
   min-width: 200px;
   font-family: 'Lora', serif;
+  border-bottom-width: 3px;
 }
 
 .light .start-game-button {
-  background-color: rgb(250 243 227);
-  color: var(--rich-brown);
-  border: 1px solid var(--soft-brown);
+  background-color: var(--cream-tan);
+  border: 1px solid #8080803d;
 }
 
 .dark .start-game-button {
