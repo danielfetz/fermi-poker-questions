@@ -482,7 +482,7 @@ header.pt-28 {
 /* Fixed Start Game Button */
 .fixed-start-button {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 1rem;
   left: 0;
   right: 0;
   display: flex;
