@@ -495,7 +495,7 @@ header.pt-28 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 4.25rem;
+  padding: 0.875rem 2.25rem;
   font-weight: 600;
   font-size: 1.125rem;
   border-radius: 0.75rem;
@@ -1480,6 +1480,10 @@ header.pt-28 {
   .category-buttons-wrapper button {
     width: 100%;
     margin-left: 0 !important;
+  }
+  /* Intro button, maybe we should really look into making this less complicated at some point? */
+  .start-game-button {
+    width: calc(100% - 64px);
   }
 }
 
