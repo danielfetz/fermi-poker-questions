@@ -57,14 +57,14 @@ const FermiPokerIntro = () => {
       {/* What is Fermi Poker section */}
       <div className="mb-6">
         <h2 className="text-2xl font-display font-bold pb-2 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
-        <p className="leading-normalplus">
+        <p className="leading-normal">
           Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions. 
           Test your estimation skills, strategic betting, and ability to update your prior assumptions as more information becomes available.
         </p>
       </div>
       
       {/* What Do You Need section */}
-      <div className="highlight-section p-4 rounded-lg mb-6">
+      <div className="highlight-section p-4 rounded-xl mb-6">
         <h3 className="font-bold mt-0 mb-3">What Do You Need?</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>You need at least one other player, but you can also play it with much larger groups</li>
@@ -103,7 +103,7 @@ const FermiPokerIntro = () => {
       </div>
       
       {/* Meta-Game Option section */}
-      <div className="highlight-section p-4 rounded-lg mb-6">
+      <div className="highlight-section p-4 rounded-xl mb-6">
         <h3 className="font-bold mt-0 mb-3">Meta-Game Option</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>When playing in large groups, which might have very different skill levels, it might make sense to add another layer to the game so that it is more fun for everyone even if you have folded and are just watching.</li>
@@ -152,7 +152,7 @@ const FermiPokerIntro = () => {
       </div>
       
       {/* Other Examples section */}
-      <div className="highlight-section p-4 rounded-lg mb-6">
+      <div className="highlight-section p-4 rounded-xl mb-6">
         <h3 className="font-bold mt-0 mb-3">Other Examples:</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>How many more years of life expectancy do women in Russia have compared to men?</li>
