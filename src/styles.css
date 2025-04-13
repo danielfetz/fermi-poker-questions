@@ -466,8 +466,27 @@ header.pt-28 {
   background-color: var(--dark-soft);
 }
 
+/* Gameplay Steps Card Styling */
 .gameplay-steps {
   border: 1px solid var(--graylight-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gameplay-steps .step-number,
+.gameplay-steps h4,
+.gameplay-steps p {
+  margin: 0;
+}
+
+.gameplay-steps h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.gameplay-steps p {
+  font-size: 1rem;
 }
 
 .dark .gameplay-steps {
