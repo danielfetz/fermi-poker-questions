@@ -519,7 +519,7 @@ header.pt-28 {
   font-size: 1.125rem;
   border-radius: 0.75rem;
   transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px -1px #0000001a,0 2px 0px -1px #0000000f;
   position: relative;
   overflow: hidden;
   min-width: 200px;
@@ -527,7 +527,7 @@ header.pt-28 {
 }
 
 .light .start-game-button {
-  background-color: var(--cream-tan);
+  background-color: var(--main-bg);
   border: 1px solid #8080803d;
   border-bottom-width: 3px;
 }
