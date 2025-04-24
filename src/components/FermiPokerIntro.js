@@ -87,7 +87,7 @@ const FermiPokerIntro = () => {
       </div>
       
       {/* Rules section */}
-      <div className="mb-6">
+      <div className="mb-6 leading-normal">
         <h3 className="text-xl font-display font-bold mb-2">Rules</h3>
         <p className="mb-3">
           If you are familiar with No Limit Texas Hold'Em Poker, you'll find that the rules are very similar, 
@@ -113,7 +113,7 @@ const FermiPokerIntro = () => {
       </div>
       
       {/* Example Worked Through section */}
-      <div className="mb-6">
+      <div className="mb-6 leading-normal">
           <h3 className="text-xl font-display font-bold mb-3">An Example Worked Far Too In-Depth</h3>
           <p className="mb-3">
             It's hard to explain how to solve a Fermi Question, so let me show you one and walk you through it. Here's a classic, hoping that the pandemic didn't change the answer.
@@ -163,7 +163,7 @@ const FermiPokerIntro = () => {
       </div>
       
       {/* Strategy Tips section */}
-      <div className="mb-6">
+      <div className="mb-6 leading-normal">
         <h3 className="text-xl font-display font-bold mb-3">Strategy Tips</h3>
         <p className="mb-3">
           Getting better at Fermi Poker is closely linked to becoming better at rational thinking, world-modeling and understanding the cognitive biases that we have:
