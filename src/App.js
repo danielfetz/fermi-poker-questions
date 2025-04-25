@@ -55,26 +55,6 @@ const App = () => {
       <ScrollToTop />
       
       <div className={`min-h-screen font-primary geometric-background ${darkMode ? 'dark' : 'light'}`}>
-        {/* Geometric background patterns - enhanced with more shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="patterns">
-            {/* Original patterns */}
-            <div className="pattern-circle-3"></div>
-            <div className="pattern-triangle-1"></div>
-            <div className="pattern-triangle-2"></div>
-            <div className="pattern-square-1"></div>
-            <div className="pattern-square-2"></div>
-            <div className="pattern-hexagon"></div>
-            <div className="pattern-line-1"></div>
-            <div className="pattern-line-2"></div>
-            
-            {/* New patterns for top left corner and below */}
-            <div className="pattern-triangle-topleft"></div>
-            <div className="pattern-rhombus"></div>
-            <div className="pattern-pentagon"></div>
-            <div className="pattern-small-circles"></div>
-          </div>
-        </div>
         
         <div className="relative z-10 max-w-4xl mx-auto py-2 px-3 sm:px-4">
           {/* Settings button and dropdown */}
@@ -85,8 +65,8 @@ const App = () => {
               className="settings-toggle"
               aria-label="Settings"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M4 5h12M6 10h10M4 15h12" />
               </svg>
             </button>
             
@@ -97,8 +77,6 @@ const App = () => {
                 className="settings-menu absolute right-0 top-full mt-2 rounded-lg shadow-xl z-50"
               >
                 <div className="settings-menu-content p-3">
-                  <h3 className="font-display font-bold text-lg mb-2 pb-2 border-b">Settings</h3>
-                  
                   {/* Theme toggle option */}
                   <div className="flex justify-between items-center py-2">
                     <span>Theme</span>
@@ -156,11 +134,6 @@ const App = () => {
           
           {/* Main content area */}
           <div className="main-bg rounded-xl shadow-xl p-4 sm:p-5 relative overflow-hidden">
-            {/* Content background pattern */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden content-pattern-container">
-              <div className="content-pattern-1"></div>
-              <div className="content-pattern-2"></div>
-            </div>
             
             <Routes>
               <Route 
@@ -191,9 +164,6 @@ const App = () => {
             </Routes>
           </div>
           
-          <footer className="text-center text-xs py-2 font-medium">
-            Fermi Poker — <span className="italic">A tool for estimation practice</span>
-          </footer>
         </div>
         
         {/* Import Google Fonts */}
