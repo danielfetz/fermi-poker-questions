@@ -1261,8 +1261,8 @@ header.pt-28 {
   line-height: 2rem;
 }
 
-.text-header {
-  font-size: 1.625rem;
+.text-header-small {
+  font-size: 25px;
   line-height: 2rem;
 }
 
@@ -1418,8 +1418,8 @@ header.pt-28 {
     line-height: 2rem;
   }
 
-  .sm\:text-header-small {
-    font-size: 25px;
+  .sm\:text-header {
+    font-size: 26px;
     line-height: 2rem;
   }
   
