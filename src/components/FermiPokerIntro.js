@@ -56,7 +56,7 @@ const FermiPokerIntro = () => {
     <div className="intro-section p-1 mb-20">
       {/* What is Fermi Poker section */}
       <div className="mb-6">
-        <h2 className="text-header sm:text-header-small font-display font-bold pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
+        <h2 className="text-header-small sm:text-header font-display font-bold pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
         <p className="leading-normal">
           Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions. 
           Test your estimation skills, strategic betting, and ability to update your prior assumptions as more information becomes available.
