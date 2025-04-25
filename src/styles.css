@@ -1261,6 +1261,11 @@ header.pt-28 {
   line-height: 2rem;
 }
 
+.text-header {
+  font-size: 1.625rem;
+  line-height: 2rem;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1410,6 +1415,11 @@ header.pt-28 {
   
   .sm\:text-2xl {
     font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .sm\:text-header {
+    font-size: 25px;
     line-height: 2rem;
   }
   
