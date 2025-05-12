@@ -64,7 +64,7 @@ html, body {
 
 .light .main-bg {
   background-color: var(--main-bg);
-  border: 1px solid var(--light-border);
+  border: 1px solid var(--graylight-border);
 }
  
 .dark .main-bg {
