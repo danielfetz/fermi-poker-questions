@@ -2,7 +2,7 @@
 export const introContent = {
   gameConcept: {
     title: "Game Concept",
-    content: "Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many chickens are killed each year?" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins."
+    content: "Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like \"How many chickens are killed each year?\" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins."
   },
   gameplay: {
     title: "Gameplay",
