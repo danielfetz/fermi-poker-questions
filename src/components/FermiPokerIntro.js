@@ -58,8 +58,7 @@ const FermiPokerIntro = () => {
       <div className="mb-6">
         <h2 className="text-header-small sm:text-header font-display font-bold pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
         <p className="leading-normal">
-          Fermi Poker is like poker, but instead of cards, players make guesses about numerical questions. 
-          Test your estimation skills, strategic betting, and ability to update your prior assumptions as more information becomes available.
+          Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many chickens are killed each year?" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins.
         </p>
       </div>
       
