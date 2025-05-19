@@ -66,8 +66,8 @@ const FermiPokerIntro = () => {
       <div className="highlight-section p-4 rounded-xl mb-6">
         <h3 className="font-bold mt-0 mb-3">What Do You Need?</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
-          <li>You need at least one other player, but you can also play it with much larger groups</li>
-          <li>Pen and paper, as well as poker chips (or some other play currency)</li>
+          <li>You'll need at least one other person physically present to play with you, but it's more fun with larger groups</li>
+          <li>Something to write down guesses, and poker chips or other play money</li>
         </ul>
       </div>
       
