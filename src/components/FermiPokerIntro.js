@@ -13,7 +13,7 @@ const FermiPokerIntro = () => {
     {
       number: "01",
       title: "Question reveal",
-      content: "Before seeing the question, each player must put one or more chips into the pot. Then the question is revealed, for example: /"How many chickens are killed every year for meat?"/ The size of this mandatory bet should increase every other question."
+      content: "Before seeing the question, each player must put one or more chips into the pot. Then the question is revealed, for example: \"How many chickens are killed every year for meat?\" The size of this mandatory bet should increase every other question."
     },
     {
       number: "02",
