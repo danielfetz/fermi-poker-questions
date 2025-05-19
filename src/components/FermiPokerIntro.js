@@ -13,17 +13,17 @@ const FermiPokerIntro = () => {
     {
       number: "01",
       title: "Question reveal",
-      content: "What's Walmart's net profit margin in 2024?"
+      content: "Before seeing the question, each player must put one or more chips into the pot. Then the question is revealed, for example: /"How many chickens are killed every year for meat?/" The size of this mandatory bet should increase every other question."
     },
     {
       number: "02",
-      title: "Initial guesses",
-      content: "Each player secretly writes down their range estimation (e.g. 1.5% - 3.5%)"
+      title: "Secret guesses",
+      content: "Each player secretly writes down their guess as a range (e.g. 20 billion to 100 billion). Alternatively, you can also require everyone to play with exact numbers instead of ranges."
     },
     {
       number: "03",
-      title: "First betting round",
-      content: "Players bet based on their confidence in their range estimates"
+      title: "Betting round #1",
+      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may <i>check</i> (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
     },
     {
       number: "04",
