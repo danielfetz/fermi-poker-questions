@@ -23,32 +23,32 @@ const FermiPokerIntro = () => {
     {
       number: "03",
       title: "Betting round #1",
-      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may *check* (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
+      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may *check* (pass without betting, if no one has bet yet), *raise* (bet more than the current highest bet), *call* (match it), or *fold* (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
     },
     {
       number: "04",
-      title: "First hint",
-      content: "Walmart's total revenue was approximately $648 billion in 2024"
+      title: "Hint #1 (+ Betting round #2)",
+      content: "When the first betting round is over, the first hint is revealed. The hint helps all players to estimate how good the initial guess is. As in the first betting round, players can now perform various actions."
     },
     {
       number: "05",
-      title: "Second betting round",
-      content: "Players can adjust their ranges and bet again based on new information"
+      title: "Hint #2 (+ Betting round #3)",
+      content: "After the second betting round is over, a second hint is revealed and the third betting round is played."
     },
     {
       number: "06",
-      title: "Second hint",
-      content: "Retailers like Target typically have net margins of 3-4%, while Amazon's retail operations run on margins below 2%"
+      title: "Answer reveal",
+      content: "Before the fourth and final betting round, the answer to the guessing question is revealed so that all players know if they are close to the answer."
     },
     {
       number: "07",
-      title: "Final betting round",
-      content: "Last chance to bet on your confidence in your range estimate"
+      title: "Betting round #4",
+      content: "After the answer reveal, there is a fourth and final betting round. After the answer reveal, there is a fourth and final betting round."
     },
     {
       number: "08",
-      title: "Reveal",
-      content: "Walmart's net profit margin was 2.63% in 2024. The player with the narrowest correct range wins!"
+      title: "Showdown",
+      content: "When the final betting round ends with two or more players still in, everyone left reveals their guess. Folded players—and anyone who won before it came to the showdown—don't have to reveal their guess. The pot goes to the player with the narrowest range that contains the correct answer; if several ranges are equally narrow, those players split the pot. If no player has the correct answer inside their range, whoever's median of their range is closest to the answer wins."
     }
   ];
 
