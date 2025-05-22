@@ -23,7 +23,7 @@ const FermiPokerIntro = () => {
     {
       number: "03",
       title: "Betting round #1",
-      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may <i>check</i> (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
+      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may \<i>check</i>\ (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
     },
     {
       number: "04",
@@ -58,7 +58,7 @@ const FermiPokerIntro = () => {
       <div className="mb-6">
         <h2 className="text-header-small sm:text-header font-display font-bold pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
         <p className="leading-normal">
-          Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many chickens are killed each year?" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins.
+          Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many chickens are killed every year?" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins.
         </p>
       </div>
       
@@ -66,7 +66,7 @@ const FermiPokerIntro = () => {
       <div className="highlight-section p-4 rounded-xl mb-6">
         <h3 className="font-bold mt-0 mb-3">What Do You Need?</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
-          <li>You'll need at least one other person physically present to play with you, but it's more fun with larger groups</li>
+          <li>At least one other person physically present to play with you, but it's more fun with larger groups</li>
           <li>Something to write down guesses, and poker chips or other play money</li>
         </ul>
       </div>
