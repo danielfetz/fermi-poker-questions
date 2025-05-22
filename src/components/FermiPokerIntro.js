@@ -23,7 +23,7 @@ const FermiPokerIntro = () => {
     {
       number: "03",
       title: "Betting round #1",
-      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may `<i>check</i>` (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
+      content: "Betting moves clockwise, starting with a different player each question. On your turn, you may &lt;i&gt;check&lt;/i&gt; (pass without betting, if no one has bet yet), <i>raise</i> (bet more than the current highest bet), <i>call</i> (match it), or <i>fold</i> (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
     },
     {
       number: "04",
