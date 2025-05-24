@@ -44,7 +44,7 @@ const App = () => {
     if (themeColorMeta) {
       themeColorMeta.setAttribute(
         'content', 
-        newDarkMode ? '#1F1A15' : '#F8F4EB'  // dark-bg or cream-tan
+        newDarkMode ? '#1F1A15' : '#FBFAF4'  // dark-bg or cream-tan
       );
     }
   };
@@ -56,7 +56,7 @@ const App = () => {
       
       <div className={`min-h-screen font-primary geometric-background ${darkMode ? 'dark' : 'light'}`}>
         
-        <div className="relative z-10 max-w-4xl mx-auto py-2 px-3 sm:px-4">
+        <div className="relative z-10 max-w-4xl mx-auto pb-2 pt-1 px-3 sm:px-4">
           {/* Settings button and dropdown */}
           <div className="absolute top-4 right-4 z-20 relative">
             <button 
