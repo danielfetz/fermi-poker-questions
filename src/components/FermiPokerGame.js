@@ -26,6 +26,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const [skipConfirmation, setSkipConfirmation] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState({});
   
+  // Question overlay state
+  const [showQuestionOverlay, setShowQuestionOverlay] = useState(false);
+  const [overlayTimeLeft, setOverlayTimeLeft] = useState(60);
+  const overlayTimerRef = useRef(null);
+  
   // Rules modal state
   const [showRulesModal, setShowRulesModal] = useState(false);
   
@@ -178,7 +183,48 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     setCurrentQuestionIndex(nextIndex);
     setRevealedHints([false, false]);
     setAnswerRevealed(false);
+    // Show overlay for new question
+    startQuestionOverlay();
   };
+
+  // Question overlay functions
+  const startQuestionOverlay = () => {
+    setShowQuestionOverlay(true);
+    setOverlayTimeLeft(60);
+    
+    // Clear any existing timer
+    if (overlayTimerRef.current) {
+      clearInterval(overlayTimerRef.current);
+    }
+    
+    // Start countdown timer
+    overlayTimerRef.current = setInterval(() => {
+      setOverlayTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(overlayTimerRef.current);
+          setShowQuestionOverlay(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  const skipOverlayTimer = () => {
+    if (overlayTimerRef.current) {
+      clearInterval(overlayTimerRef.current);
+    }
+    setShowQuestionOverlay(false);
+  };
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (overlayTimerRef.current) {
+        clearInterval(overlayTimerRef.current);
+      }
+    };
+  }, []);
 
   const changeCategory = (categoryPath) => {
     // Get questions for new category
@@ -219,6 +265,9 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     
     // Update URL
     navigate(`/play/${categoryPath.join('/')}`);
+    
+    // Show overlay for new category
+    startQuestionOverlay();
   };
 
   // Close menu when clicking outside
@@ -245,6 +294,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       setShuffledQuestions({
         [initialCategoryKey]: shuffleArray(initialQuestions)
       });
+      // Show overlay for initial question
+      startQuestionOverlay();
     }
   }, []);
 
@@ -476,6 +527,67 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       
       {/* Rules Modal Component */}
       <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
+      
+      {/* Question Overlay */}
+      {showQuestionOverlay && (
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <div className="question-overlay-modal rounded-xl shadow-xl p-4 max-w-4xl w-full mx-4 border">
+            <div className="text-center">
+              {/* Large Question Display */}
+              <h1 className="text-3xl font-display font-bold mb-6 leading-snug question-overlay-title">
+                {currentQuestion.question}
+              </h1>
+              
+              {/* Category */}
+              <div className="text-lg mb-8 font-medium italic question-overlay-category">
+                {currentQuestion.category}
+              </div>
+              
+              {/* Instructions */}
+              <div className="question-overlay-instructions rounded-lg p-4 mb-8">
+                <h2 className="text-xl font-display font-bold mb-3">
+                  Instructions
+                </h2>
+                <p className="text-base leading-normal">
+                  Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
+                  When everyone has written their estimates, start with the first betting round.
+                </p>
+              </div>
+              
+              {/* Timer Section */}
+              <div className="mb-8">
+                <div className="text-2xl font-display font-bold mb-4 question-overlay-timer">
+                  {overlayTimeLeft} seconds
+                </div>
+                
+                {/* Progress Bar */}
+                <div className="question-overlay-progress-bg rounded-full mb-6" style={{ height: '12px' }}>
+                  <div 
+                    className="question-overlay-progress-bar rounded-full transition-all"
+                    style={{ 
+                      width: `${(overlayTimeLeft / 60) * 100}%`,
+                      height: '12px',
+                      transitionDuration: '1000ms',
+                      transitionTimingFunction: 'linear'
+                    }}
+                  ></div>
+                </div>
+                
+                {/* Skip Timer Button */}
+                <button
+                  onClick={skipOverlayTimer}
+                  className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center mx-auto question-overlay-skip-btn"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                  </svg>
+                  Skip Timer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
