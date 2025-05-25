@@ -1800,16 +1800,14 @@ header.pt-28 {
 
 
 
-
-.question-overlay-modal {
-  background-color: var(--warm-cream);
-  border: 1px solid var(--golden-accent);
-  animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+/* Question Overlay Styles */
+.question-overlay-content {
+  min-height: 400px;
+  padding: 2rem 1rem;
 }
 
-.dark .question-overlay-modal {
-  background-color: var(--dark-surface);
-  border-color: var(--dark-border);
+.dark .question-overlay-content {
+  /* Inherits from main content area */
 }
 
 .question-overlay-title {
