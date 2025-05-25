@@ -349,92 +349,154 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       </div>
       
       {/* Question section */}
-      <div className="mb-4 relative z-10">
-        <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
-        <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
-          {currentQuestion.question}
-        </h2>
-        <div className="text-1xs mb-3 mt-2 font-medium italic">
-          {currentQuestion.category}
-        </div>
-      </div>
-      
-      {/* Hint and Answer Container - always vertical for hints */}
-      <div className="grid grid-cols-1 gap-3.5 sm:gap-4 relative z-10">
-        {/* Hints (vertical layout) */}
-        {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
-          <div key={index} className="card-container">
-            <div 
-              className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''}`}
-              onClick={() => !revealedHints[index] && startFlip(`hint${index}`)}
-            >
-              <div className="card-front hint-front">
-                <div className="text-center card-content-front">
-                  <div className="hint-number-container">
-                    <span className="hint-number">{index + 1}</span>
+      {!showQuestionOverlay ? (
+        <>
+          <div className="mb-4 relative z-10">
+            <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
+            <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
+              {currentQuestion.question}
+            </h2>
+            <div className="text-1xs mb-3 mt-2 font-medium italic">
+              {currentQuestion.category}
+            </div>
+          </div>
+          
+          {/* Hint and Answer Container - always vertical for hints */}
+          <div className="grid grid-cols-1 gap-3.5 sm:gap-4 relative z-10">
+            {/* Hints (vertical layout) */}
+            {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
+              <div key={index} className="card-container">
+                <div 
+                  className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''}`}
+                  onClick={() => !revealedHints[index] && startFlip(`hint${index}`)}
+                >
+                  <div className="card-front hint-front">
+                    <div className="text-center card-content-front">
+                      <div className="hint-number-container">
+                        <span className="hint-number">{index + 1}</span>
+                      </div>
+                      <div className="font-medium">Reveal hint</div>
+                    </div>
                   </div>
-                  <div className="font-medium">Reveal hint</div>
+                  <div className="card-back hint-back">
+                    <div className="p-3 font-body text-base card-content-back">
+                      <div className="font-medium mb-1 border-b border-hint-border pb-1.5 flex items-center">
+                        <div className="hint-number-small mr-2">{index + 1}</div>
+                        <span>Hint {index + 1}</span>
+                      </div>
+                      <div>
+                        {hint}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="card-back hint-back">
-                <div className="p-3 font-body text-base card-content-back">
-                  <div className="font-medium mb-1 border-b border-hint-border pb-1.5 flex items-center">
-                    <div className="hint-number-small mr-2">{index + 1}</div>
-                    <span>Hint {index + 1}</span>
+            ))}
+            
+            {/* Answer - same size as hints */}
+            <div className="card-container">
+              <div 
+                className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
+                onClick={() => !answerRevealed && startFlip('answer')}
+              >
+                <div className="card-front answer-front">
+                  <div className="text-center card-content-front">
+                    <div className="answer-letter-container">
+                      <span className="answer-letter">A</span>
+                    </div>
+                    <div className="font-medium">Reveal answer</div>
                   </div>
-                  <div>
-                    {hint}
+                </div>
+                <div className="card-back answer-back">
+                  <div className="p-3 font-body text-base card-content-back">
+                    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="answer-letter-small mr-2">A</div>
+                        <span>Answer</span>
+                      </div>
+                      {currentQuestion.source && (
+                        <a 
+                          href={currentQuestion.source.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="source-link"
+                          onClick={(e) => e.stopPropagation()} // Prevent toggling card when clicking link
+                        >
+                          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                    <div>
+                      {currentQuestion.answer}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ))}
-        
-        {/* Answer - same size as hints */}
-        <div className="card-container">
-          <div 
-            className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
-            onClick={() => !answerRevealed && startFlip('answer')}
-          >
-            <div className="card-front answer-front">
-              <div className="text-center card-content-front">
-                <div className="answer-letter-container">
-                  <span className="answer-letter">A</span>
-                </div>
-                <div className="font-medium">Reveal answer</div>
+        </>
+      ) : (
+        /* Question Overlay - Integrated within main content */
+        <div className="question-overlay-content relative z-10">
+          <div className="text-center">
+            {/* Large Question Display */}
+            <div className="mb-6">
+              <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
+              <h1 className="text-2xl sm:text-3xl font-display font-bold mb-3 leading-snug question-overlay-title">
+                {currentQuestion.question}
+              </h1>
+              <div className="text-base mb-4 font-medium italic question-overlay-category">
+                {currentQuestion.category}
               </div>
             </div>
-            <div className="card-back answer-back">
-  <div className="p-3 font-body text-base card-content-back">
-    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
-      <div className="flex items-center">
-        <div className="answer-letter-small mr-2">A</div>
-        <span>Answer</span>
-      </div>
-      {currentQuestion.source && (
-        <a 
-          href={currentQuestion.source.url} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="source-link"
-          onClick={(e) => e.stopPropagation()} // Prevent toggling card when clicking link
-        >
-          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+            
+            {/* Instructions */}
+            <div className="question-overlay-instructions rounded-lg p-4 mb-6">
+              <h2 className="text-lg font-display font-bold mb-3">
+                Instructions
+              </h2>
+              <p className="text-base leading-normal">
+                Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
+                When everyone has written their estimates, start with the first betting round.
+              </p>
+            </div>
+            
+            {/* Timer Section */}
+            <div className="mb-6">
+              <div className="text-xl font-display font-bold mb-4 question-overlay-timer">
+                {overlayTimeLeft} seconds remaining
+              </div>
+              
+              {/* Progress Bar */}
+              <div className="question-overlay-progress-bg rounded-full mb-6" style={{ height: '8px' }}>
+                <div 
+                  className="question-overlay-progress-bar rounded-full transition-all"
+                  style={{ 
+                    width: `${(overlayTimeLeft / 60) * 100}%`,
+                    height: '8px',
+                    transitionDuration: '1000ms',
+                    transitionTimingFunction: 'linear'
+                  }}
+                ></div>
+              </div>
+              
+              {/* Skip Timer Button */}
+              <button
+                onClick={skipOverlayTimer}
+                className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center mx-auto question-overlay-skip-btn"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+                Skip Timer
+              </button>
+            </div>
+          </div>
+        </div>
       )}
-    </div>
-    <div>
-      {currentQuestion.answer}
-    </div>
-  </div>
-</div>
-          </div>
-        </div>
-      </div>
       
       {/* Navigation Controls */}
       <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
@@ -527,67 +589,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       
       {/* Rules Modal Component */}
       <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
-      
-      {/* Question Overlay */}
-      {showQuestionOverlay && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <div className="question-overlay-modal rounded-xl shadow-xl p-4 max-w-4xl w-full mx-4 border">
-            <div className="text-center">
-              {/* Large Question Display */}
-              <h1 className="text-3xl font-display font-bold mb-6 leading-snug question-overlay-title">
-                {currentQuestion.question}
-              </h1>
-              
-              {/* Category */}
-              <div className="text-lg mb-8 font-medium italic question-overlay-category">
-                {currentQuestion.category}
-              </div>
-              
-              {/* Instructions */}
-              <div className="question-overlay-instructions rounded-lg p-4 mb-8">
-                <h2 className="text-xl font-display font-bold mb-3">
-                  Instructions
-                </h2>
-                <p className="text-base leading-normal">
-                  Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
-                  When everyone has written their estimates, start with the first betting round.
-                </p>
-              </div>
-              
-              {/* Timer Section */}
-              <div className="mb-8">
-                <div className="text-2xl font-display font-bold mb-4 question-overlay-timer">
-                  {overlayTimeLeft} seconds
-                </div>
-                
-                {/* Progress Bar */}
-                <div className="question-overlay-progress-bg rounded-full mb-6" style={{ height: '12px' }}>
-                  <div 
-                    className="question-overlay-progress-bar rounded-full transition-all"
-                    style={{ 
-                      width: `${(overlayTimeLeft / 60) * 100}%`,
-                      height: '12px',
-                      transitionDuration: '1000ms',
-                      transitionTimingFunction: 'linear'
-                    }}
-                  ></div>
-                </div>
-                
-                {/* Skip Timer Button */}
-                <button
-                  onClick={skipOverlayTimer}
-                  className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center mx-auto question-overlay-skip-btn"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                  </svg>
-                  Skip Timer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };
