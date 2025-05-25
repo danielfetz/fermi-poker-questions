@@ -1886,3 +1886,21 @@ header.pt-28 {
 .dark .question-overlay-skip-btn:hover {
   background-color: var(--dark-hover);
 } 
+
+
+
+
+.question-overlay-instructions ul {
+  color: var(--rich-brown);
+  text-align: left;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.dark .question-overlay-instructions ul {
+  color: var(--dark-text);
+}
+
+.question-overlay-instructions li {
+  margin-bottom: 0.5rem;
+} 
