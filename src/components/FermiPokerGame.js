@@ -28,7 +28,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   
   // Question overlay state
   const [showQuestionOverlay, setShowQuestionOverlay] = useState(false);
-  const [overlayTimeLeft, setOverlayTimeLeft] = useState(60);
+  const [overlayTimeLeft, setOverlayTimeLeft] = useState(150);
+  const [overlayPhase, setOverlayPhase] = useState('guessing'); // 'guessing' or 'betting'
   const overlayTimerRef = useRef(null);
   
   // Rules modal state
@@ -190,7 +191,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   // Question overlay functions
   const startQuestionOverlay = () => {
     setShowQuestionOverlay(true);
-    setOverlayTimeLeft(60);
+    setOverlayPhase('guessing');
+    setOverlayTimeLeft(150);
     
     // Clear any existing timer
     if (overlayTimerRef.current) {
@@ -198,6 +200,24 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     }
     
     // Start countdown timer
+    overlayTimerRef.current = setInterval(() => {
+      setOverlayTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(overlayTimerRef.current);
+          // Move to betting phase
+          startBettingPhase();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  const startBettingPhase = () => {
+    setOverlayPhase('betting');
+    setOverlayTimeLeft(600);
+    
+    // Start betting phase timer
     overlayTimerRef.current = setInterval(() => {
       setOverlayTimeLeft(prev => {
         if (prev <= 1) {
@@ -214,7 +234,14 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     if (overlayTimerRef.current) {
       clearInterval(overlayTimerRef.current);
     }
-    setShowQuestionOverlay(false);
+    
+    if (overlayPhase === 'guessing') {
+      // Move to betting phase
+      startBettingPhase();
+    } else {
+      // End overlay and show question/cards
+      setShowQuestionOverlay(false);
+    }
   };
 
   // Clean up timer on unmount
@@ -456,18 +483,37 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             {/* Instructions */}
             <div className="question-overlay-instructions rounded-lg p-4 mb-6">
               <h2 className="text-lg font-display font-bold mb-3">
-                Instructions
+                {overlayPhase === 'guessing' ? 'Instructions - Guessing Phase' : 'Instructions - First Betting Round'}
               </h2>
-              <p className="text-base leading-normal">
-                Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
-                When everyone has written their estimates, start with the first betting round.
-              </p>
+              {overlayPhase === 'guessing' ? (
+                <p className="text-base leading-normal">
+                  Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
+                  When everyone has written their estimates, start with the first betting round.
+                </p>
+              ) : (
+                <div className="text-base leading-normal">
+                  <p className="mb-3">
+                    Now it's time for the first betting round! Each player can:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li><strong>Raise:</strong> Increase the bet if you're confident in your estimate</li>
+                    <li><strong>Call:</strong> Match the current bet to stay in the round</li>
+                    <li><strong>Fold:</strong> Give up this round if you're not confident</li>
+                  </ul>
+                  <p>
+                    Betting moves clockwise around the table. Continue until all active players have called or folded.
+                  </p>
+                </div>
+              )}
             </div>
             
             {/* Timer Section */}
             <div className="mb-6">
               <div className="text-xl font-display font-bold mb-4 question-overlay-timer">
-                {overlayTimeLeft} seconds remaining
+                {overlayPhase === 'guessing' 
+                  ? `${overlayTimeLeft} seconds remaining to guess`
+                  : `${Math.floor(overlayTimeLeft / 60)}:${(overlayTimeLeft % 60).toString().padStart(2, '0')} remaining for betting`
+                }
               </div>
               
               {/* Progress Bar */}
@@ -475,7 +521,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div 
                   className="question-overlay-progress-bar rounded-full transition-all"
                   style={{ 
-                    width: `${(overlayTimeLeft / 60) * 100}%`,
+                    width: `${(overlayTimeLeft / (overlayPhase === 'guessing' ? 150 : 600)) * 100}%`,
                     height: '8px',
                     transitionDuration: '1000ms',
                     transitionTimingFunction: 'linear'
@@ -491,7 +537,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                 </svg>
-                Skip Timer
+                {overlayPhase === 'guessing' 
+                  ? 'Finished guessing? Go to the first betting round >>'
+                  : 'Finished betting? Reveal the first hint >>'
+                }
               </button>
             </div>
           </div>
