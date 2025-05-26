@@ -469,6 +469,47 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         /* Question Overlay - Integrated within main content */
         <div className="question-overlay-content relative z-10">
           <div className="text-center">
+            {/* Progress Stepper */}
+            <div className="progress-stepper mb-6">
+              <div className="flex items-center justify-center space-x-4">
+                {/* Step 1: Guessing Phase */}
+                <div className={`stepper-step ${overlayPhase === 'guessing' ? 'active' : overlayPhase === 'betting' ? 'completed' : ''}`}>
+                  <div className="stepper-circle">
+                    {overlayPhase === 'betting' ? (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <span>1</span>
+                    )}
+                  </div>
+                  <div className="stepper-label">Guessing Phase</div>
+                </div>
+                
+                {/* Connector */}
+                <div className={`stepper-connector ${overlayPhase === 'betting' ? 'completed' : ''}`}></div>
+                
+                {/* Step 2: First Betting Round */}
+                <div className={`stepper-step ${overlayPhase === 'betting' ? 'active' : ''}`}>
+                  <div className="stepper-circle">
+                    <span>2</span>
+                  </div>
+                  <div className="stepper-label">First Betting Round</div>
+                </div>
+                
+                {/* Connector */}
+                <div className="stepper-connector"></div>
+                
+                {/* Step 3: Reveal First Hint */}
+                <div className="stepper-step">
+                  <div className="stepper-circle">
+                    <span>3</span>
+                  </div>
+                  <div className="stepper-label">Reveal First Hint</div>
+                </div>
+              </div>
+            </div>
+            
             {/* Large Question Display */}
             <div className="mb-6">
               <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
