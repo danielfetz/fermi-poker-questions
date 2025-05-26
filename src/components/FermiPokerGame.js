@@ -471,43 +471,41 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           <div className="text-center">
             {/* Progress Stepper */}
             <div className="progress-stepper mb-6">
-              <div className="flex items-start justify-center">
+              <div className="stepper-container">
                 {/* Step 1: Guessing Phase */}
-                <div className={`stepper-step ${overlayPhase === 'guessing' ? 'active' : overlayPhase === 'betting' ? 'completed' : ''}`}>
-                  <div className="stepper-circle">
-                    {overlayPhase === 'betting' ? (
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    ) : (
-                      <span>1</span>
-                    )}
+                <div className={`stepper-item ${overlayPhase === 'guessing' ? 'active' : overlayPhase === 'betting' ? 'completed' : ''}`}>
+                  <div className="stepper-top">
+                    <div className="stepper-circle">
+                      {overlayPhase === 'betting' ? (
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span>1</span>
+                      )}
+                    </div>
+                    <div className={`stepper-line ${overlayPhase === 'betting' ? 'completed' : ''}`}></div>
                   </div>
                   <div className="stepper-label">Guessing Phase</div>
                 </div>
                 
-                {/* Connector */}
-                <div className="relative" style={{ width: '3rem', height: '1.75rem' }}>
-                  <div className={`stepper-connector ${overlayPhase === 'betting' ? 'completed' : ''}`}></div>
-                </div>
-                
                 {/* Step 2: First Betting Round */}
-                <div className={`stepper-step ${overlayPhase === 'betting' ? 'active' : ''}`}>
-                  <div className="stepper-circle">
-                    <span>2</span>
+                <div className={`stepper-item ${overlayPhase === 'betting' ? 'active' : ''}`}>
+                  <div className="stepper-top">
+                    <div className="stepper-circle">
+                      <span>2</span>
+                    </div>
+                    <div className="stepper-line"></div>
                   </div>
                   <div className="stepper-label">First Betting Round</div>
                 </div>
                 
-                {/* Connector */}
-                <div className="relative" style={{ width: '3rem', height: '1.75rem' }}>
-                  <div className="stepper-connector"></div>
-                </div>
-                
                 {/* Step 3: Reveal First Hint */}
-                <div className="stepper-step">
-                  <div className="stepper-circle">
-                    <span>3</span>
+                <div className="stepper-item">
+                  <div className="stepper-top">
+                    <div className="stepper-circle">
+                      <span>3</span>
+                    </div>
                   </div>
                   <div className="stepper-label">Reveal First Hint</div>
                 </div>
