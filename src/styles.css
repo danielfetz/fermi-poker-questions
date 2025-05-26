@@ -1904,3 +1904,149 @@ header.pt-28 {
 .question-overlay-instructions li {
   margin-bottom: 0.5rem;
 } 
+
+
+
+/* Progress Stepper Styles */
+.progress-stepper {
+  padding: 1rem 0;
+}
+
+.stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.stepper-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid;
+}
+
+.stepper-label {
+  font-size: 0.75rem;
+  font-weight: medium;
+  text-align: center;
+  max-width: 5rem;
+  line-height: 1.2;
+}
+
+.stepper-connector {
+  width: 3rem;
+  height: 2px;
+  margin-top: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+/* Light mode styles */
+.light .stepper-step {
+  color: var(--medium-brown);
+}
+
+.light .stepper-step.active {
+  color: var(--rich-brown);
+}
+
+.light .stepper-step.completed {
+  color: var(--golden-dark);
+}
+
+.light .stepper-circle {
+  background-color: var(--soft-brown);
+  border-color: var(--medium-brown);
+  color: var(--rich-brown);
+}
+
+.light .stepper-step.active .stepper-circle {
+  background-color: var(--golden-accent);
+  border-color: var(--golden-dark);
+  color: var(--rich-brown);
+}
+
+.light .stepper-step.completed .stepper-circle {
+  background-color: var(--golden-dark);
+  border-color: var(--golden-dark);
+  color: var(--warm-cream);
+}
+
+.light .stepper-connector {
+  background-color: var(--soft-brown);
+}
+
+.light .stepper-connector.completed {
+  background-color: var(--golden-dark);
+}
+
+/* Dark mode styles */
+.dark .stepper-step {
+  color: var(--dark-text);
+  opacity: 0.6;
+}
+
+.dark .stepper-step.active {
+  color: var(--dark-text);
+  opacity: 1;
+}
+
+.dark .stepper-step.completed {
+  color: var(--golden-accent);
+  opacity: 1;
+}
+
+.dark .stepper-circle {
+  background-color: var(--dark-soft);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.dark .stepper-step.active .stepper-circle {
+  background-color: var(--golden-accent);
+  border-color: var(--golden-accent);
+  color: var(--rich-brown);
+}
+
+.dark .stepper-step.completed .stepper-circle {
+  background-color: var(--golden-accent);
+  border-color: var(--golden-accent);
+  color: var(--rich-brown);
+}
+
+.dark .stepper-connector {
+  background-color: var(--dark-border);
+}
+
+.dark .stepper-connector.completed {
+  background-color: var(--golden-accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .stepper-step {
+    margin: 0 0.25rem;
+  }
+  
+  .stepper-circle {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+  
+  .stepper-label {
+    font-size: 0.625rem;
+    max-width: 4rem;
+  }
+  
+  .stepper-connector {
+    width: 2rem;
+  }
+} 
