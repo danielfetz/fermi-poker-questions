@@ -28,9 +28,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   
   // Question overlay state
   const [showQuestionOverlay, setShowQuestionOverlay] = useState(false);
-  const [overlayTimeLeft, setOverlayTimeLeft] = useState(150);
-  const [overlayPhase, setOverlayPhase] = useState('guessing'); // 'guessing' or 'betting'
-  const overlayTimerRef = useRef(null);
+  const [overlayPhase, setOverlayPhase] = useState('guessing'); // 'guessing', 'betting', 'hint', 'betting2', 'hint2', 'betting3', 'answer', 'betting4', 'showdown'
+  const [showBettingRules, setShowBettingRules] = useState(false);
+  const [showHint1Dropdown, setShowHint1Dropdown] = useState(false);
+  const [showHint2Dropdown, setShowHint2Dropdown] = useState(false);
+  const [showAnswerDropdown, setShowAnswerDropdown] = useState(false);
   
   // Rules modal state
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -39,6 +41,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
   const rulesButtonRef = useRef(null);
+  const stepperRef = useRef(null);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -192,66 +195,61 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const startQuestionOverlay = () => {
     setShowQuestionOverlay(true);
     setOverlayPhase('guessing');
-    setOverlayTimeLeft(150);
-    
-    // Clear any existing timer
-    if (overlayTimerRef.current) {
-      clearInterval(overlayTimerRef.current);
-    }
-    
-    // Start countdown timer
-    overlayTimerRef.current = setInterval(() => {
-      setOverlayTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(overlayTimerRef.current);
-          // Move to betting phase
-          startBettingPhase();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
   };
 
-  const startBettingPhase = () => {
-    setOverlayPhase('betting');
-    setOverlayTimeLeft(600);
+  // Function to scroll active step into view
+  const scrollActiveStepIntoView = () => {
+    if (!stepperRef.current) return;
     
-    // Start betting phase timer
-    overlayTimerRef.current = setInterval(() => {
-      setOverlayTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(overlayTimerRef.current);
-          setShowQuestionOverlay(false);
-          return 0;
-        }
-        return prev - 1;
+    const stepperWrapper = stepperRef.current;
+    const activeStep = stepperWrapper.querySelector('.stepper-step.active');
+    
+    if (activeStep) {
+      const stepperRect = stepperWrapper.getBoundingClientRect();
+      const activeStepRect = activeStep.getBoundingClientRect();
+      
+      // Calculate the position to center the active step
+      const stepperCenter = stepperRect.width / 2;
+      const activeStepCenter = activeStepRect.left - stepperRect.left + activeStepRect.width / 2;
+      const scrollOffset = activeStepCenter - stepperCenter;
+      
+      stepperWrapper.scrollTo({
+        left: stepperWrapper.scrollLeft + scrollOffset,
+        behavior: 'smooth'
       });
-    }, 1000);
+    }
   };
 
   const skipOverlayTimer = () => {
-    if (overlayTimerRef.current) {
-      clearInterval(overlayTimerRef.current);
-    }
-    
     if (overlayPhase === 'guessing') {
       // Move to betting phase
-      startBettingPhase();
+      setOverlayPhase('betting');
+    } else if (overlayPhase === 'betting') {
+      // Move to hint reveal phase
+      setOverlayPhase('hint');
+    } else if (overlayPhase === 'hint') {
+      // Move to second betting phase
+      setOverlayPhase('betting2');
+    } else if (overlayPhase === 'betting2') {
+      // Move to second hint reveal phase
+      setOverlayPhase('hint2');
+    } else if (overlayPhase === 'hint2') {
+      // Move to third betting phase
+      setOverlayPhase('betting3');
+    } else if (overlayPhase === 'betting3') {
+      // Move to answer reveal phase
+      setOverlayPhase('answer');
+    } else if (overlayPhase === 'answer') {
+      // Move to fourth betting phase
+      setOverlayPhase('betting4');
+    } else if (overlayPhase === 'betting4') {
+      // Move to showdown phase
+      setOverlayPhase('showdown');
     } else {
-      // End overlay and show question/cards
+      // End overlay and show question/cards (from showdown phase)
       setShowQuestionOverlay(false);
     }
   };
-
-  // Clean up timer on unmount
-  useEffect(() => {
-    return () => {
-      if (overlayTimerRef.current) {
-        clearInterval(overlayTimerRef.current);
-      }
-    };
-  }, []);
 
   const changeCategory = (categoryPath) => {
     // Get questions for new category
@@ -325,6 +323,14 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       startQuestionOverlay();
     }
   }, []);
+
+  // Scroll active step into view when overlay phase changes
+  useEffect(() => {
+    if (showQuestionOverlay) {
+      // Small delay to ensure DOM has updated
+      setTimeout(scrollActiveStepIntoView, 100);
+    }
+  }, [overlayPhase, showQuestionOverlay]);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = (array) => {
@@ -468,72 +474,188 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       ) : (
         /* Question Overlay - Integrated within main content */
         <div className="question-overlay-content relative z-10">
-          <div className="text-center">
+          <div className="text-left">
+            {/* Large Question Display - Above Stepper */}
+            <h1 className="text-2xl sm:text-3xl font-display font-bold mb-3 leading-snug question-overlay-title">
+              {currentQuestion.question}
+            </h1>
+            
             {/* Progress Stepper */}
-            <div className="progress-stepper mb-6">
-              <div className="stepper-container">
-                {/* Step 1: Guessing Phase */}
-                <div className={`stepper-item ${overlayPhase === 'guessing' ? 'active' : overlayPhase === 'betting' ? 'completed' : ''}`}>
-                  <div className="stepper-top">
+            <div className="progress-stepper">
+              <div ref={stepperRef} className="stepper-wrapper overflow-x-auto">
+                <div className="stepper-track">
+                  {/* Step 1: Guessing Phase */}
+                  <div className={`stepper-step ${overlayPhase === 'guessing' ? 'active' : 'completed'}`}>
                     <div className="stepper-circle">
-                      {overlayPhase === 'betting' ? (
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      {(overlayPhase === 'guessing' || overlayPhase !== 'guessing') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : (
-                        <span>1</span>
+                        <span></span>
                       )}
                     </div>
-                    <div className={`stepper-line ${overlayPhase === 'betting' ? 'completed' : ''}`}></div>
+                    <div className="stepper-label">Guesses</div>
                   </div>
-                  <div className="stepper-label">Guessing Phase</div>
-                </div>
-                
-                {/* Step 2: First Betting Round */}
-                <div className={`stepper-item ${overlayPhase === 'betting' ? 'active' : ''}`}>
-                  <div className="stepper-top">
+                  
+                  {/* Connector Line 1 */}
+                  <div className={`stepper-line ${overlayPhase !== 'guessing' ? 'completed' : ''} ${overlayPhase === 'guessing' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 2: First Betting Round */}
+                  <div className={`stepper-step ${overlayPhase === 'betting' ? 'active' : (overlayPhase === 'guessing' ? '' : 'completed')}`}>
                     <div className="stepper-circle">
-                      <span>2</span>
+                      {(overlayPhase === 'betting' || (overlayPhase !== 'guessing' && overlayPhase !== 'betting')) ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
                     </div>
-                    <div className="stepper-line"></div>
+                    <div className="stepper-label">Betting #1</div>
                   </div>
-                  <div className="stepper-label">First Betting Round</div>
-                </div>
-                
-                {/* Step 3: Reveal First Hint */}
-                <div className="stepper-item">
-                  <div className="stepper-top">
+                  
+                  {/* Connector Line 2 */}
+                  <div className={`stepper-line ${(overlayPhase !== 'guessing' && overlayPhase !== 'betting') ? 'completed' : ''} ${overlayPhase === 'betting' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 3: Reveal First Hint */}
+                  <div className={`stepper-step ${overlayPhase === 'hint' ? 'active' : (overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                     <div className="stepper-circle">
-                      <span>3</span>
+                      {(overlayPhase === 'hint' || overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
                     </div>
+                    <div className="stepper-label">Hint #1</div>
                   </div>
-                  <div className="stepper-label">Reveal First Hint</div>
+                  
+                  {/* Connector Line 3 */}
+                  <div className={`stepper-line ${(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'hint' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 4: Second Betting Round */}
+                  <div className={`stepper-step ${overlayPhase === 'betting2' ? 'active' : (overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
+                    <div className="stepper-circle">
+                      {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Betting #2</div>
+                  </div>
+                  
+                  {/* Connector Line 4 */}
+                  <div className={`stepper-line ${(overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'betting2' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 5: Reveal Second Hint */}
+                  <div className={`stepper-step ${overlayPhase === 'hint2' ? 'active' : (overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
+                    <div className="stepper-circle">
+                      {(overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Hint #2</div>
+                  </div>
+                  
+                  {/* Connector Line 5 */}
+                  <div className={`stepper-line ${(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'hint2' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 6: Third Betting Round */}
+                  <div className={`stepper-step ${overlayPhase === 'betting3' ? 'active' : (overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
+                    <div className="stepper-circle">
+                      {(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Betting #3</div>
+                  </div>
+                  
+                  {/* Connector Line 6 */}
+                  <div className={`stepper-line ${(overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'betting3' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 7: Answer Reveal */}
+                  <div className={`stepper-step ${overlayPhase === 'answer' ? 'active' : (overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
+                    <div className="stepper-circle">
+                      {(overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Answer</div>
+                  </div>
+                  
+                  {/* Connector Line 7 */}
+                  <div className={`stepper-line ${(overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'answer' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 8: Fourth Betting Round */}
+                  <div className={`stepper-step ${overlayPhase === 'betting4' ? 'active' : overlayPhase === 'showdown' ? 'completed' : ''}`}>
+                    <div className="stepper-circle">
+                      {(overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Betting #4</div>
+                  </div>
+                  
+                  {/* Connector Line 8 */}
+                  <div className={`stepper-line ${overlayPhase === 'showdown' ? 'completed' : ''} ${overlayPhase === 'betting4' ? 'half-active' : ''}`}></div>
+                  
+                  {/* Step 9: Showdown */}
+                  <div className={`stepper-step ${overlayPhase === 'showdown' ? 'active' : ''}`}>
+                    <div className="stepper-circle">
+                      {overlayPhase === 'showdown' ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <div className="stepper-label">Showdown</div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Large Question Display */}
-            <div className="mb-6">
-              <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
-              <h1 className="text-2xl sm:text-3xl font-display font-bold mb-3 leading-snug question-overlay-title">
-                {currentQuestion.question}
-              </h1>
-              <div className="text-base mb-4 font-medium italic question-overlay-category">
-                {currentQuestion.category}
               </div>
             </div>
             
             {/* Instructions */}
-            <div className="question-overlay-instructions rounded-lg p-4 mb-6">
+            <div className={`question-overlay-instructions rounded-xl p-4 ${overlayPhase === 'hint' ? 'mb-6' : 'mb-20'}`}>
               <h2 className="text-lg font-display font-bold mb-3">
-                {overlayPhase === 'guessing' ? 'Instructions - Guessing Phase' : 'Instructions - First Betting Round'}
+                {overlayPhase === 'guessing' ? 'Instructions - Guessing Phase' : 
+                 overlayPhase === 'betting' ? 'Instructions - First Betting Round' : 
+                 overlayPhase === 'hint' ? 'The first hint is...' :
+                 overlayPhase === 'betting2' ? 'Instructions - Second Betting Round' :
+                 overlayPhase === 'hint2' ? 'The second hint is...' :
+                 overlayPhase === 'betting3' ? 'Instructions - Third Betting Round' :
+                 overlayPhase === 'answer' ? 'The answer is...' :
+                 overlayPhase === 'betting4' ? 'Instructions - Final Betting Round' :
+                 'Instructions - Showdown'}
               </h2>
               {overlayPhase === 'guessing' ? (
                 <p className="text-base leading-normal">
                   Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
                   When everyone has written their estimates, start with the first betting round.
                 </p>
-              ) : (
+              ) : overlayPhase === 'betting' ? (
                 <div className="text-base leading-normal">
                   <p className="mb-3">
                     Now it's time for the first betting round! Each player can:
@@ -547,45 +669,347 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                     Betting moves clockwise around the table. Continue until all active players have called or folded.
                   </p>
                 </div>
+              ) : overlayPhase === 'hint' ? (
+                <div className="text-base leading-normal">
+                  <div className="bg-hint-back border border-hint-border rounded-lg p-4 mb-4">
+                    <div className="font-medium mb-2 flex items-center">
+                      <div className="hint-number-small mr-2">1</div>
+                      <span>First Hint</span>
+                    </div>
+                    <div className="text-base">
+                      {currentQuestion.hints && currentQuestion.hints[0]}
+                    </div>
+                  </div>
+                  <p className="mb-3">
+                    Now that you have the first hint, consider how this new information affects the probability that your original guess was accurate:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li>Does this hint make your estimate seem too high or too low?</li>
+                    <li>How confident are you now compared to your initial guess?</li>
+                    <li>Should you adjust your betting strategy for the next round?</li>
+                  </ul>
+                  <p>
+                    Use this information to guide your decisions in the second betting round.
+                  </p>
+                </div>
+              ) : overlayPhase === 'betting2' ? (
+                <div className="text-base leading-normal">
+                  <p className="mb-3">
+                    Time for the second betting round! Now that you've seen the first hint, you can make more informed decisions:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li><strong>Raise:</strong> Increase the bet if the hint supports your estimate</li>
+                    <li><strong>Call:</strong> Match the current bet to stay in the round</li>
+                    <li><strong>Fold:</strong> Give up if the hint suggests you're way off</li>
+                  </ul>
+                  <p>
+                    Consider how the first hint changed your confidence level and bet accordingly.
+                  </p>
+                </div>
+              ) : overlayPhase === 'hint2' ? (
+                <div className="text-base leading-normal">
+                  <div className="bg-hint-back border border-hint-border rounded-lg p-4 mb-4">
+                    <div className="font-medium mb-2 flex items-center">
+                      <div className="hint-number-small mr-2">2</div>
+                      <span>Second Hint</span>
+                    </div>
+                    <div className="text-base">
+                      {currentQuestion.hints && currentQuestion.hints[1]}
+                    </div>
+                  </div>
+                  <p className="mb-3">
+                    With both hints revealed, you now have much more information to evaluate your original estimate:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li>How do both hints together affect your confidence?</li>
+                    <li>Do the hints point in the same direction or contradict each other?</li>
+                    <li>Are you closer to the actual answer than you initially thought?</li>
+                  </ul>
+                  <p>
+                    Prepare for the third betting round with this additional information.
+                  </p>
+                </div>
+              ) : overlayPhase === 'betting3' ? (
+                <div className="text-base leading-normal">
+                  <p className="mb-3">
+                    Third betting round! With both hints available, this is your most informed betting opportunity yet:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li><strong>Raise:</strong> Increase the bet if both hints support your range</li>
+                    <li><strong>Call:</strong> Match the current bet to stay competitive</li>
+                    <li><strong>Fold:</strong> Give up if the hints suggest you're significantly off</li>
+                  </ul>
+                  <p>
+                    Use all available information to make your most strategic betting decision.
+                  </p>
+                </div>
+              ) : overlayPhase === 'answer' ? (
+                <div className="text-base leading-normal">
+                  <div className="bg-answer-back border border-answer-border rounded-lg p-4 mb-4">
+                    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="answer-letter-small mr-2">A</div>
+                        <span>Answer</span>
+                      </div>
+                      {currentQuestion.source && (
+                        <a 
+                          href={currentQuestion.source.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="source-link"
+                        >
+                          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                    <div className="text-base">
+                      {currentQuestion.answer}
+                    </div>
+                  </div>
+                  <p className="mb-3">
+                    Now you know the correct answer! Consider how close your original estimate was:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li>Does the answer fall within your estimated range?</li>
+                    <li>How narrow was your range compared to others?</li>
+                    <li>Should you bluff or play conservatively in the final betting round?</li>
+                  </ul>
+                  <p>
+                    Prepare for the final betting round with complete information.
+                  </p>
+                </div>
+              ) : overlayPhase === 'betting4' ? (
+                <div className="text-base leading-normal">
+                  <p className="mb-3">
+                    Final betting round! Everyone knows the answer now, so this is pure strategy:
+                  </p>
+                  <ul className="list-disc text-left mx-auto inline-block mb-3">
+                    <li><strong>Raise:</strong> If you have a winning range, maximize the pot</li>
+                    <li><strong>Call:</strong> Stay in if you think you might win or tie</li>
+                    <li><strong>Fold:</strong> Cut your losses if your range clearly doesn't include the answer</li>
+                  </ul>
+                  <p>
+                    Remember: if your range contains the answer, a narrower range beats a wider one!
+                  </p>
+                </div>
+              ) : (
+                <div className="text-base leading-normal">
+                  <p className="mb-4 text-lg font-bold">
+                    🎯 Showdown Time!
+                  </p>
+                  <p className="mb-3">
+                    When the final betting round ends with two or more players still in, everyone left reveals their guess. The pot goes to the player with the narrowest range that contains the correct answer; if several ranges are equally narrow, those players split the pot. If no player has the correct answer inside their range, whoever's median of their range is closest to the answer wins.
+                  </p>
+                  <div className="mb-3">
+                    <h3 className="font-bold mb-2">Winning Criteria (in order):</h3>
+                    <ol className="list-decimal text-left mx-auto inline-block mb-3">
+                      <li>Narrowest range containing the correct answer</li>
+                      <li>If tied, players with equally narrow ranges split the pot</li>
+                      <li>If no ranges contain the answer, closest median wins</li>
+                    </ol>
+                  </div>
+                  <p>
+                    Reveal your ranges and determine the winner!
+                  </p>
+                </div>
               )}
             </div>
+
+            {/* Betting Rules Dropdown - Only show during hint phase */}
+            {overlayPhase === 'hint' && (
+              <div className="question-overlay-instructions rounded-xl p-4 mb-20">
+                <button
+                  onClick={() => setShowBettingRules(!showBettingRules)}
+                  className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
+                >
+                  <span>Betting Rules</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform ${showBettingRules ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showBettingRules && (
+                  <div className="mt-3 pt-3 border-t text-base leading-normal">
+                    <div className="mb-3">
+                      <h3 className="font-bold mb-2">Basic Betting Actions:</h3>
+                      <ul className="list-disc text-left mx-auto inline-block mb-3">
+                        <li><strong>Fold:</strong> Give up and lose your current bet</li>
+                        <li><strong>Call:</strong> Match the current highest bet</li>
+                        <li><strong>Raise:</strong> Increase the bet amount</li>
+                      </ul>
+                    </div>
+                    <div className="mb-3">
+                      <h3 className="font-bold mb-2">Betting Order:</h3>
+                      <ul className="list-disc text-left mx-auto inline-block mb-3">
+                        <li>Betting goes clockwise around the table</li>
+                        <li>Each player must call, raise, or fold</li>
+                        <li>Round continues until all active players have called</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="font-bold mb-2">Strategy Tips:</h3>
+                      <ul className="list-disc text-left mx-auto inline-block">
+                        <li>Use hints to gauge your confidence level</li>
+                        <li>Consider other players' betting patterns</li>
+                        <li>Bluffing can be effective even with poor estimates</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             
-            {/* Timer Section */}
-            <div className="mb-6">
-              <div className="text-xl font-display font-bold mb-4 question-overlay-timer">
-                {overlayPhase === 'guessing' 
-                  ? `${overlayTimeLeft} seconds remaining to guess`
-                  : `${Math.floor(overlayTimeLeft / 60)}:${(overlayTimeLeft % 60).toString().padStart(2, '0')} remaining for betting`
-                }
+            {/* Progressive Dropdowns - Show previous information */}
+            
+            {/* Answer Dropdown - Show after answer phase */}
+            {(overlayPhase === 'betting4' || overlayPhase === 'showdown') && (
+              <div className="question-overlay-instructions rounded-xl p-4 mb-3">
+                <button
+                  onClick={() => setShowAnswerDropdown(!showAnswerDropdown)}
+                  className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
+                >
+                  <span>Answer</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform ${showAnswerDropdown ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showAnswerDropdown && (
+                  <div className="mt-3 pt-3 border-t text-base leading-normal">
+                    <div className="bg-answer-back border border-answer-border rounded-lg p-4">
+                      <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
+                        <div className="flex items-center">
+                          <div className="answer-letter-small mr-2">A</div>
+                          <span>Answer</span>
+                        </div>
+                        {currentQuestion.source && (
+                          <a 
+                            href={currentQuestion.source.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="source-link"
+                          >
+                            <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        )}
+                      </div>
+                      <div className="text-base">
+                        {currentQuestion.answer}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              
-              {/* Progress Bar */}
-              <div className="question-overlay-progress-bg rounded-full mb-6" style={{ height: '8px' }}>
-                <div 
-                  className="question-overlay-progress-bar rounded-full transition-all"
-                  style={{ 
-                    width: `${(overlayTimeLeft / (overlayPhase === 'guessing' ? 150 : 600)) * 100}%`,
-                    height: '8px',
-                    transitionDuration: '1000ms',
-                    transitionTimingFunction: 'linear'
-                  }}
-                ></div>
+            )}
+
+            {/* Hint #2 Dropdown - Show after hint2 phase */}
+            {(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && (
+              <div className="question-overlay-instructions rounded-xl p-4 mb-3">
+                <button
+                  onClick={() => setShowHint2Dropdown(!showHint2Dropdown)}
+                  className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
+                >
+                  <span>Hint #2</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform ${showHint2Dropdown ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showHint2Dropdown && (
+                  <div className="mt-3 pt-3 border-t text-base leading-normal">
+                    <div className="bg-hint-back border border-hint-border rounded-lg p-4">
+                      <div className="font-medium mb-2 flex items-center">
+                        <div className="hint-number-small mr-2">2</div>
+                        <span>Second Hint</span>
+                      </div>
+                      <div className="text-base">
+                        {currentQuestion.hints && currentQuestion.hints[1]}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              
-              {/* Skip Timer Button */}
-              <button
-                onClick={skipOverlayTimer}
-                className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center mx-auto question-overlay-skip-btn"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                </svg>
-                {overlayPhase === 'guessing' 
-                  ? 'Finished guessing? Go to the first betting round >>'
-                  : 'Finished betting? Reveal the first hint >>'
-                }
-              </button>
-            </div>
+            )}
+
+            {/* Hint #1 Dropdown - Show after hint phase */}
+            {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && (
+              <div className={`question-overlay-instructions rounded-xl p-4 ${(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && overlayPhase !== 'hint' ? 'mb-20' : 'mb-3'}`}>
+                <button
+                  onClick={() => setShowHint1Dropdown(!showHint1Dropdown)}
+                  className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
+                >
+                  <span>Hint #1</span>
+                  <svg 
+                    className={`w-5 h-5 transition-transform ${showHint1Dropdown ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showHint1Dropdown && (
+                  <div className="mt-3 pt-3 border-t text-base leading-normal">
+                    <div className="bg-hint-back border border-hint-border rounded-lg p-4">
+                      <div className="font-medium mb-2 flex items-center">
+                        <div className="hint-number-small mr-2">1</div>
+                        <span>First Hint</span>
+                      </div>
+                      <div className="text-base">
+                        {currentQuestion.hints && currentQuestion.hints[0]}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            
+            {/* Fixed Skip Button at Bottom */}
+            <button
+              onClick={skipOverlayTimer}
+              className="fixed left-1/2 transform -translate-x-1/2 px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50"
+              style={{ bottom: '1rem' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+              </svg>
+              {overlayPhase === 'guessing' 
+                ? 'Finished guessing? Go to the first betting round >>'
+                : overlayPhase === 'betting' 
+                  ? 'Finished betting? Reveal the first hint >>'
+                  : overlayPhase === 'hint'
+                    ? 'Ready for second betting round? Continue >>'
+                    : overlayPhase === 'betting2'
+                      ? 'Finished second betting? Reveal the second hint >>'
+                      : overlayPhase === 'hint2'
+                        ? 'Ready for third betting round? Continue >>'
+                        : overlayPhase === 'betting3'
+                          ? 'Finished third betting? Reveal the answer >>'
+                          : overlayPhase === 'answer'
+                            ? 'Ready for final betting round? Continue >>'
+                            : overlayPhase === 'betting4'
+                              ? 'Finished final betting? Go to showdown >>'
+                              : 'Game complete! Return to question >>'
+              }
+            </button>
           </div>
         </div>
       )}
