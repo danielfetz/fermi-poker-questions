@@ -347,7 +347,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       <span></span>
                     )}
                   </div>
-                  <div className="stepper-label">Betting #1</div>
+                  <div className="stepper-label">Betting round #1</div>
                 </div>
                 
                 {/* Connector Line 2 */}
@@ -381,7 +381,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       <span></span>
                     )}
                   </div>
-                  <div className="stepper-label">Betting #2</div>
+                  <div className="stepper-label">Betting round #2</div>
                 </div>
                 
                 {/* Connector Line 4 */}
@@ -415,7 +415,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       <span></span>
                     )}
                   </div>
-                  <div className="stepper-label">Betting #3</div>
+                  <div className="stepper-label">Betting round #3</div>
                 </div>
                 
                 {/* Connector Line 6 */}
@@ -449,7 +449,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       <span></span>
                     )}
                   </div>
-                  <div className="stepper-label">Betting #4</div>
+                  <div className="stepper-label">Betting round #4</div>
                 </div>
                 
                 {/* Connector Line 8 */}
@@ -647,7 +647,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
           {/* Skip Question Section - Only show during guessing phase */}
           {overlayPhase === 'guessing' && (
-            <div className="grid grid-cols-2 gap-4 items-center question-overlay-instructions rounded-xl p-4 mb-20">
+            <div className="grid grid-flow-col justify-between gap-4 items-center question-overlay-instructions rounded-xl p-4 mb-20">
               <div className="text-base">
                 Already played this question before?
               </div>
