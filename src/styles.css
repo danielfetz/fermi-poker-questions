@@ -1308,6 +1308,10 @@ header.pt-28 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
@@ -1890,7 +1894,6 @@ header.pt-28 {
   justify-content: flex-start;
   min-width: 1200px; /* Ensure minimum width for all 5 steps */
   width: max-content;
-  padding: 0 1rem;
 }
 
 .stepper-step {
@@ -1934,7 +1937,7 @@ header.pt-28 {
   transition: all 0.3s ease;
   position: relative;
   top: 0;
-  min-width: 87px; /* Ensure consistent line length */
+  min-width: 100px; /* Ensure consistent line length */
   border-radius: 8px;
 }
 
@@ -2026,20 +2029,23 @@ header.pt-28 {
   }
   
   .stepper-label {
-    font-size: 14px;
+    font-size: 15px;
     min-width: 60px;
     position: absolute;
-    margin-top: 31px;
+    margin-top: 30px;
+  }
+
+  .stepper-label:first-of-type {
+    padding-left: 38px;
   }
   
   .stepper-track {
     min-width: 900px; /* Smaller minimum width for mobile */
-    padding: 0 0.5rem;
   }
   
   .stepper-line {
     margin: 0.55rem 0.35rem 0 0.35rem;
-    min-width: 87px;
+    min-width: 100px;
   }
 } /* Hint display styles within overlay */
 .question-overlay-instructions .bg-hint-back {
