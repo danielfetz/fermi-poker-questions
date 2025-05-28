@@ -1166,6 +1166,11 @@ header.pt-28 {
   padding-right: 0.875rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
@@ -1836,8 +1841,15 @@ header.pt-28 {
 }
 
 .question-overlay-skip-btn {
-  background-color: var(--rich-brown);
-  color: var(--warm-cream);
+  width: calc(100% - 58px);
+  height: 58px;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 12px;
+  box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
+  border-bottom-width: 3px;
+  max-width: 678px;
 }
 
 .dark .question-overlay-skip-btn {
@@ -2029,9 +2041,7 @@ header.pt-28 {
     margin: 0.55rem 0.35rem 0 0.35rem;
     min-width: 87px;
   }
-} 
-
-/* Hint display styles within overlay */
+} /* Hint display styles within overlay */
 .question-overlay-instructions .bg-hint-back {
   background-color: var(--hint-back);
 }
@@ -2046,4 +2056,4 @@ header.pt-28 {
 
 .dark .question-overlay-instructions .border-hint-border {
   border-color: var(--dark-border);
-} 
+}
