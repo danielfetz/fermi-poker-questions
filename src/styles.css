@@ -220,7 +220,7 @@ header.pt-28 {
 }
 
 .dark .category-button.active {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   font-weight: bold;
   color: var(--dark-surface);
 }
@@ -283,7 +283,7 @@ header.pt-28 {
 }
 
 .dark .answer-notification {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   border: 1px solid var(--golden-accent);
   color: var(--dark-surface);
 }
@@ -353,13 +353,13 @@ header.pt-28 {
 }
 
 .dark .confirm-btn {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   color: var(--dark-surface);
   border: 1px solid var(--golden-accent);
 }
 
 .dark .confirm-btn:hover {
-  background-color: var(--golden-accent);
+  background-color: #2ebdd1;
 }
 
 /* Dark Mode Toggle */
@@ -374,7 +374,7 @@ header.pt-28 {
 }
 
 .dark .dark-mode-toggle {
-  color: var(--golden-accent);
+  color: #2ebdd1;
   border-color: var(--dark-border);
 }
 
@@ -533,21 +533,21 @@ header.pt-28 {
 }
 
 .dark .start-game-button {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   color: var(--dark-bg);
   border: 1px solid var(--golden-accent);
   border-bottom-width: 3px;
 }
 
 .light .start-game-button:hover {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   color: var(--warm-cream);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .dark .start-game-button:hover {
-  background-color: var(--golden-accent);
+  background-color: #2ebdd1;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
@@ -657,7 +657,7 @@ header.pt-28 {
   content: "";
   position: absolute;
   height: 1px;
-  background-color: var(--golden-accent);
+  background-color: #2ebdd1;
   opacity: 0.5;
   top: 50%;
   width: 20px;
@@ -694,8 +694,8 @@ header.pt-28 {
 
 .dark .hint-number {
   background-color: var(--dark-soft);
-  color: var(--golden-accent);
-  border-color: var(--golden-dark);
+  color: #2ebdd1;
+  border-color: #2ebdd1;
 }
 
 .hint-number::before {
@@ -722,8 +722,8 @@ header.pt-28 {
 
 .dark .hint-number-small {
   background-color: var(--dark-soft);
-  color: var(--golden-accent);
-  border-color: var(--golden-dark);
+  color: #2ebdd1;
+  border-color: #2ebdd1;
 }
 
 .answer-letter-container {
@@ -737,7 +737,7 @@ header.pt-28 {
   content: "";
   position: absolute;
   height: 1px;
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   opacity: 0.5;
   top: 50%;
   width: 25px;
@@ -774,8 +774,8 @@ header.pt-28 {
 
 .dark .answer-letter {
   background-color: var(--dark-soft);
-  color: var(--golden-accent);
-  border-color: var(--golden-accent);
+  color: #2ebdd1;
+  border-color: #2ebdd1;
 }
 
 .answer-letter::before {
@@ -801,9 +801,9 @@ header.pt-28 {
 }
 
 .dark .answer-letter-small {
-  background-color: var(--golden-dark);
+  background-color: #2ebdd1;
   color: var(--dark-bg);
-  border-color: var(--golden-accent);
+  border-color: #2ebdd1;
 }
 
 /* Animations */
@@ -1222,7 +1222,7 @@ header.pt-28 {
 }
 
 .text-xs {
-  font-size: 0.75rem;
+  font-size: 14px;
   line-height: 1rem;
 }
 
@@ -1394,7 +1394,7 @@ header.pt-28 {
 }
 
 .hover\:text-golden-accent:hover {
-  color: var(--golden-accent);
+  color: #2ebdd1;
 }
 
 /* Responsive utilities */
@@ -1785,14 +1785,265 @@ header.pt-28 {
 
 .light .source-link:hover {
   background-color: var(--golden-light);
-  border-color: var(--golden-dark);
+  border-color: #2ebdd1;
 }
 
 .dark .source-link:hover {
   background-color: var(--dark-soft);
-  border-color: var(--golden-accent);
+  border-color: #2ebdd1;
 }
 
 .source-link:active {
   transform: translateY(1px);
 }
+
+/* Question Overlay Styles */
+.question-overlay-content {
+  min-height: 400px;
+}
+
+.question-overlay-title {
+  font-size: 22px;
+}
+
+.question-overlay-instructions {
+  border: 1.5px solid var(--graylight-border);
+}
+
+.dark .question-overlay-instructions {
+  border: 1.5px solid var(--dark-border);
+}
+
+.question-overlay-timer {
+  color: var(--rich-brown);
+}
+
+.dark .question-overlay-timer {
+  color: var(--dark-text);
+}
+
+.question-overlay-progress-bg {
+  background-color: #E5E7EB;
+  width: 100%;
+}
+
+.dark .question-overlay-progress-bg {
+  background-color: #374151;
+}
+
+.question-overlay-progress-bar {
+  background-color: #2ebdd1;
+}
+
+.question-overlay-skip-btn {
+  background-color: var(--rich-brown);
+  color: var(--warm-cream);
+}
+
+.dark .question-overlay-skip-btn {
+  background-color: var(--dark-soft);
+  color: var(--dark-text);
+}
+
+.question-overlay-skip-btn:hover {
+  background-color: var(--dark-brown);
+}
+
+.dark .question-overlay-skip-btn:hover {
+  background-color: var(--dark-hover);
+} 
+
+.question-overlay-instructions ul {
+  margin: 0 auto;
+}
+
+.question-overlay-instructions li {
+  margin-bottom: 0.5rem;
+}
+/* Fixed Progress Stepper Styles - Match Reference Design */
+.progress-stepper {
+  padding: 1rem 0;
+}
+
+.stepper-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  padding-bottom: 1.5rem; /* Add padding for scrollbar space */
+}
+
+.stepper-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 1200px; /* Ensure minimum width for all 5 steps */
+  width: max-content;
+  padding: 0 1rem;
+}
+
+.stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.stepper-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  border: 2px solid;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+.stepper-label {
+  font-size: 14px;
+  font-weight: medium;
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  min-width: 80px; /* Ensure consistent spacing */
+}
+
+.stepper-line {
+  flex: 1;
+  height: 3px; /* Increased from 2px to 4px */
+  margin: 1rem 0.25rem 0 0.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+  top: 0;
+  min-width: 87px; /* Ensure consistent line length */
+  border-radius: 8px;
+}
+
+/* Half-active line styling for outgoing lines from active step */
+.stepper-line.half-active {
+  background: linear-gradient(to right, #2ebdd1 50%, var(--graylight-border) 50%);
+}
+
+.dark .stepper-line.half-active {
+  background: linear-gradient(to right, #2ebdd1 50%, var(--dark-border) 50%);
+}
+
+/* Light mode styles */
+.light .stepper-step.active {
+  font-weight: 600;
+}
+
+.light .stepper-circle {
+  border-color: var(--graylight-border);
+}
+
+.light .stepper-step.active .stepper-circle {
+  background-color: #2ebdd1;
+  border-color: #2ebdd1;
+  color: var(--warm-cream);
+}
+
+.light .stepper-step.completed .stepper-circle {
+  background-color: #2ebdd1;
+  border-color: #2ebdd1;
+  color: var(--warm-cream);
+}
+
+.light .stepper-line {
+  background-color: var(--graylight-border);
+}
+
+.light .stepper-line.completed {
+  background-color: #2ebdd1;
+}
+
+/* Dark mode styles */
+.dark .stepper-step {
+  color: var(--dark-text);
+  opacity: 0.6;
+}
+
+.dark .stepper-step.active {
+  color: var(--dark-text);
+  opacity: 1;
+}
+
+.dark .stepper-step.completed {
+  color: #2ebdd1;
+  opacity: 1;
+}
+
+.dark .stepper-circle {
+  background-color: var(--dark-soft);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.dark .stepper-step.active .stepper-circle {
+  background-color: #2ebdd1;
+  border-color: #2ebdd1;
+  color: var(--rich-brown);
+}
+
+.dark .stepper-step.completed .stepper-circle {
+  background-color: #2ebdd1;
+  border-color: #2ebdd1;
+  color: var(--rich-brown);
+}
+
+.dark .stepper-line {
+  background-color: var(--dark-border);
+}
+
+.dark .stepper-line.completed {
+  background-color: #2ebdd1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .stepper-circle {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .stepper-label {
+    font-size: 14px;
+    min-width: 60px;
+    position: absolute;
+    margin-top: 31px;
+  }
+  
+  .stepper-track {
+    min-width: 900px; /* Smaller minimum width for mobile */
+    padding: 0 0.5rem;
+  }
+  
+  .stepper-line {
+    margin: 0.55rem 0.35rem 0 0.35rem;
+    min-width: 87px;
+  }
+} 
+
+/* Hint display styles within overlay */
+.question-overlay-instructions .bg-hint-back {
+  background-color: var(--hint-back);
+}
+
+.dark .question-overlay-instructions .bg-hint-back {
+  background-color: var(--dark-surface);
+}
+
+.question-overlay-instructions .border-hint-border {
+  border-color: var(--hint-border);
+}
+
+.dark .question-overlay-instructions .border-hint-border {
+  border-color: var(--dark-border);
+} 
