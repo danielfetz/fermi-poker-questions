@@ -1930,6 +1930,10 @@ header.pt-28 {
   min-width: 80px; /* Ensure consistent spacing */
 }
 
+.first-step .stepper-label {
+  padding-left: 36px;
+}
+
 .stepper-line {
   flex: 1;
   height: 3px; /* Increased from 2px to 4px */
@@ -2034,10 +2038,6 @@ header.pt-28 {
     position: absolute;
     margin-top: 30px;
   }
-
-  .stepper-label:first-of-type {
-    padding-left: 38px;
-  }
   
   .stepper-track {
     min-width: 900px; /* Smaller minimum width for mobile */
@@ -2047,7 +2047,9 @@ header.pt-28 {
     margin: 0.55rem 0.35rem 0 0.35rem;
     min-width: 100px;
   }
-} /* Hint display styles within overlay */
+} 
+
+/* Hint display styles within overlay */
 .question-overlay-instructions .bg-hint-back {
   background-color: var(--hint-back);
 }
