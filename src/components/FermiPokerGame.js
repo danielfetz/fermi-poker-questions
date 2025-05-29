@@ -320,7 +320,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             <div ref={stepperRef} className="stepper-wrapper overflow-x-auto">
               <div className="stepper-track">
                 {/* Step 1: Guessing Phase */}
-                <div className={`stepper-step ${overlayPhase === 'guessing' ? 'active' : 'completed'}`}>
+                <div className={`stepper-step first-step ${overlayPhase === 'guessing' ? 'active' : 'completed'}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'guessing' || overlayPhase !== 'guessing') ? (
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -397,10 +397,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                     ) : (
                       <span></span>
                     )}
-                  </div>
+        </div>
                   <div className="stepper-label">Hint #2</div>
-                </div>
-                
+      </div>
+      
                 {/* Connector Line 5 */}
                 <div className={`stepper-line ${(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'hint2' ? 'half-active' : ''}`}></div>
                 
@@ -433,7 +433,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                     )}
                   </div>
                   <div className="stepper-label">Answer</div>
-                </div>
+              </div>
                 
                 {/* Connector Line 7 */}
                 <div className={`stepper-line ${(overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''} ${overlayPhase === 'answer' ? 'half-active' : ''}`}></div>
@@ -822,13 +822,13 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                     </div>
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[0]}
-                    </div>
-                  </div>
-                </div>
+          </div>
+        </div>
+      </div>
               )}
           </div>
           )}
-          
+      
           {/* Fixed Skip Button at Bottom */}
           <button
             onClick={skipOverlayTimer}
@@ -858,8 +858,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             }
           </button>
         </div>
-      </div>
-      
+        </div>
+        
       {/* Navigation Controls */}
       <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
         <div className="text-1xs font-medium flex items-center">
