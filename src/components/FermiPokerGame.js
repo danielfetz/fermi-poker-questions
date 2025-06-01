@@ -647,7 +647,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
           {/* Skip Question Section - Only show during guessing phase */}
           {overlayPhase === 'guessing' && (
-            <div className="grid grid-flow-col justify-between gap-4 items-center question-overlay-instructions rounded-xl p-4 mb-3">
+            <div className="grid grid-flow-col justify-between gap-4 items-center question-overlay-secondary rounded-xl p-4 mb-3">
               <div className="text-base">
                 Already played this question before?
               </div>
