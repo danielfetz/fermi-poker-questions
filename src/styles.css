@@ -1819,8 +1819,16 @@ header.pt-28 {
   border: 1.5px solid var(--graylight-border);
 }
 
+.question-overlay-secondary {
+  border: 1px solid var(--graylight-border);
+}
+
 .dark .question-overlay-instructions {
   border: 1.5px solid var(--dark-border);
+}
+
+.dark .question-overlay-secondary {
+  border: 1px solid var(--dark-border);
 }
 
 .question-overlay-timer {
