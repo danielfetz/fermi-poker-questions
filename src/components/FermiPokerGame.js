@@ -280,7 +280,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         <div className="relative">
           <button 
             onClick={returnToCategories}
-            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+            className="px-3 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -311,7 +311,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       <div className="question-overlay-content relative z-10">
         <div className="text-left">
           {/* Large Question Display - Above Stepper */}
-          <h1 className="text-2xl sm:text-3xl font-display font-bold mb-3 leading-snug question-overlay-title">
+          <h1 className="text-2xl sm:text-3xl font-display font-medium mb-3 leading-snug question-overlay-title">
           {currentQuestion.question}
           </h1>
           
@@ -474,7 +474,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           
           {/* Instructions */}
           <div className={`question-overlay-instructions rounded-xl px-4 mb-3`}>
-            <h2 className="text-lg font-display font-bold mb-3">
+            <h2 className="text-lg font-display font-medium mb-3">
               {overlayPhase === 'guessing' ? 'It\'s time to guess!' : 
                overlayPhase === 'betting' ? 'Instructions - First Betting Round' : 
                overlayPhase === 'hint' ? 'The first hint is...' :
@@ -486,7 +486,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                'Instructions - Showdown'}
             </h2>
             {overlayPhase === 'guessing' ? (
-              <p className="text-base leading-normal">
+              <p className="text-base leading-normal mt-0">
                 Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
                 When everyone has written their estimates, start with the first betting round.
               </p>
@@ -647,7 +647,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
           {/* Skip Question Section - Only show during guessing phase */}
           {overlayPhase === 'guessing' && (
-            <div className="grid grid-flow-col justify-between gap-4 items-center question-overlay-instructions rounded-xl p-4 mb-20">
+            <div className="grid grid-flow-col justify-between gap-4 items-center question-overlay-instructions rounded-xl p-4 mb-3">
               <div className="text-base">
                 Already played this question before?
               </div>
@@ -659,7 +659,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                   </svg>
-                  Skip/Next
+                  Skip
                 </button>
               </div>
             </div>
