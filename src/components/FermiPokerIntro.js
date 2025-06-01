@@ -56,7 +56,7 @@ const FermiPokerIntro = () => {
     <div className="intro-section p-1 mb-20">
       {/* What is Fermi Poker section */}
       <div className="mb-6">
-        <h2 className="text-header-small sm:text-header font-display font-bold pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
+        <h2 className="text-header-small sm:text-header font-display font-medium pb-2.5 border-b border-golden-accent mt-0 mb-3">What is Fermi Poker?</h2>
         <p className="leading-normal">
           Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many chickens are killed every year?" Players write down secret guesses, bet on their answers, get helpful hints, and the closest guess wins.
         </p>
@@ -64,7 +64,7 @@ const FermiPokerIntro = () => {
       
       {/* What Do You Need section */}
       <div className="highlight-section p-4 rounded-xl mb-6">
-        <h3 className="font-bold mt-0 mb-3">What Do You Need?</h3>
+        <h3 className="font-medium mt-0 mb-3">What Do You Need?</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>At least one other person physically present to play with you, but it's more fun with larger groups</li>
           <li>Something to write down guesses, and poker chips or other play money</li>
@@ -73,7 +73,7 @@ const FermiPokerIntro = () => {
       
       {/* Example Gameplay section */}
       <div className="mb-6">
-        <h3 className="text-xl font-display font-bold mb-4">How to Play</h3>
+        <h3 className="text-xl font-display font-medium mb-4">How to Play</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {gameplaySteps.map((step, index) => (
             <div key={index} className="gameplay-steps p-4 rounded-xl">
