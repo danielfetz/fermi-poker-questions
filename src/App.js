@@ -133,7 +133,7 @@ const App = () => {
           </header>
           
           {/* Main content area */}
-          <div className="main-bg rounded-xl shadow-xl p-4 sm:p-5 relative overflow-hidden">
+          <div className="main-bg rounded-xl p-4 sm:p-5 relative overflow-hidden">
             
             <Routes>
               <Route 
