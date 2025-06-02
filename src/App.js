@@ -125,7 +125,7 @@ const App = () => {
               to="/"
               className="text-3xl sm:text-4xl font-display font-medium mb-1 cursor-pointer hover:text-golden-accent transition-colors"
             >
-              fermi.poker
+              Fermi Poker
             </Link>
             <div className="flex justify-center">
               <div className="w-24 h-1 bg-golden-accent rounded-full"></div>
