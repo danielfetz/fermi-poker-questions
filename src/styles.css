@@ -53,8 +53,12 @@ html, body {
 
 /* Light/Dark Mode Switching */
 .light {
-  color: #3D3D3A;
+  color: #202122;
   background-color: var(--cream-tan);
+}
+
+.light h1, h2 h3, h4, h5, h6 {
+  color: #131415;
 }
 
 .dark {
