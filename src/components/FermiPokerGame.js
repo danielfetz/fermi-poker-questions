@@ -476,11 +476,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           <div className={`question-overlay-instructions rounded-xl px-4 mb-3`}>
             <h2 className="text-lg font-display font-medium mb-3">
               {overlayPhase === 'guessing' ? 'It\'s time to guess!' : 
-               overlayPhase === 'betting' ? 'Instructions - First Betting Round' : 
+               overlayPhase === 'betting' ? 'Let\'s start betting!' : 
                overlayPhase === 'hint' ? 'The first hint is...' :
-               overlayPhase === 'betting2' ? 'Instructions - Second Betting Round' :
+               overlayPhase === 'betting2' ? 'Let\'s start betting again!' :
                overlayPhase === 'hint2' ? 'The second hint is...' :
-               overlayPhase === 'betting3' ? 'Instructions - Third Betting Round' :
+               overlayPhase === 'betting3' ? 'Let\'s start betting again!' :
                overlayPhase === 'answer' ? 'The answer is...' :
                overlayPhase === 'betting4' ? 'Instructions - Final Betting Round' :
                'Instructions - Showdown'}
@@ -492,16 +492,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
               </p>
             ) : overlayPhase === 'betting' ? (
               <div className="text-base leading-normal">
-                <p className="mb-3">
-                  Now it's time for the first betting round! Each player can:
+                <p className="mb-3 mt-0">
+                  Betting moves clockwise around the table, with each player being able to:
                 </p>
                 <ul className="list-disc text-left mx-auto inline-block mb-3">
-                  <li><strong>Raise:</strong> Increase the bet if you're confident in your estimate</li>
-                  <li><strong>Call:</strong> Match the current bet to stay in the round</li>
-                  <li><strong>Fold:</strong> Give up this round if you're not confident</li>
+                  <li><strong>Raise:</strong> Increase the bet amount</li>
+                  <li><strong>Call:</strong> Match the highest bet</li>
+                  <li><strong>Fold:</strong> Give up and lose your bet</li>
                 </ul>
-                <p>
-                  Betting moves clockwise around the table. Continue until all active players have called or folded.
+                <p className="mt-3">
+                  Continue until all active players have matched the highest bet or folded.
                 </p>
               </div>
             ) : overlayPhase === 'hint' ? (
