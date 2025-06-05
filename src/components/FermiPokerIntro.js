@@ -61,7 +61,7 @@ const FermiPokerIntro = () => {
           Fermi Poker is like poker, but instead of cards, players make guesses about questions that seem unknowable at first — like "How many humans have ever lived?"
         </p>
         <p className="leading-normal">
-          Players write down secret guesses, bet on their answers, get helpful hints, bet again,and the closest guess wins.
+          Players write down secret guesses, bet on their answers, get helpful hints, bet again, and the closest guess wins.
         </p>
       </div>
       
