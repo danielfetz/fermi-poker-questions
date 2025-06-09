@@ -11,42 +11,42 @@ const FermiPokerIntro = () => {
   // Example gameplay steps
   const gameplaySteps = [
     {
-      number: "01",
+      number: "1",
       title: "Question reveal",
       content: "Before seeing the question, each player must put one or more chips into the pot. Then the question is revealed, for example: \"How many chickens are killed every year for meat?\" The size of this mandatory bet should increase every other question."
     },
     {
-      number: "02",
+      number: "2",
       title: "Secret guesses",
       content: "Each player secretly writes down their guess as a range (e.g. 20 billion to 100 billion). Alternatively, you can also require everyone to play with exact numbers instead of ranges."
     },
     {
-      number: "03",
+      number: "3",
       title: "Betting round #1",
       content: "Betting moves clockwise, starting with a different player each question. On your turn, you may *check* (pass without betting, if no one has bet yet), *raise* (bet more than the current highest bet), *call* (match it), or *fold* (drop out and forfeit the pot). Betting continues until all players have either folded or matched the highest bet."
     },
     {
-      number: "04",
+      number: "4",
       title: "Hint #1 (+ Betting round #2)",
       content: "When the first betting round is over, the first hint is revealed. The hint helps all players to estimate how good the initial guess is. As in the first betting round, players can now perform various actions."
     },
     {
-      number: "05",
+      number: "5",
       title: "Hint #2 (+ Betting round #3)",
       content: "After the second betting round is over, a second hint is revealed and the third betting round is played."
     },
     {
-      number: "06",
+      number: "6",
       title: "Answer reveal",
       content: "Before the fourth and final betting round, the answer to the guessing question is revealed so that all players know if they are close to the answer."
     },
     {
-      number: "07",
+      number: "7",
       title: "Betting round #4",
       content: "After the answer reveal, there is a fourth and final betting round. After the answer reveal, there is a fourth and final betting round."
     },
     {
-      number: "08",
+      number: "8",
       title: "Showdown",
       content: "When the final betting round ends with two or more players still in, everyone left reveals their guess. Folded players—and anyone who won before it came to the showdown—don't have to reveal their guess. The pot goes to the player with the narrowest range that contains the correct answer; if several ranges are equally narrow, those players split the pot. If no player has the correct answer inside their range, whoever's median of their range is closest to the answer wins."
     }
@@ -76,13 +76,17 @@ const FermiPokerIntro = () => {
       
       {/* Example Gameplay section */}
       <div className="mb-6">
-        <h3 className="text-xl font-display font-medium mb-4">How to Play</h3>
+        <h3 className="text-xl font-display font-medium pb-2.5 border-b mb-6">How to Play</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {gameplaySteps.map((step, index) => (
-            <div key={index} className="gameplay-steps p-4 rounded-xl">
-              <div className="step-number">{step.number}</div>
-              <h4>{step.title}</h4>
-              <p>{step.content}</p>
+            <div key={index} className="gameplay-steps">
+              <div className="gameplay-step-row">
+                <div className="step-number-circle">{step.number}</div>
+                <div className="step-content">
+                  <h4>{step.title}</h4>
+                  <p className="leading-normal">{step.content}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
