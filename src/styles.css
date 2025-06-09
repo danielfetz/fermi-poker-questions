@@ -470,36 +470,50 @@ header.pt-28 {
   background-color: var(--dark-soft);
 }
 
-/* Gameplay Steps Card Styling */
-.gameplay-steps {
+.dark .question-overlay-instructions .border-hint-border {
+  border-color: var(--dark-border);
+} 
+
+/* New Gameplay Steps Card Styling - Override existing styles */
+.gameplay-step-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.step-number-circle {
+  width: 50px;
+  height: 50px;
   border: 1px solid var(--graylight-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--golden-dark);
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.gameplay-steps .step-number,
-.gameplay-steps h4,
-.gameplay-steps p {
-  margin: 0;
+.gameplay-steps .step-content h4,
+.gameplay-steps .step-content p {
+  margin: 0 !important;
 }
 
-.gameplay-steps h4 {
-  font-size: 1.125rem;
-  font-weight: bold;
+.gameplay-steps .step-content h4 {
+  font-size: 1.1875rem;
+  font-weight: 500;
 }
 
-.gameplay-steps p {
-  font-size: 1rem;
-}
-
-.dark .gameplay-steps {
+.dark .step-number-circle {
   border: 1px solid var(--dark-border);
-}
-
-.step-number {
-  color: var(--golden-dark);
-  font-size: 1.125rem;
 }
 
 /* Fixed Start Game Button */
@@ -510,7 +524,6 @@ header.pt-28 {
   right: 0;
   display: flex;
   justify-content: center;
-  padding: 0 1rem;
   z-index: 100;
 }
 
@@ -519,7 +532,6 @@ header.pt-28 {
   align-items: center;
   justify-content: center;
   padding: 0.875rem 2.25rem;
-  font-weight: 600;
   font-size: 1.125rem;
   border-radius: 0.75rem;
   transition: all 0.3s;
@@ -531,8 +543,6 @@ header.pt-28 {
 }
 
 .light .start-game-button {
-  background-color: var(--main-bg);
-  border: 1px solid #8080803d;
   border-bottom-width: 3px;
 }
 
@@ -1446,6 +1456,7 @@ header.pt-28 {
   .sm\:text-header {
     font-size: 26px;
     line-height: 2rem;
+    padding-bottom: 0.75rem;
   }
   
   .sm\:text-3xl {
