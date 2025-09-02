@@ -7,8 +7,8 @@ html, body {
 /* Custom Color Variables */
 :root {
   --warm-cream: #FEF9F0;
-  --cream-tan: #F8F4EB;
-  --main-bg: #FFFCF7;
+  --cream-tan: #FBFAF4;
+  --main-bg: #FFFFFF;
   --soft-brown: #D9C7A7;
   --medium-brown: #99805D;
   --rich-brown: #614C33;
@@ -26,6 +26,8 @@ html, body {
   --error-bg: #FEE2E2;
   --error-border: #FECACA;
   --error-text: #B91C1C;
+  --darklight-border: #D3CFC8;
+  --graylight-border: #E0DFDB;
   
   /* Dark mode colors */
   --dark-bg: #1F1A15;
@@ -46,12 +48,12 @@ html, body {
 }
 
 .font-primary, .font-body {
-  font-family: 'Newsreader', serif;
+  font-family: 'Lora', serif;
 }
 
 /* Light/Dark Mode Switching */
 .light {
-  color: var(--rich-brown);
+  color: #3D3D3A;
   background-color: var(--cream-tan);
 }
 
@@ -62,12 +64,12 @@ html, body {
 
 .light .main-bg {
   background-color: var(--main-bg);
-  border: 2px solid var(--light-border);
+  border: 1px solid var(--graylight-border);
 }
  
 .dark .main-bg {
   background-color: var(--dark-surface);
-  border: 2px solid var(--dark-border);
+  border: 1px solid var(--dark-border);
 }
 
 button {
@@ -99,7 +101,7 @@ button {
 }
 
 .light .border-b, .light .border-t {
-  border-color: var(--soft-brown);
+  border-color: var(--graylight-border);
 }
 
 .dark .border-b, .dark .border-t {
@@ -454,10 +456,52 @@ header.pt-28 {
   line-height: 1.5;
 }
 
+/* New Intro Components */
+
+.highlight-section {
+  background-color: var(--cream-tan);
+}
+
+.dark .highlight-section {
+  background-color: var(--dark-soft);
+}
+
+/* Gameplay Steps Card Styling */
+.gameplay-steps {
+  border: 1px solid var(--graylight-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gameplay-steps .step-number,
+.gameplay-steps h4,
+.gameplay-steps p {
+  margin: 0;
+}
+
+.gameplay-steps h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.gameplay-steps p {
+  font-size: 1rem;
+}
+
+.dark .gameplay-steps {
+  border: 1px solid var(--dark-border);
+}
+
+.step-number {
+  color: var(--golden-dark);
+  font-size: 1.125rem;
+}
+
 /* Fixed Start Game Button */
 .fixed-start-button {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 1rem;
   left: 0;
   right: 0;
   display: flex;
@@ -470,12 +514,12 @@ header.pt-28 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2.5rem;
+  padding: 0.875rem 2.25rem;
   font-weight: 600;
   font-size: 1.125rem;
   border-radius: 0.75rem;
   transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 3px -1px #0000001a,0 2px 0px -1px #0000000f;
   position: relative;
   overflow: hidden;
   min-width: 200px;
@@ -483,15 +527,16 @@ header.pt-28 {
 }
 
 .light .start-game-button {
-  background-color: rgb(250 243 227);
-  color: var(--rich-brown);
-  border: 1px solid var(--soft-brown);
+  background-color: var(--main-bg);
+  border: 1px solid #8080803d;
+  border-bottom-width: 3px;
 }
 
 .dark .start-game-button {
   background-color: var(--golden-dark);
   color: var(--dark-bg);
-  border: 2px solid var(--golden-accent);
+  border: 1px solid var(--golden-accent);
+  border-bottom-width: 3px;
 }
 
 .light .start-game-button:hover {
@@ -897,6 +942,10 @@ header.pt-28 {
   margin-left: 0.5rem;
 }
 
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
+}
+
 .space-y-2 > * + * {
   margin-top: 0.5rem;
 }
@@ -959,6 +1008,10 @@ header.pt-28 {
 
 .z-50 {
   z-index: 50;
+}
+
+.m-0 {
+  margin: 0;
 }
 
 .mx-auto {
@@ -1031,6 +1084,10 @@ header.pt-28 {
   margin-bottom: 5rem;
 }
 
+.mt-0 {
+  margin-top: 0rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1087,6 +1144,10 @@ header.pt-28 {
   min-height: 100vh;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .p-3 {
   padding: 0.75rem;
 }
@@ -1120,12 +1181,24 @@ header.pt-28 {
   padding-bottom: 0.75rem;
 }
 
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
 
 .pb-1\.5 {
   padding-bottom: 0.375rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-2\.5 {
+  padding-bottom: 0.625rem;
 }
 
 .pb-3 {
@@ -1188,6 +1261,11 @@ header.pt-28 {
   line-height: 2rem;
 }
 
+.text-header-small {
+  font-size: 25px;
+  line-height: 2rem;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1198,7 +1276,7 @@ header.pt-28 {
 }
 
 .font-bold {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .italic {
@@ -1213,12 +1291,20 @@ header.pt-28 {
   line-height: 1.5;
 }
 
+.leading-normalplus {
+  line-height: 1.6;
+}
+
 .grid {
   display: grid;
 }
 
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-3\.5 {
@@ -1331,6 +1417,11 @@ header.pt-28 {
     font-size: 1.5rem;
     line-height: 2rem;
   }
+
+  .sm\:text-header {
+    font-size: 26px;
+    line-height: 2rem;
+  }
   
   .sm\:text-3xl {
     font-size: 1.875rem;
@@ -1431,16 +1522,19 @@ header.pt-28 {
     width: 100%;
     margin-left: 0 !important;
   }
+  /* Intro button, maybe we should really look into making this less complicated at some point? */
+  .start-game-button {
+    width: calc(100% - 64px);
+  }
 }
 
 /* Settings Toggle */
 .settings-toggle {
   border-radius: 9999px;
   padding: 0.375rem;
-  background-color: transparent;
-  color: var(--rich-brown);
+  background-color: var(--cream-tan);
   transition: all 0.2s;
-  border: 1px solid var(--soft-brown);
+  border: 1px solid var(--darklight-border);
   width: 37.5px;
   height: 37.5px;
   display: flex;
@@ -1449,13 +1543,13 @@ header.pt-28 {
 }
 
 .dark .settings-toggle {
-  color: var(--golden-accent);
+  background-color: var(--dark-bg);
   border-color: var(--dark-border);
 }
 
 .settings-toggle:hover {
   background-color: rgba(0, 0, 0, 0.05);
-  border-color: var(--soft-brown);
+  border-color: var(--darklight-border);
 }
 
 .dark .settings-toggle:hover {
