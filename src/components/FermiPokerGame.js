@@ -32,10 +32,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const buttonRef = useRef(null);
   const rulesButtonRef = useRef(null);
   const stepperRef = useRef(null);
-  const skipBtnRef = useRef(null);
-
-  // State for skip button fixed positioning on desktop
-  const [isSkipBtnFixed, setIsSkipBtnFixed] = useState(false);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -260,42 +256,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     // Small delay to ensure DOM has updated
     setTimeout(scrollActiveStepIntoView, 100);
   }, [overlayPhase]);
-
-  // Check if skip button is outside viewport on desktop
-  useEffect(() => {
-    const checkSkipBtnPosition = () => {
-      // Only apply on desktop (> 640px)
-      if (window.innerWidth <= 640) {
-        setIsSkipBtnFixed(false);
-        return;
-      }
-
-      if (skipBtnRef.current) {
-        const rect = skipBtnRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        // If button bottom would be below viewport (with some margin), fix it
-        const isOutside = rect.bottom > viewportHeight - 16;
-        setIsSkipBtnFixed(isOutside);
-      }
-    };
-
-    // Check on mount and when phase changes
-    checkSkipBtnPosition();
-
-    // Also check on resize
-    window.addEventListener('resize', checkSkipBtnPosition);
-
-    // Use ResizeObserver to detect content changes
-    const observer = new ResizeObserver(checkSkipBtnPosition);
-    if (skipBtnRef.current?.parentElement) {
-      observer.observe(skipBtnRef.current.parentElement);
-    }
-
-    return () => {
-      window.removeEventListener('resize', checkSkipBtnPosition);
-      observer.disconnect();
-    };
-  }, [overlayPhase, showBettingRules, showHint1Dropdown, showHint2Dropdown, showAnswerDropdown]);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = (array) => {
@@ -871,9 +831,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       
           {/* Skip Button */}
           <button
-            ref={skipBtnRef}
             onClick={skipOverlayTimer}
-            className={`px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn ${isSkipBtnFixed ? 'skip-btn-fixed' : ''}`}
+            className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />

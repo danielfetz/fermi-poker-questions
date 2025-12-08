@@ -1847,6 +1847,7 @@ header.pt-28 {
 /* Question Overlay Styles */
 .question-overlay-content {
   min-height: 400px;
+  padding-bottom: 90px; /* Space for fixed skip button */
 }
 
 .question-overlay-title {
@@ -1891,7 +1892,6 @@ header.pt-28 {
 }
 
 .question-overlay-skip-btn {
-  width: 100%;
   height: 58px;
   justify-content: center;
   font-size: 18px;
@@ -1899,29 +1899,12 @@ header.pt-28 {
   box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
   border-bottom-width: 3px;
   max-width: 678px;
-  margin: 1rem auto 0 auto;
-}
-
-/* Desktop: fixed positioning when button would be outside viewport */
-.skip-btn-fixed {
   position: fixed;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
+  width: calc(100% - 58px);
   z-index: 50;
-}
-
-/* Mobile: always fixed positioning at bottom */
-@media (max-width: 640px) {
-  .question-overlay-skip-btn {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 58px);
-    z-index: 50;
-    margin: 0;
-  }
 }
 
 .dark .question-overlay-skip-btn {
