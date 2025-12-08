@@ -1847,15 +1847,6 @@ header.pt-28 {
 /* Question Overlay Styles */
 .question-overlay-content {
   min-height: 400px;
-  /* Add padding on mobile for fixed button */
-  padding-bottom: 80px;
-}
-
-/* Desktop: less padding since button is in flow with sticky positioning */
-@media (min-width: 640px) {
-  .question-overlay-content {
-    padding-bottom: 0;
-  }
 }
 
 .question-overlay-title {
@@ -1899,6 +1890,7 @@ header.pt-28 {
   background-color: #2ebdd1;
 }
 
+/* Base skip button styles */
 .question-overlay-skip-btn {
   width: calc(100% - 58px);
   height: 58px;
@@ -1908,22 +1900,25 @@ header.pt-28 {
   box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
   border-bottom-width: 3px;
   max-width: 678px;
-  /* Mobile: fixed to bottom */
+}
+
+/* Fixed positioning (mobile always, desktop when content overflows) */
+.question-overlay-skip-btn.skip-button-fixed {
   position: fixed;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* Desktop: sticky within content, but fixed when would scroll out of view */
-@media (min-width: 640px) {
-  .question-overlay-skip-btn {
-    position: sticky;
-    bottom: 1rem;
-    left: auto;
-    transform: none;
-    margin: 1rem auto 0;
-  }
+/* Inline positioning (desktop when content fits) */
+.question-overlay-skip-btn.skip-button-inline {
+  position: relative;
+  margin: 1rem auto 0;
+}
+
+/* Placeholder to reserve space when button is fixed */
+.skip-button-placeholder {
+  height: 74px; /* button height + margin */
 }
 
 .dark .question-overlay-skip-btn {

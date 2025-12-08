@@ -32,6 +32,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const buttonRef = useRef(null);
   const rulesButtonRef = useRef(null);
   const stepperRef = useRef(null);
+  const skipButtonRef = useRef(null);
+  const skipButtonPlaceholderRef = useRef(null);
+
+  // State for skip button positioning
+  const [isSkipButtonFixed, setIsSkipButtonFixed] = useState(false);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -256,6 +261,41 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     // Small delay to ensure DOM has updated
     setTimeout(scrollActiveStepIntoView, 100);
   }, [overlayPhase]);
+
+  // Check if skip button should be fixed (when it would be outside viewport on desktop)
+  useEffect(() => {
+    const checkButtonPosition = () => {
+      // Only apply this logic on desktop (>= 640px)
+      if (window.innerWidth < 640) {
+        setIsSkipButtonFixed(true); // Always fixed on mobile
+        return;
+      }
+
+      const placeholder = skipButtonPlaceholderRef.current;
+      if (!placeholder) return;
+
+      const rect = placeholder.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const buttonHeight = 58; // Button height
+      const bottomMargin = 16; // 1rem margin
+
+      // If the placeholder's top would put the button below the viewport, fix it
+      const wouldBeOutOfView = rect.top + buttonHeight + bottomMargin > viewportHeight;
+      setIsSkipButtonFixed(wouldBeOutOfView);
+    };
+
+    // Check on mount and when content changes
+    checkButtonPosition();
+
+    // Check on scroll and resize
+    window.addEventListener('scroll', checkButtonPosition);
+    window.addEventListener('resize', checkButtonPosition);
+
+    return () => {
+      window.removeEventListener('scroll', checkButtonPosition);
+      window.removeEventListener('resize', checkButtonPosition);
+    };
+  }, [overlayPhase, showBettingRules, showHint1Dropdown, showHint2Dropdown, showAnswerDropdown]);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = (array) => {
@@ -830,9 +870,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           )}
       
           {/* Skip Button at Bottom */}
+          <div ref={skipButtonPlaceholderRef} className={isSkipButtonFixed ? 'skip-button-placeholder' : ''} />
           <button
+            ref={skipButtonRef}
             onClick={skipOverlayTimer}
-            className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50"
+            className={`px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50 ${isSkipButtonFixed ? 'skip-button-fixed' : 'skip-button-inline'}`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
