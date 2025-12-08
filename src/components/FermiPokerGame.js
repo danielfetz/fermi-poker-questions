@@ -279,20 +279,20 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
       const buttonHeight = 58; // Button height
       const bottomMargin = 16; // 1rem margin
 
-      // If the placeholder's top would put the button below the viewport, fix it
-      const wouldBeOutOfView = rect.top + buttonHeight + bottomMargin > viewportHeight;
+      // Check if button would be outside viewport when page is at scroll position 0
+      // Use the element's position relative to the document, not current viewport
+      const elementTopFromDocument = rect.top + window.scrollY;
+      const wouldBeOutOfView = elementTopFromDocument + buttonHeight + bottomMargin > viewportHeight;
       setIsSkipButtonFixed(wouldBeOutOfView);
     };
 
     // Check on mount and when content changes
     checkButtonPosition();
 
-    // Check on scroll and resize
-    window.addEventListener('scroll', checkButtonPosition);
+    // Only check on resize, not scroll
     window.addEventListener('resize', checkButtonPosition);
 
     return () => {
-      window.removeEventListener('scroll', checkButtonPosition);
       window.removeEventListener('resize', checkButtonPosition);
     };
   }, [overlayPhase, showBettingRules, showHint1Dropdown, showHint2Dropdown, showAnswerDropdown]);
@@ -874,7 +874,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           <button
             ref={skipButtonRef}
             onClick={skipOverlayTimer}
-            className={`px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50 ${isSkipButtonFixed ? 'skip-button-fixed' : 'skip-button-inline'}`}
+            className={`px-3.5 py-1.5 rounded-lg text-1rem font-medium shadow-md flex items-center question-overlay-skip-btn z-50 ${isSkipButtonFixed ? 'skip-button-fixed' : 'skip-button-inline'}`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
