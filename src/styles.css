@@ -1900,6 +1900,8 @@ header.pt-28 {
   border-bottom-width: 3px;
   max-width: 678px;
   margin: 1rem auto 0 auto;
+  position: sticky;
+  bottom: 1rem;
 }
 
 /* Mobile: fixed positioning at bottom */
