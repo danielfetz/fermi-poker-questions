@@ -1,18 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CategorySelection = ({ questionSets }) => {
   const navigate = useNavigate();
-  // State to track expanded categories
-  const [expandedCategories, setExpandedCategories] = useState({});
-
-  // Toggle expanded state for a category
-  const toggleCategoryExpanded = (categoryKey) => {
-    setExpandedCategories(prev => ({
-      ...prev,
-      [categoryKey]: !prev[categoryKey]
-    }));
-  };
 
   // Function to count total questions in a category including all subcategories
   const countTotalQuestions = (category) => {
@@ -34,105 +24,61 @@ const CategorySelection = ({ questionSets }) => {
   };
 
   // Navigate to the game with the selected category
-  const handleSelectCategory = (categoryPath) => {
-    // Convert the path array to a URL path format
-    const urlPath = categoryPath.join('/');
-    navigate(`/play/${urlPath}`);
+  const handleSelectCategory = (categoryKey) => {
+    navigate(`/play/${categoryKey}`);
   };
 
-  // Recursive function to render category with its subcategories
-  const renderCategory = (category, categoryKey, path = [], depth = 0) => {
-    const currentPath = [...path, categoryKey];
-    const isExpanded = expandedCategories[categoryKey];
-    
-    // Check if category has subcategories
-    const hasSubcategories = category.subcategories && category.subcategories.length > 0;
-    
-    // Calculate question counts
-    const directQuestionCount = category.questions ? category.questions.length : 0;
-    const totalQuestionCount = countTotalQuestions(category);
-    
-    return (
-      <div 
-        key={categoryKey}
-        className={`category-card p-4 rounded-xl border ${depth > 0 ? 'ml-4 mt-2' : 'mb-4'}`}
-      >
-        {/* Added wrapper classes for responsive styling */}
-        <div className="flex justify-between items-center category-content-wrapper">
-          <div className="flex-1">
-            <h3 className="font-display font-bold text-lg m-0">{category.name}</h3>
-            <p className="text-base mb-2 mt-3">{category.description}</p>
-            
-            <div className="text-xs font-medium flex flex-wrap items-center gap-3 mt-3">
-              {/* Questions count */}
-              <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-                </svg>
-                <span>{totalQuestionCount} questions</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Added wrapper class for responsive button layout */}
-          <div className="flex space-x-2 category-buttons-wrapper">
-            {hasSubcategories && (
-              <button
-                onClick={() => toggleCategoryExpanded(categoryKey)}
-                className="px-2 py-1 bg-rich-brown text-warm-cream rounded-lg text-base font-medium hover:bg-dark-brown transition-all shadow-md"
-              >
-                {isExpanded ? 'Hide' : 'Show'} Subcategories
-              </button>
-            )}
-            
-            {/* Show Play button for both categories with direct questions AND categories with subcategories */}
-            {(directQuestionCount > 0 || hasSubcategories) && (
-              <button
-                onClick={() => handleSelectCategory(currentPath)}
-                className="px-2 py-1 bg-golden-accent text-warm-cream rounded-lg text-base font-medium hover:bg-golden-dark transition-all shadow-md"
-              >
-                Play
-              </button>
-            )}
-          </div>
-        </div>
-        
-        {/* Render subcategories if expanded */}
-        {hasSubcategories && isExpanded && (
-          <div className="subcategories mt-3">
-            {category.subcategories.map(subcat => (
-              renderCategory(subcat, subcat.key, currentPath, depth + 1)
-            ))}
-          </div>
-        )}
-      </div>
-    );
+  // Category images based on the screenshot provided
+  const categoryImages = {
+    general: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68' viewBox='0 0 68 68'%3E%3Ccircle cx='34' cy='34' r='30' fill='none' stroke='%23d1d5db' stroke-width='2'/%3E%3C/svg%3E",
+    logistics: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=150&h=150&fit=crop&crop=center",
+    history: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=150&h=150&fit=crop&crop=center",
+    science: "https://images.unsplash.com/photo-1507343712015-dc6c05dc8a3a?w=150&h=150&fit=crop&crop=center",
+    economics: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=center",
+    technology: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=150&h=150&fit=crop&crop=center"
   };
+
+  // Get main categories (remove subcategories completely)
+  const mainCategories = Object.entries(questionSets);
 
   return (
-    <div className="category-selection mb-20">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2">Select a Category</h2>
-        <p className="text-medium-brown dark:text-golden-light leading-normal">Choose a category to start practicing with Fermi questions</p>
+    <div className="category-selection p-1">
+      {/* Header matching intro page */}
+      <div className="mb-6">
+        <h2 className="text-header-small sm:text-header font-display font-medium pb-2.5 border-b mt-0 mb-3">Select a Category</h2>
+        <p className="leading-normal">
+          Choose a category to start practicing with Fermi questions. Choose a category to start practicing with Fermi questions.
+        </p>
       </div>
       
-      <div className="categories-container">
-        {Object.entries(questionSets).map(([key, category]) => (
-          renderCategory(category, key)
-        ))}
-      </div>
-      
-      <div className="text-center mt-8">
-        <button
-          onClick={() => navigate('/')}
-          className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg font-medium hover:bg-dark-brown transition-all shadow-md flex items-center mx-auto"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to Intro
-        </button>
+      {/* Categories Grid - 2 columns on mobile, 3 on desktop later */}
+      <div className="grid grid-cols-2 gap-2 mx-auto mb-2">
+        {mainCategories.map(([key, category]) => {
+          return (
+            <div
+              key={key}
+              onClick={() => handleSelectCategory(key)}
+              className="category-card shadow-md transition-all duration-200 cursor-pointer text-center"
+            >
+              {/* Category Image - 68x68px */}
+              <div className="category-image mx-auto mb-2 overflow-hidden">
+                <img
+                  src={categoryImages[key] || categoryImages.general}
+                  alt={category.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68' viewBox='0 0 68 68'%3E%3Crect width='68' height='68' fill='%23e5e7eb'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23374151' font-size='12'%3E%3F%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
+              
+              {/* Category Name */}
+              <h3 className="font-display">
+                {category.name}
+              </h3>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
