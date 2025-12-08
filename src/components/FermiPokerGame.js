@@ -384,93 +384,93 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
         </div>
       </div>
       
-      {/* Question section */}
-      <div className="mb-4 relative z-10">
-        <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
-        <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
-          {currentQuestion.question}
-        </h2>
-        <div className="text-xs mb-3 font-medium italic">
-          {currentQuestion.category}
+      {/* Question overlay content wrapper */}
+      <div className="question-overlay-content">
+        {/* Question section */}
+        <div className="mb-4 relative z-10">
+          <div className="absolute -left-4 top-0 h-full w-1 bg-golden-accent rounded-r"></div>
+          <h2 className="text-xl sm:text-2xl font-display font-bold mb-1.5 leading-snug">
+            {currentQuestion.question}
+          </h2>
+          <div className="text-xs mb-3 font-medium italic">
+            {currentQuestion.category}
+          </div>
         </div>
-      </div>
-      
-      {/* Hint and Answer Container - always vertical for hints */}
-      <div className="grid grid-cols-1 gap-3.5 sm:gap-4 relative z-10">
-        {/* Hints (vertical layout) */}
-        {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
-          <div key={index} className="card-container">
-            <div 
-              className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''}`}
-              onClick={() => !revealedHints[index] && startFlip(`hint${index}`)}
-            >
-              <div className="card-front hint-front">
-                <div className="text-center card-content-front">
-                  <div className="hint-number-container">
-                    <span className="hint-number">{index + 1}</span>
+
+        {/* Hint and Answer Container - always vertical for hints */}
+        <div className="grid grid-cols-1 gap-3.5 sm:gap-4 relative z-10">
+          {/* Hints (vertical layout) */}
+          {currentQuestion.hints && currentQuestion.hints.map((hint, index) => (
+            <div key={index} className="card-container">
+              <div
+                className={`card ${revealedHints[index] || flippingElements[`hint${index}`] ? 'flipped' : ''}`}
+                onClick={() => !revealedHints[index] && startFlip(`hint${index}`)}
+              >
+                <div className="card-front hint-front">
+                  <div className="text-center card-content-front">
+                    <div className="hint-number-container">
+                      <span className="hint-number">{index + 1}</span>
+                    </div>
+                    <div className="font-medium">Reveal hint</div>
                   </div>
-                  <div className="font-medium">Reveal hint</div>
+                </div>
+                <div className="card-back hint-back">
+                  <div className="p-3 font-body text-base card-content-back">
+                    <div className="font-medium mb-1 border-b border-hint-border pb-1.5 flex items-center">
+                      <div className="hint-number-small mr-2">{index + 1}</div>
+                      <span>Hint {index + 1}</span>
+                    </div>
+                    <div>
+                      {hint}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="card-back hint-back">
+            </div>
+          ))}
+
+          {/* Answer - same size as hints */}
+          <div className="card-container">
+            <div
+              className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
+              onClick={() => !answerRevealed && startFlip('answer')}
+            >
+              <div className="card-front answer-front">
+                <div className="text-center card-content-front">
+                  <div className="answer-letter-container">
+                    <span className="answer-letter">A</span>
+                  </div>
+                  <div className="font-medium">Reveal answer</div>
+                </div>
+              </div>
+              <div className="card-back answer-back">
                 <div className="p-3 font-body text-base card-content-back">
-                  <div className="font-medium mb-1 border-b border-hint-border pb-1.5 flex items-center">
-                    <div className="hint-number-small mr-2">{index + 1}</div>
-                    <span>Hint {index + 1}</span>
+                  <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex items-center">
+                    <div className="answer-letter-small mr-2">A</div>
+                    <span>Answer</span>
                   </div>
                   <div>
-                    {hint}
+                    {currentQuestion.answer}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ))}
-        
-        {/* Answer - same size as hints */}
-        <div className="card-container">
-          <div 
-            className={`card ${answerRevealed || flippingElements.answer ? 'flipped' : ''}`}
-            onClick={() => !answerRevealed && startFlip('answer')}
-          >
-            <div className="card-front answer-front">
-              <div className="text-center card-content-front">
-                <div className="answer-letter-container">
-                  <span className="answer-letter">A</span>
-                </div>
-                <div className="font-medium">Reveal answer</div>
-              </div>
-            </div>
-            <div className="card-back answer-back">
-              <div className="p-3 font-body text-base card-content-back">
-                <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex items-center">
-                  <div className="answer-letter-small mr-2">A</div>
-                  <span>Answer</span>
-                </div>
-                <div>
-                  {currentQuestion.answer}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      
-      {/* Navigation Controls */}
-      <div className="flex justify-between items-center mt-4 pt-2 border-t relative z-10">
-        <div className="flex space-x-2">
-          <button
-            onClick={handleSkipClick}
-            className="px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-            </svg>
-            Skip/Next
-          </button>
-        </div>
-        
-        <div className="text-xs font-medium flex items-center">
+
+        {/* Skip button - positioned within content on desktop */}
+        <button
+          onClick={handleSkipClick}
+          className="question-overlay-skip-btn px-3.5 py-1.5 bg-rich-brown text-warm-cream rounded-lg text-1rem font-medium hover:bg-dark-brown transition-all shadow-md flex items-center"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          </svg>
+          Skip/Next
+        </button>
+
+        {/* Question counter - positioned within content on desktop */}
+        <div className="question-counter text-xs font-medium flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-golden-accent" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
           </svg>

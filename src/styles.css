@@ -1653,17 +1653,46 @@ header.pt-28 {
     align-items: flex-start;
     gap: 0;
   }
-  
+
   .category-buttons-wrapper {
     flex-direction: column-reverse;
     width: 100%;
     margin-top: 12px;
     gap: 6px;
   }
-  
+
   .category-buttons-wrapper button {
     width: 100%;
     margin-left: 0 !important;
+  }
+}
+
+/* Question Overlay Content */
+.question-overlay-content {
+  position: relative;
+}
+
+/* Skip button and question counter positioning */
+.question-overlay-skip-btn {
+  margin-top: 1rem;
+}
+
+.question-counter {
+  margin-top: 0.5rem;
+}
+
+/* Desktop layout - position skip button and counter within content */
+@media (min-width: 640px) {
+  .question-overlay-content {
+    padding-bottom: 3rem;
+  }
+
+  .question-overlay-skip-btn {
+    margin-top: 1.5rem;
+  }
+
+  .question-counter {
+    margin-top: 0.75rem;
   }
 }
 
