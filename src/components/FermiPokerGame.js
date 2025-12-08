@@ -667,7 +667,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           
           {/* Betting Rules Dropdown - Only show during hint phase */}
           {overlayPhase === 'hint' && (
-            <div className="question-overlay-instructions rounded-xl p-4 mb-20">
+            <div className="question-overlay-instructions rounded-xl p-4 mb-3">
               <button
                 onClick={() => setShowBettingRules(!showBettingRules)}
                 className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
@@ -798,7 +798,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
           {/* Hint #1 Dropdown - Show after hint phase */}
           {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && (
-            <div className={`question-overlay-instructions rounded-xl p-4 ${(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && overlayPhase !== 'hint' ? 'mb-20' : 'mb-3'}`}>
+            <div className="question-overlay-instructions rounded-xl p-4 mb-3">
               <button
                 onClick={() => setShowHint1Dropdown(!showHint1Dropdown)}
                 className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
@@ -829,11 +829,10 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </div>
           )}
       
-          {/* Fixed Skip Button at Bottom */}
+          {/* Skip Button */}
           <button
             onClick={skipOverlayTimer}
-            className="fixed left-1/2 transform -translate-x-1/2 px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50"
-            style={{ bottom: '1rem' }}
+            className="px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />

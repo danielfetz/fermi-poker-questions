@@ -1847,6 +1847,7 @@ header.pt-28 {
 /* Question Overlay Styles */
 .question-overlay-content {
   min-height: 400px;
+  padding-bottom: 90px; /* Space for fixed skip button */
 }
 
 .question-overlay-title {
@@ -1891,7 +1892,6 @@ header.pt-28 {
 }
 
 .question-overlay-skip-btn {
-  width: calc(100% - 58px);
   height: 58px;
   justify-content: center;
   font-size: 18px;
@@ -1899,6 +1899,12 @@ header.pt-28 {
   box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
   border-bottom-width: 3px;
   max-width: 678px;
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 58px);
+  z-index: 50;
 }
 
 .dark .question-overlay-skip-btn {
@@ -2074,7 +2080,7 @@ header.pt-28 {
 @media (max-width: 640px) {
   .question-overlay-content {
     min-height: calc(100vh - 250px);
-    padding-bottom: 49px;
+    padding-bottom: 90px; /* Space for fixed skip button */
   }
 
   .question-overlay-title {
