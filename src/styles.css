@@ -1847,6 +1847,15 @@ header.pt-28 {
 /* Question Overlay Styles */
 .question-overlay-content {
   min-height: 400px;
+  /* Add padding on mobile for fixed button */
+  padding-bottom: 80px;
+}
+
+/* Desktop: less padding since button is in flow with sticky positioning */
+@media (min-width: 640px) {
+  .question-overlay-content {
+    padding-bottom: 0;
+  }
 }
 
 .question-overlay-title {
@@ -1899,6 +1908,22 @@ header.pt-28 {
   box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
   border-bottom-width: 3px;
   max-width: 678px;
+  /* Mobile: fixed to bottom */
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Desktop: sticky within content, but fixed when would scroll out of view */
+@media (min-width: 640px) {
+  .question-overlay-skip-btn {
+    position: sticky;
+    bottom: 1rem;
+    left: auto;
+    transform: none;
+    margin: 1rem auto 0;
+  }
 }
 
 .dark .question-overlay-skip-btn {
