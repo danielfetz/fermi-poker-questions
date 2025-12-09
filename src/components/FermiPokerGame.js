@@ -363,7 +363,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step first-step ${overlayPhase === 'guessing' ? 'active' : 'completed'}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'guessing' || overlayPhase !== 'guessing') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -380,7 +380,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting' ? 'active' : (overlayPhase === 'guessing' ? '' : 'completed')}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting' || (overlayPhase !== 'guessing' && overlayPhase !== 'betting')) ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -397,7 +397,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'hint' ? 'active' : (overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'hint' || overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -414,7 +414,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting2' ? 'active' : (overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -431,7 +431,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'hint2' ? 'active' : (overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -448,7 +448,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting3' ? 'active' : (overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -465,7 +465,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'answer' ? 'active' : (overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -482,7 +482,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting4' ? 'active' : overlayPhase === 'showdown' ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -499,7 +499,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'showdown' ? 'active' : ''}`}>
                   <div className="stepper-circle">
                     {overlayPhase === 'showdown' ? (
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
