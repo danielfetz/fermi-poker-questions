@@ -1857,6 +1857,10 @@ header.pt-28 {
   border: 1.5px solid var(--graylight-border);
 }
 
+.question-overlay-instructions button {
+  border: none;
+}
+
 .question-overlay-secondary {
   border: 1px solid var(--graylight-border);
 }
@@ -1950,7 +1954,13 @@ header.pt-28 {
   overflow-x: auto;
   overflow-y: visible;
   width: 100%;
-  padding-bottom: 1.5rem; /* Add padding for scrollbar space */
+  padding-bottom: 1.5rem; /* Mobile padding */
+}
+
+@media (min-width: 640px) {
+  .stepper-wrapper {
+    padding-bottom: 1.75rem; /* Desktop padding */
+  }
 }
 
 .stepper-track {
