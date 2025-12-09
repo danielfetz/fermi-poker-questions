@@ -823,10 +823,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
               {showHint2Dropdown && (
                 <div className="mt-3 pt-3 border-t text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
-                    <div className="font-medium mb-2 flex items-center">
-                      <div className="hint-number-small mr-2">2</div>
-                      <span>Second Hint</span>
-                    </div>
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[1]}
                     </div>
@@ -856,10 +852,6 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
               {showHint1Dropdown && (
                 <div className="mt-3 pt-3 border-t text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
-                    <div className="font-medium mb-2 flex items-center">
-                      <div className="hint-number-small mr-2">1</div>
-                      <span>First Hint</span>
-                    </div>
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[0]}
           </div>
