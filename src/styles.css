@@ -499,7 +499,7 @@ header.pt-28 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .gameplay-steps .step-content h4,
@@ -1852,6 +1852,8 @@ header.pt-28 {
 
 .question-overlay-instructions button {
   border: none;
+  background: none;
+  font-weight: 500;
 }
 
 .question-overlay-secondary {
@@ -1974,8 +1976,8 @@ header.pt-28 {
 }
 
 .stepper-circle {
-  width: 2rem;
-  height: 2rem;
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2025,7 +2027,7 @@ header.pt-28 {
 .stepper-line {
   flex: 1;
   height: 3px; /* Increased from 2px to 4px */
-  margin: 1rem 0.5rem 0;
+  margin: 1rem 0.475rem 0;
   transition: all 0.3s ease;
   position: relative;
   top: 0;
