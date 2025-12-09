@@ -723,7 +723,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showBettingRules && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="mb-3">
                     <h3 className="font-bold mb-2">Basic Betting Actions:</h3>
                     <ul className="list-disc text-left mx-auto inline-block mb-3">
@@ -773,7 +773,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showAnswerDropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-answer-back border border-answer-border rounded-lg p-4">
     <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
       <div className="flex items-center">
@@ -821,7 +821,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showHint2Dropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[1]}
@@ -850,7 +850,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showHint1Dropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[0]}
