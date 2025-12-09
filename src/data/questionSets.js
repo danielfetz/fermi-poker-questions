@@ -2,7 +2,7 @@
 export const createQuestionSets = () => {
   const categoryStructure = {
     general: {
-      name: "General Questions",
+      name: "All Questions",
       description: "This category contains all questions from across categories. It's a good place to start if you want to test your Fermi estimation skills on a wide variety of topics.",
       isParent: true,
       subcategories: []  // Will be filled with all questions

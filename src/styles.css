@@ -18,8 +18,8 @@ html, body {
   --golden-dark: #B38728;
   --hint-back: #FDFAF4;
   --hint-border: #EDE3D2;
-  --answer-back: #FEFBF5;
-  --answer-border: #D4A244;
+  --answer-back: #f0fafc;
+  --answer-border: #cfe1e2;
   --hover-light: #FCF5E8;
   --ornamental-light: rgba(214, 162, 68, 0.3);
   --light-border: #E9DCC7;
@@ -535,7 +535,7 @@ header.pt-28 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.969rem 2.25rem;
+  padding: 1.0315rem 2.25rem;
   font-size: 1.125rem;
   border-radius: 0.75rem;
   transition: all 0.3s;
@@ -1900,7 +1900,7 @@ header.pt-28 {
 /* Base skip button styles */
 .question-overlay-skip-btn {
   width: calc(100% - 58px);
-  height: 58px;
+  height: 60px;
   justify-content: center;
   font-size: 18px;
   border-radius: 12px;

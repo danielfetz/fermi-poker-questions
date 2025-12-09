@@ -47,7 +47,7 @@ const CategorySelection = ({ questionSets }) => {
       <div className="mb-6">
         <h2 className="text-header-small sm:text-header font-display font-medium pb-2.5 border-b mt-0 mb-3">Select a Category</h2>
         <p className="leading-normal">
-          Choose a category to start practicing with Fermi questions. Choose a category to start practicing with Fermi questions.
+          Choose a category to start playing. We recommend "All Questions" which at the moment has over 100+ different Fermi questions.
         </p>
       </div>
       
