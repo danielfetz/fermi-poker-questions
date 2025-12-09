@@ -66,6 +66,10 @@ html, body {
   background-color: var(--dark-bg);
 }
 
+.dark h1, h2 h3, h4, h5, h6 {
+  color: var(--dark-text);
+}
+
 .light .main-bg {
   background-color: var(--main-bg);
   border: 1px solid var(--graylight-border);
@@ -549,10 +553,9 @@ header.pt-28 {
 }
 
 .dark .start-game-button {
-  background-color: #2ebdd1;
-  color: var(--dark-bg);
-  border: 1px solid var(--golden-accent);
-  border-bottom-width: 3px;
+  border: solid var(--dark-border);
+  border-width: 1px 1px 3px;
+  color: var(--dark-text);
 }
 
 .start-game-button:hover {
@@ -2090,7 +2093,7 @@ header.pt-28 {
 }
 
 .dark .stepper-step.completed {
-  color: #2ebdd1;
+  color: var(--dark-text);
   opacity: 1;
 }
 
@@ -2103,13 +2106,13 @@ header.pt-28 {
 .dark .stepper-step.active .stepper-circle {
   background-color: #2ebdd1;
   border-color: #2ebdd1;
-  color: var(--rich-brown);
+  color: white;
 }
 
 .dark .stepper-step.completed .stepper-circle {
   background-color: #2ebdd1;
   border-color: #2ebdd1;
-  color: var(--rich-brown);
+  color: white;
 }
 
 .dark .stepper-line {
