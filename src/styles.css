@@ -1912,8 +1912,8 @@ header.pt-28 {
 
 /* Inline positioning (desktop when content fits) */
 .question-overlay-skip-btn.skip-button-inline {
-  position: relative;
-  margin: 1rem auto 0;
+  width: 100%;
+  margin-top: 16px;
 }
 
 /* Placeholder to reserve space when button is fixed */
@@ -1987,22 +1987,30 @@ header.pt-28 {
 }
 
 .stepper-label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: medium;
   text-align: center;
   line-height: 1.2;
   white-space: nowrap;
   min-width: 80px; /* Ensure consistent spacing */
+  position: absolute;
+  margin-top: 47px;
 }
 
 .first-step .stepper-label {
-  padding-left: 37px;
+  padding-left: 25px;
+}
+
+@media (max-width: 640px) {
+  .first-step .stepper-label {
+    padding-left: 37px;
+  }
 }
 
 .stepper-line {
   flex: 1;
   height: 3px; /* Increased from 2px to 4px */
-  margin: 1rem 0.25rem 0 0.25rem;
+  margin: 1rem 0.5rem 0;
   transition: all 0.3s ease;
   position: relative;
   top: 0;
