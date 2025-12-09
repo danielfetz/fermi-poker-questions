@@ -16,8 +16,8 @@ html, body {
   --golden-light: #F6E3B7;
   --golden-accent: #D4A244;
   --golden-dark: #B38728;
-  --hint-back: #ede3d2;
-  --hint-border: #D9C7A7;
+  --hint-back: #FDFAF4;
+  --hint-border: #EDE3D2;
   --answer-back: #FEFBF5;
   --answer-border: #D4A244;
   --hover-light: #FCF5E8;
@@ -1859,10 +1859,6 @@ header.pt-28 {
   background: none;
   font-weight: 500;
   padding: 0;
-}
-
-.question-overlay-instructions div {
-  border-top: none;
 }
 
 .question-overlay-secondary {
