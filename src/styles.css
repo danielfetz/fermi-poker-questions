@@ -31,9 +31,9 @@ html, body {
   
   /* Dark mode colors */
   --dark-bg: #1F1A15;
-  --dark-surface: #2D261E;
+  --dark-surface: #1f1a15;
   --dark-border: #3D3428;
-  --dark-soft: #4A4033;
+  --dark-soft: #2b2724;
   --dark-text: #E6D9C2;
   --dark-hover: #3A3228;
   --ornamental-dark: rgba(214, 162, 68, 0.15);
@@ -1477,7 +1477,7 @@ header.pt-28 {
 }
 
 .dark .category-card {
-  background-color: rgba(45, 38, 30, 0.7);
+  background-color: var(--dark-soft);
   border-color: var(--dark-border);
 }
 
