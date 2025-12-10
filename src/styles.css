@@ -1660,16 +1660,8 @@ header.pt-28 {
 
 .dark .rules-button {
   background-color: var(--dark-soft);
-  border-color: var(--rich-brown);
+  border-color: var(--dark-border);
   color: var(--dark-text);
-}
-
-.light .rules-button:hover {
-  background-color: var(--hover-light);
-}
-
-.dark .rules-button:hover {
-  background-color: var(--dark-hover);
 }
 
 .rules-button:active {

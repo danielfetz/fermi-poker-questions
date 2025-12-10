@@ -35,7 +35,8 @@ const CategorySelection = ({ questionSets }) => {
     history: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=150&h=150&fit=crop&crop=center",
     science: "https://images.unsplash.com/photo-1507343712015-dc6c05dc8a3a?w=150&h=150&fit=crop&crop=center",
     economics: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=center",
-    technology: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=150&h=150&fit=crop&crop=center"
+    technology: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=150&h=150&fit=crop&crop=center",
+    health: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop&crop=center"
   };
 
   // Get main categories (remove subcategories completely)
@@ -47,7 +48,7 @@ const CategorySelection = ({ questionSets }) => {
       <div className="mb-6">
         <h2 className="text-header-small sm:text-header font-display font-medium pb-2.5 border-b mt-0 mb-3">Select a Category</h2>
         <p className="leading-normal">
-          Choose a category to start playing. We recommend "All Questions" which at the moment has over 100+ different Fermi questions.
+          Choose a category to start playing. We recommend "All Categories" which at the moment has over 100+ different Fermi questions.
         </p>
       </div>
       
