@@ -2174,7 +2174,7 @@ header.pt-28 {
 }
 
 .question-overlay-instructions .bg-answer-back {
-  background-color: var(--bg-answer-back);
+  background-color: var(--answer-back);
 }
 
 .dark .question-overlay-instructions .bg-answer-back {
@@ -2182,7 +2182,7 @@ header.pt-28 {
 }
 
 .question-overlay-instructions .border-answer-border {
-  border-color: var(--border-answer-border);
+  border-color: var(--answer-border);
 }
 
 .dark .question-overlay-instructions .border-answer-border {
