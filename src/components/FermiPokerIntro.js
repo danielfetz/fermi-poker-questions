@@ -94,7 +94,7 @@ const FermiPokerIntro = () => {
       
       {/* Rules section */}
       <div className="mb-6 leading-normal">
-        <h3 className="text-xl font-display font-bold mb-2">Rules</h3>
+        <h3 className="text-xl font-display font-medium pb-2.5 border-b mb-6">Rules</h3>
         <p className="mb-3">
           If you are familiar with No Limit Texas Hold'Em Poker, you'll find that the rules are very similar, 
           however we have made some adjustment to maximize the educational potential and to accommodate the fact that we don't have cards:
@@ -110,7 +110,7 @@ const FermiPokerIntro = () => {
       
       {/* Meta-Game Option section */}
       <div className="highlight-section p-4 rounded-xl mb-6">
-        <h3 className="font-bold mt-0 mb-3">Meta-Game Option</h3>
+        <h3 className="font-medium mt-0 mb-3">Meta-Game Option</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>When playing in large groups, which might have very different skill levels, it might make sense to add another layer to the game so that it is more fun for everyone even if you have folded and are just watching.</li>
           <li>In games with meta-game enabled, players can predict who will win each question. With 3 correct predictions, bankrupt players can rejoin the game with a small stack.</li>
@@ -120,7 +120,7 @@ const FermiPokerIntro = () => {
       
       {/* Example Worked Through section */}
       <div className="mb-6 leading-normal">
-          <h3 className="text-xl font-display font-bold mb-3">An Example Worked Far Too In-Depth</h3>
+          <h3 className="text-xl font-display font-medium pb-2.5 border-b mb-6">An Example Worked Far Too In-Depth</h3>
           <p className="mb-3">
             It's hard to explain how to solve a Fermi Question, so let me show you one and walk you through it. Here's a classic, hoping that the pandemic didn't change the answer.
           </p>
@@ -159,7 +159,7 @@ const FermiPokerIntro = () => {
       
       {/* Other Examples section */}
       <div className="highlight-section p-4 rounded-xl mb-6">
-        <h3 className="font-bold mt-0 mb-3">Other Examples:</h3>
+        <h3 className="font-medium mt-0 mb-3">Other Examples:</h3>
         <ul className="list-disc pl-5 m-0 space-y-3 leading-normal">
           <li>How many more years of life expectancy do women in Russia have compared to men?</li>
           <li>For each person having died as a result of nuclear accidents in the past 50 years, how many have died as a result of air pollution from coal?</li>
@@ -170,7 +170,7 @@ const FermiPokerIntro = () => {
       
       {/* Strategy Tips section */}
       <div className="mb-6 leading-normal">
-        <h3 className="text-xl font-display font-bold mb-3">Strategy Tips</h3>
+        <h3 className="text-xl font-display font-medium pb-2.5 border-b mb-6">Strategy Tips</h3>
         <p className="mb-3">
           Getting better at Fermi Poker is closely linked to becoming better at rational thinking, world-modeling and understanding the cognitive biases that we have:
         </p>
