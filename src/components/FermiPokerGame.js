@@ -613,16 +613,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             ) : overlayPhase === 'answer' ? (
               <div className="text-base leading-normal">
                 <div className="bg-answer-back border border-answer-border rounded-lg p-4 mb-4">
-              /*
+                  {/*
                   <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
                     <div className="flex items-center">
                       <div className="answer-letter-small mr-2">A</div>
                       <span>Answer</span>
                     </div>
                     {currentQuestion.source && (
-                      <a 
-                        href={currentQuestion.source.url} 
-                        target="_blank" 
+                      <a
+                        href={currentQuestion.source.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="source-link"
                       >
@@ -633,7 +633,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       </a>
                     )}
                   </div>
-              */
+                  */}
                   <div className="text-base">
                     {currentQuestion.answer}
                   </div>
@@ -777,25 +777,27 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
               {showAnswerDropdown && (
                 <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-answer-back border border-answer-border rounded-lg p-4">
-    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
-      <div className="flex items-center">
-        <div className="answer-letter-small mr-2">A</div>
-        <span>Answer</span>
-      </div>
-      {currentQuestion.source && (
-        <a 
-          href={currentQuestion.source.url} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="source-link"
-        >
-          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {/*
+                    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="answer-letter-small mr-2">A</div>
+                        <span>Answer</span>
+                      </div>
+                      {currentQuestion.source && (
+                        <a
+                          href={currentQuestion.source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="source-link"
+                        >
+                          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
-      )}
-    </div>
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                    */}
                     <div className="text-base">
       {currentQuestion.answer}
     </div>
