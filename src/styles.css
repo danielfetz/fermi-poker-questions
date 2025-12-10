@@ -2162,7 +2162,7 @@ header.pt-28 {
 }
 
 .dark .question-overlay-instructions .bg-hint-back {
-  background-color: var(--dark-surface);
+  background-color: var(--dark-soft);
 }
 
 .question-overlay-instructions .border-hint-border {
@@ -2170,5 +2170,21 @@ header.pt-28 {
 }
 
 .dark .question-overlay-instructions .border-hint-border {
+  border-color: var(--dark-border);
+}
+
+.question-overlay-instructions .bg-answer-back {
+  background-color: var(--bg-answer-back);
+}
+
+.dark .question-overlay-instructions .bg-answer-back {
+  background-color: var(--dark-soft);
+}
+
+.question-overlay-instructions .border-answer-border {
+  border-color: var(--border-answer-border);
+}
+
+.dark .question-overlay-instructions .border-answer-border {
   border-color: var(--dark-border);
 }
