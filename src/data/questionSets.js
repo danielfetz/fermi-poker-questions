@@ -2,7 +2,7 @@
 export const createQuestionSets = () => {
   const categoryStructure = {
     general: {
-      name: "All Questions",
+      name: "All Categories",
       description: "This category contains all questions from across categories. It's a good place to start if you want to test your Fermi estimation skills on a wide variety of topics.",
       isParent: true,
       subcategories: []  // Will be filled with all questions
@@ -356,6 +356,22 @@ export const createQuestionSets = () => {
           ],
           answer: "Approximately 1.4 billion smartphones are sold annually worldwide.",
           category: "Technology"
+        }
+      ]
+    },
+    health: {
+      name: "Health & Medicine",
+      description: "Health and medicine questions explore the scale of healthcare systems, medical statistics, and pharmaceutical industries around the world.",
+      isParent: false,
+      questions: [
+        {
+          question: "How many pharmacies are there in Russia?",
+          hints: [
+            "Russia had a population of around 144 million in 2024.",
+            "There are around 12,300 pharmacies in Poland."
+          ],
+          answer: "81,700",
+          category: "Health & Medicine"
         }
       ]
     }
