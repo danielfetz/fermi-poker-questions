@@ -553,6 +553,7 @@ header.pt-28 {
 }
 
 .dark .start-game-button {
+  border-bottom-width: 3px;
   color: var(--dark-text);
 }
 
