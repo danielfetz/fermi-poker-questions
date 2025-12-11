@@ -526,11 +526,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                'Instructions - Showdown'}
             </h2>
             {overlayPhase === 'guessing' ? (
-              <div className="text-base leading-normal mt-0">
-                <p className="mb-3">
-                  Before guessing, everyone puts a mandatory bet into the pot (start at 1/40th of your chips, doubling every 30 minutes).
+              <div className="text-base leading-normal">
+                <p className="mb-3 mt-0">
+                  Before guessing, everyone makes a mandatory bet (start at 1/40th of your initial chips, doubling every 30 minutes).
                 </p>
-                <p>
+                <p className="mt-3">
                   Secretly write your guess as a range (e.g., "10–100" or "100K–1M"). Once everyone is ready, the first betting round begins.
                 </p>
               </div>
@@ -540,12 +540,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                   Betting moves clockwise around the table, with each player being able to:
                 </p>
                 <ul className="list-disc text-left mx-auto inline-block mb-3">
+                  <li><strong>Check:</strong> Pass without betting (only if no one has bet yet)</li>
+                  <li><strong>Call:</strong> Match the current highest bet</li>
                   <li><strong>Raise:</strong> Increase the bet amount</li>
-                  <li><strong>Call:</strong> Match the highest bet</li>
-                  <li><strong>Fold:</strong> Give up and lose your bet</li>
+                  <li><strong>Fold:</strong> Give up and lose what you've bet so far</li>
                 </ul>
-                <p className="mt-3">
-                  Continue until all active players have matched the highest bet or folded.
+                <p className="mb-3">
+                  Continue until all remaining players have matched the highest bet or folded.
+                </p>
+                <p className="mt-0">
+                  Note: The starting bettor also rotates clockwise with each new question.
                 </p>
               </div>
             ) : overlayPhase === 'hint' ? (
