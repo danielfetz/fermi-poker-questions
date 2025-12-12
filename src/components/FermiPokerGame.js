@@ -528,7 +528,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             {overlayPhase === 'guessing' ? (
               <div className="text-base leading-normal">
                 <p className="mb-3 mt-0">
-                  Before guessing, everyone makes a mandatory bet (start at 1/40th of your initial chips, doubling every 30 minutes).
+                  Before guessing, everyone makes a mandatory bet (starting at 1/40th of your initial chips, doubling every 30 minutes).
                 </p>
                 <p className="mt-3">
                   Secretly write your guess as a range (e.g., "10–100" or "100K–1M"). Once everyone is ready, the first betting round begins.
@@ -545,7 +545,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                   <li><strong>Raise:</strong> Increase the bet amount</li>
                   <li><strong>Fold:</strong> Give up and lose what you've bet so far</li>
                 </ul>
-                <p className="mb-3">
+                <p className="mb-3 mt-3">
                   Continue until all remaining players have matched the highest bet or folded.
                 </p>
                 <p className="mt-0">
