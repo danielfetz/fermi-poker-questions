@@ -374,6 +374,193 @@ export const createQuestionSets = () => {
           category: "Health & Medicine"
         }
       ]
+    },
+    test: {
+      name: "Test",
+      description: "A temporary collection of diverse Fermi estimation questions covering occupations, business metrics, and everyday quantities.",
+      isParent: false,
+      questions: [
+        {
+          question: "How many dentists are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million people.",
+            "The American Dental Association recommends visiting a dentist twice per year, and a typical dentist can see about 2,000 patients annually."
+          ],
+          answer: "Approximately 200,000 dentists practice in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many pizzas are consumed in the US each day?",
+          hints: [
+            "About 13% of Americans eat pizza on any given day.",
+            "The US population is approximately 330 million people."
+          ],
+          answer: "Approximately 100 million pizzas are consumed daily in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many commercial airline flights take off globally each day?",
+          hints: [
+            "There are approximately 45,000 airports worldwide, though only about 5,000 have paved runways over 8,000 feet.",
+            "Major airports like Atlanta handle over 2,500 flights per day."
+          ],
+          answer: "Approximately 100,000 commercial flights take off globally each day.",
+          category: "Test"
+        },
+        {
+          question: "How many barbers work in New York City?",
+          hints: [
+            "New York City has a population of approximately 8.3 million people.",
+            "About half the population regularly gets haircuts at barbershops, and a barber can serve about 15-20 clients per day."
+          ],
+          answer: "Approximately 12,000-15,000 barbers work in New York City.",
+          category: "Test"
+        },
+        {
+          question: "How many golf balls are lost each year in the United States?",
+          hints: [
+            "There are approximately 25 million golfers in the United States.",
+            "The average golfer loses about 1-2 balls per round and plays around 20 rounds per year."
+          ],
+          answer: "Approximately 300-400 million golf balls are lost annually in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many elevators are there in New York City?",
+          hints: [
+            "New York City has approximately 1 million buildings, with about 47,000 being high-rises or mid-rises.",
+            "Manhattan alone has about 10,000 buildings over 6 stories tall."
+          ],
+          answer: "Approximately 70,000-80,000 elevators operate in New York City.",
+          category: "Test"
+        },
+        {
+          question: "How many accountants are employed in the United Kingdom?",
+          hints: [
+            "The UK has a population of approximately 67 million people.",
+            "The UK is known as a global financial center with London being one of the world's largest financial hubs."
+          ],
+          answer: "Approximately 350,000-400,000 accountants are employed in the United Kingdom.",
+          category: "Test"
+        },
+        {
+          question: "How many cups of coffee are consumed daily in the United States?",
+          hints: [
+            "About 65% of American adults drink coffee daily.",
+            "The average coffee drinker consumes about 3 cups per day."
+          ],
+          answer: "Approximately 400-500 million cups of coffee are consumed daily in the US.",
+          category: "Test"
+        },
+        {
+          question: "How many McDonald's restaurants are there worldwide?",
+          hints: [
+            "McDonald's operates in over 100 countries.",
+            "The United States alone has approximately 14,000 McDonald's locations."
+          ],
+          answer: "Approximately 40,000 McDonald's restaurants operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many plumbers are there in Germany?",
+          hints: [
+            "Germany has a population of approximately 83 million people.",
+            "Germany has about 42 million households, and plumbing services are needed regularly for maintenance and repairs."
+          ],
+          answer: "Approximately 50,000-60,000 plumbers work in Germany.",
+          category: "Test"
+        },
+        {
+          question: "How many taxis operate in London?",
+          hints: [
+            "London has a population of approximately 9 million people.",
+            "The famous black cabs require drivers to pass 'The Knowledge' test, which takes 2-4 years to complete."
+          ],
+          answer: "Approximately 21,000 licensed black cabs operate in London, plus about 90,000 private hire vehicles.",
+          category: "Test"
+        },
+        {
+          question: "How many emails are sent globally each day?",
+          hints: [
+            "There are approximately 4 billion email users worldwide.",
+            "The average office worker receives about 120 emails per day."
+          ],
+          answer: "Approximately 300-350 billion emails are sent globally each day.",
+          category: "Test"
+        },
+        {
+          question: "How many restaurants are there in Tokyo?",
+          hints: [
+            "Tokyo has a population of approximately 14 million in the city proper and 37 million in the greater metropolitan area.",
+            "Tokyo has more Michelin-starred restaurants than any other city in the world."
+          ],
+          answer: "Approximately 80,000-90,000 restaurants operate in Tokyo.",
+          category: "Test"
+        },
+        {
+          question: "How many teachers work in public schools in the United States?",
+          hints: [
+            "There are approximately 50 million K-12 students in US public schools.",
+            "The average class size in the US is about 15-20 students."
+          ],
+          answer: "Approximately 3.2-3.5 million teachers work in US public schools.",
+          category: "Test"
+        },
+        {
+          question: "How many ATMs are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million people.",
+            "Banks, convenience stores, and many retail locations have ATMs, with major banks having ATMs at most of their branches."
+          ],
+          answer: "Approximately 450,000-500,000 ATMs operate in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many veterinarians practice in the United States?",
+          hints: [
+            "There are approximately 90 million pet dogs and 74 million pet cats in the US.",
+            "A typical veterinary practice might have 2-3 veterinarians and serve a few thousand pet-owning households."
+          ],
+          answer: "Approximately 120,000-130,000 veterinarians practice in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many hotel rooms are there in Las Vegas?",
+          hints: [
+            "Las Vegas hosts approximately 40 million visitors per year.",
+            "Some of the largest hotels in the world are located in Las Vegas, with properties like the Venetian having over 7,000 rooms."
+          ],
+          answer: "Approximately 150,000-170,000 hotel rooms are available in Las Vegas.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of bananas are consumed annually worldwide?",
+          hints: [
+            "Bananas are the world's most popular fruit and are a dietary staple in many tropical countries.",
+            "The average American eats about 27 pounds of bananas per year."
+          ],
+          answer: "Approximately 100-115 million metric tons of bananas are consumed annually worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many real estate agents are licensed in California?",
+          hints: [
+            "California has a population of approximately 39 million people.",
+            "California has one of the most active real estate markets in the US, with median home prices over $700,000."
+          ],
+          answer: "Approximately 400,000-450,000 real estate agents are licensed in California.",
+          category: "Test"
+        },
+        {
+          question: "How many gas stations are there in the United States?",
+          hints: [
+            "There are approximately 280 million registered vehicles in the United States.",
+            "The average driver fills up about once per week, and a busy gas station might serve 1,000 customers per day."
+          ],
+          answer: "Approximately 145,000-150,000 gas stations operate in the United States.",
+          category: "Test"
+        }
+      ]
     }
   };
 
