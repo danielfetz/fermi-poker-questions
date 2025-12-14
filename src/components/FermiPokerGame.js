@@ -560,15 +560,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                   </div>
                 </div>
                 <p className="mb-3">
-                  Now that you have the first hint, consider how this new information affects the probability that your original guess was accurate:
+                  Now that you've seen the first hint, take a moment to reflect on your guess:
                 </p>
                 <ul className="list-disc text-left mx-auto inline-block mb-3">
-                  <li>Does this hint make your estimate seem too high or too low?</li>
-                  <li>How confident are you now compared to your initial guess?</li>
-                  <li>Should you adjust your betting strategy for the next round?</li>
+                  <li>Does this new information make your guess seem unrealistic?</li>
+                  <li>How does it affect your confidence?</li>
+                  <li>How are other players reacting? Are they sweating?</li>
+                  <li>Should you adjust your betting strategy?</li>
                 </ul>
                 <p>
-                  Use this information to guide your decisions in the second betting round.
+                  When ready, continue to the second betting round!
                 </p>
               </div>
             ) : overlayPhase === 'betting2' ? (
