@@ -559,6 +559,186 @@ export const createQuestionSets = () => {
           ],
           answer: "Approximately 145,000-150,000 gas stations operate in the United States.",
           category: "Test"
+        },
+        {
+          question: "How many firefighters are there in the United States?",
+          hints: [
+            "The US has approximately 30,000 fire departments serving communities of all sizes.",
+            "About 70% of firefighters in the US are volunteers, primarily serving rural areas."
+          ],
+          answer: "Approximately 1.1 million firefighters serve in the United States, with about 370,000 career and 745,000 volunteer firefighters.",
+          category: "Test"
+        },
+        {
+          question: "How many books are published worldwide each year?",
+          hints: [
+            "The United States alone publishes approximately 300,000 new titles per year.",
+            "China and the UK are also major publishing markets, each producing over 100,000 titles annually."
+          ],
+          answer: "Approximately 2.2-2.5 million books are published worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many hairdressers and hair stylists work in the United States?",
+          hints: [
+            "The US population is approximately 330 million, with roughly half being women who visit salons more frequently.",
+            "A typical hair salon has 3-5 stylists, and there are salons in virtually every neighborhood."
+          ],
+          answer: "Approximately 650,000-700,000 hairdressers and hair stylists work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many ski resorts are there in the world?",
+          hints: [
+            "Europe, particularly the Alps, has the highest concentration of ski resorts globally.",
+            "The United States has approximately 470 ski resorts, and Japan has around 500."
+          ],
+          answer: "Approximately 5,000-6,000 ski resorts operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many lawyers are there in the United States?",
+          hints: [
+            "The US is known for having one of the highest numbers of lawyers per capita in the world.",
+            "Law schools in the US graduate approximately 35,000 new lawyers each year."
+          ],
+          answer: "Approximately 1.3-1.4 million lawyers are licensed in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many grocery stores are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million spread across urban, suburban, and rural areas.",
+            "Major chains like Walmart, Kroger, and Albertsons operate thousands of locations each."
+          ],
+          answer: "Approximately 40,000-45,000 grocery stores operate in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many commercial ships are sailing the world's oceans?",
+          hints: [
+            "About 90% of world trade is carried by sea.",
+            "The global shipping fleet includes container ships, bulk carriers, tankers, and cargo vessels."
+          ],
+          answer: "Approximately 50,000-55,000 commercial ships are actively sailing the world's oceans.",
+          category: "Test"
+        },
+        {
+          question: "How many nurses are employed in the United Kingdom?",
+          hints: [
+            "The UK has a population of approximately 67 million people.",
+            "The National Health Service (NHS) is one of the world's largest employers."
+          ],
+          answer: "Approximately 700,000-750,000 nurses are employed in the United Kingdom.",
+          category: "Test"
+        },
+        {
+          question: "How many Starbucks locations are there worldwide?",
+          hints: [
+            "Starbucks originated in Seattle and has expanded to over 80 countries.",
+            "The United States has approximately 16,000 Starbucks locations."
+          ],
+          answer: "Approximately 35,000-38,000 Starbucks locations operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many weddings take place in the United States each year?",
+          hints: [
+            "The US population is approximately 330 million, with roughly 130 million adults who are unmarried.",
+            "The average wedding in the US costs around $30,000."
+          ],
+          answer: "Approximately 2.0-2.5 million weddings take place in the United States each year.",
+          category: "Test"
+        },
+        {
+          question: "How many police officers serve in the United States?",
+          hints: [
+            "The US has approximately 18,000 law enforcement agencies at federal, state, and local levels.",
+            "New York City alone has approximately 36,000 police officers."
+          ],
+          answer: "Approximately 700,000-800,000 sworn police officers serve in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of chocolate are consumed worldwide each year?",
+          hints: [
+            "Switzerland has the highest per capita chocolate consumption at about 9 kg per person per year.",
+            "The global chocolate market is worth over $130 billion annually."
+          ],
+          answer: "Approximately 7-8 million metric tons of chocolate are consumed worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many movie theaters are there in the United States?",
+          hints: [
+            "Major chains like AMC, Regal, and Cinemark operate hundreds of locations each.",
+            "The average movie theater has about 8-10 screens."
+          ],
+          answer: "Approximately 5,500-6,000 movie theaters operate in the United States, with about 40,000 screens total.",
+          category: "Test"
+        },
+        {
+          question: "How many chefs and head cooks work in the United States?",
+          hints: [
+            "There are approximately 660,000 restaurants in the United States.",
+            "Fine dining restaurants typically have multiple chefs, while smaller establishments may have one or two."
+          ],
+          answer: "Approximately 150,000-160,000 chefs and head cooks work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many bicycles are sold worldwide each year?",
+          hints: [
+            "China is both the largest producer and consumer of bicycles in the world.",
+            "The Netherlands has more bicycles than people, with about 23 million bikes for 17 million people."
+          ],
+          answer: "Approximately 100-130 million bicycles are sold worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many pharmacists work in the United States?",
+          hints: [
+            "There are approximately 40,000 retail pharmacies in the United States.",
+            "Pharmacists also work in hospitals, clinics, and pharmaceutical companies."
+          ],
+          answer: "Approximately 320,000-340,000 pharmacists work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many bridges are there in the United States?",
+          hints: [
+            "The US has an extensive highway system spanning over 4 million miles of roads.",
+            "Many bridges are small structures over streams and creeks, not just major river crossings."
+          ],
+          answer: "Approximately 600,000-620,000 bridges are in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many software developers work in India?",
+          hints: [
+            "India has a population of approximately 1.4 billion people.",
+            "India is a major global hub for IT services and software development, with cities like Bangalore, Hyderabad, and Pune being tech centers."
+          ],
+          answer: "Approximately 5-5.5 million software developers work in India.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of rice are produced globally each year?",
+          hints: [
+            "Rice is a staple food for more than half of the world's population.",
+            "China and India are the two largest rice producers, together accounting for over half of global production."
+          ],
+          answer: "Approximately 500-520 million metric tons of rice are produced globally each year.",
+          category: "Test"
+        },
+        {
+          question: "How many architects are licensed in the United States?",
+          hints: [
+            "Becoming a licensed architect requires a professional degree, internship, and passing the ARE exam.",
+            "The US constructs approximately 1 million new housing units per year."
+          ],
+          answer: "Approximately 115,000-120,000 licensed architects practice in the United States.",
+          category: "Test"
         }
       ]
     }
