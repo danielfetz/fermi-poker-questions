@@ -17,9 +17,9 @@ html, body {
   --golden-accent: #D4A244;
   --golden-dark: #B38728;
   --hint-back: #FDFAF4;
-  --hint-border: #D9C7A7;
-  --answer-back: #FEFBF5;
-  --answer-border: #D4A244;
+  --hint-border: #EDE3D2;
+  --answer-back: #f0fafc;
+  --answer-border: #cfe1e2;
   --hover-light: #FCF5E8;
   --ornamental-light: rgba(214, 162, 68, 0.3);
   --light-border: #E9DCC7;
@@ -31,9 +31,9 @@ html, body {
   
   /* Dark mode colors */
   --dark-bg: #1F1A15;
-  --dark-surface: #2D261E;
+  --dark-surface: #1f1a15;
   --dark-border: #3D3428;
-  --dark-soft: #4A4033;
+  --dark-soft: #2b2724;
   --dark-text: #E6D9C2;
   --dark-hover: #3A3228;
   --ornamental-dark: rgba(214, 162, 68, 0.15);
@@ -54,16 +54,20 @@ html, body {
 /* Light/Dark Mode Switching */
 .light {
   color: #202122;
-  background-color: var(--cream-tan);
+  background-color: white;
 }
 
-.light h1, h2 h3, h4, h5, h6 {
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
   color: #131415;
 }
 
 .dark {
   color: var(--dark-text);
   background-color: var(--dark-bg);
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--dark-text);
 }
 
 .light .main-bg {
@@ -499,7 +503,7 @@ header.pt-28 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .gameplay-steps .step-content h4,
@@ -531,7 +535,7 @@ header.pt-28 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2.25rem;
+  padding: 1.0315rem 2.25rem;
   font-size: 1.125rem;
   border-radius: 0.75rem;
   transition: all 0.3s;
@@ -539,6 +543,8 @@ header.pt-28 {
   position: relative;
   overflow: hidden;
   min-width: 200px;
+  max-width: 670px;
+  width: 100%;
   font-family: 'Lora', serif;
 }
 
@@ -547,39 +553,17 @@ header.pt-28 {
 }
 
 .dark .start-game-button {
-  background-color: #2ebdd1;
-  color: var(--dark-bg);
-  border: 1px solid var(--golden-accent);
   border-bottom-width: 3px;
+  color: var(--dark-text);
 }
 
-.light .start-game-button:hover {
-  background-color: #2ebdd1;
-  color: var(--warm-cream);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.dark .start-game-button:hover {
-  background-color: #2ebdd1;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+.start-game-button:hover {
+  border-bottom-width: 1px;
 }
 
 .start-game-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.start-game-button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
-  pointer-events: none;
 }
 
 /* Card Styling */
@@ -1350,6 +1334,10 @@ header.pt-28 {
   gap: 1rem;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
 .border {
   border-width: 1px;
   border-bottom-style: solid;
@@ -1480,7 +1468,7 @@ header.pt-28 {
 }
 
 .dark .category-card {
-  background-color: rgba(45, 38, 30, 0.7);
+  background-color: var(--dark-soft);
   border-color: var(--dark-border);
 }
 
@@ -1579,9 +1567,9 @@ header.pt-28 {
 .settings-toggle {
   border-radius: 9999px;
   padding: 0.375rem;
-  background-color: var(--cream-tan);
+  background-color: white;
   transition: all 0.2s;
-  border: 1px solid var(--darklight-border);
+  border: 1px solid var(--graylight-border);
   width: 37.5px;
   height: 37.5px;
   display: flex;
@@ -1615,8 +1603,8 @@ header.pt-28 {
 }
 
 .light .settings-menu {
-  background-color: var(--warm-cream);
-  border: 1px solid var(--soft-brown);
+  background-color: white;
+  border: 1px solid var(--graylight-border);
 }
 
 .dark .settings-menu {
@@ -1672,16 +1660,8 @@ header.pt-28 {
 
 .dark .rules-button {
   background-color: var(--dark-soft);
-  border-color: var(--rich-brown);
+  border-color: var(--dark-border);
   color: var(--dark-text);
-}
-
-.light .rules-button:hover {
-  background-color: var(--hover-light);
-}
-
-.dark .rules-button:hover {
-  background-color: var(--dark-hover);
 }
 
 .rules-button:active {
@@ -1857,6 +1837,13 @@ header.pt-28 {
   border: 1.5px solid var(--graylight-border);
 }
 
+.question-overlay-instructions button {
+  border: none;
+  background: none;
+  font-weight: 500;
+  padding: 0;
+}
+
 .question-overlay-secondary {
   border: 1px solid var(--graylight-border);
 }
@@ -1890,15 +1877,35 @@ header.pt-28 {
   background-color: #2ebdd1;
 }
 
+/* Base skip button styles */
 .question-overlay-skip-btn {
   width: calc(100% - 58px);
-  height: 58px;
+  height: 60px;
   justify-content: center;
   font-size: 18px;
   border-radius: 12px;
   box-shadow: 0 3px 3px -1px #0000001a, 0 2px 0px -1px #0000000f;
   border-bottom-width: 3px;
   max-width: 678px;
+}
+
+/* Fixed positioning (mobile always, desktop when content overflows) */
+.question-overlay-skip-btn.skip-button-fixed {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Inline positioning (desktop when content fits) */
+.question-overlay-skip-btn.skip-button-inline {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Placeholder to reserve space when button is fixed */
+.skip-button-placeholder {
+  height: 74px; /* button height + margin */
 }
 
 .dark .question-overlay-skip-btn {
@@ -1930,7 +1937,13 @@ header.pt-28 {
   overflow-x: auto;
   overflow-y: visible;
   width: 100%;
-  padding-bottom: 1.5rem; /* Add padding for scrollbar space */
+  padding-bottom: 1.5rem; /* Mobile padding */
+}
+
+@media (min-width: 640px) {
+  .stepper-wrapper {
+    padding-bottom: 1.75rem; /* Desktop padding */
+  }
 }
 
 .stepper-track {
@@ -1951,8 +1964,8 @@ header.pt-28 {
 }
 
 .stepper-circle {
-  width: 2rem;
-  height: 2rem;
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1966,23 +1979,43 @@ header.pt-28 {
   z-index: 2;
 }
 
+.stepper-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stepper-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
 .stepper-label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: medium;
   text-align: center;
   line-height: 1.2;
   white-space: nowrap;
   min-width: 80px; /* Ensure consistent spacing */
+  position: absolute;
+  margin-top: 47px;
 }
 
 .first-step .stepper-label {
-  padding-left: 37px;
+  padding-left: 27px;
+}
+
+@media (max-width: 640px) {
+  .first-step .stepper-label {
+    padding-left: 37px;
+  }
 }
 
 .stepper-line {
   flex: 1;
   height: 3px; /* Increased from 2px to 4px */
-  margin: 1rem 0.25rem 0 0.25rem;
+  margin: 1rem 0.475rem 0;
   transition: all 0.3s ease;
   position: relative;
   top: 0;
@@ -2040,7 +2073,7 @@ header.pt-28 {
 }
 
 .dark .stepper-step.completed {
-  color: #2ebdd1;
+  color: var(--dark-text);
   opacity: 1;
 }
 
@@ -2053,13 +2086,13 @@ header.pt-28 {
 .dark .stepper-step.active .stepper-circle {
   background-color: #2ebdd1;
   border-color: #2ebdd1;
-  color: var(--rich-brown);
+  color: white;
 }
 
 .dark .stepper-step.completed .stepper-circle {
   background-color: #2ebdd1;
   border-color: #2ebdd1;
-  color: var(--rich-brown);
+  color: white;
 }
 
 .dark .stepper-line {
@@ -2109,7 +2142,7 @@ header.pt-28 {
 }
 
 .dark .question-overlay-instructions .bg-hint-back {
-  background-color: var(--dark-surface);
+  background-color: var(--dark-soft);
 }
 
 .question-overlay-instructions .border-hint-border {
@@ -2117,5 +2150,21 @@ header.pt-28 {
 }
 
 .dark .question-overlay-instructions .border-hint-border {
+  border-color: var(--dark-border);
+}
+
+.question-overlay-instructions .bg-answer-back {
+  background-color: var(--answer-back);
+}
+
+.dark .question-overlay-instructions .bg-answer-back {
+  background-color: var(--dark-soft);
+}
+
+.question-overlay-instructions .border-answer-border {
+  border-color: var(--answer-border);
+}
+
+.dark .question-overlay-instructions .border-answer-border {
   border-color: var(--dark-border);
 }

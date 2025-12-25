@@ -2,7 +2,7 @@
 export const createQuestionSets = () => {
   const categoryStructure = {
     general: {
-      name: "General Questions",
+      name: "All Categories",
       description: "This category contains all questions from across categories. It's a good place to start if you want to test your Fermi estimation skills on a wide variety of topics.",
       isParent: true,
       subcategories: []  // Will be filled with all questions
@@ -356,6 +356,389 @@ export const createQuestionSets = () => {
           ],
           answer: "Approximately 1.4 billion smartphones are sold annually worldwide.",
           category: "Technology"
+        }
+      ]
+    },
+    health: {
+      name: "Health & Medicine",
+      description: "Health and medicine questions explore the scale of healthcare systems, medical statistics, and pharmaceutical industries around the world.",
+      isParent: false,
+      questions: [
+        {
+          question: "How many pharmacies are there in Russia?",
+          hints: [
+            "Russia had a population of around 144 million in 2024.",
+            "There are around 12,300 pharmacies in Poland."
+          ],
+          answer: "81,700",
+          category: "Health & Medicine"
+        }
+      ]
+    },
+    test: {
+      name: "Test",
+      description: "A temporary collection of diverse Fermi estimation questions covering occupations, business metrics, and everyday quantities.",
+      isParent: false,
+      questions: [
+        {
+          question: "How many dentists are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million people.",
+            "The American Dental Association recommends visiting a dentist twice per year, and a typical dentist can see about 2,000 patients annually."
+          ],
+          answer: "Approximately 200,000 dentists practice in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many pizzas are consumed in the US each day?",
+          hints: [
+            "About 13% of Americans eat pizza on any given day.",
+            "The US population is approximately 330 million people."
+          ],
+          answer: "Approximately 100 million pizzas are consumed daily in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many commercial airline flights take off globally each day?",
+          hints: [
+            "There are approximately 45,000 airports worldwide, though only about 5,000 have paved runways over 8,000 feet.",
+            "Major airports like Atlanta handle over 2,500 flights per day."
+          ],
+          answer: "Approximately 100,000 commercial flights take off globally each day.",
+          category: "Test"
+        },
+        {
+          question: "How many barbers work in New York City?",
+          hints: [
+            "New York City has a population of approximately 8.3 million people.",
+            "About half the population regularly gets haircuts at barbershops, and a barber can serve about 15-20 clients per day."
+          ],
+          answer: "Approximately 12,000-15,000 barbers work in New York City.",
+          category: "Test"
+        },
+        {
+          question: "How many golf balls are lost each year in the United States?",
+          hints: [
+            "There are approximately 25 million golfers in the United States.",
+            "The average golfer loses about 1-2 balls per round and plays around 20 rounds per year."
+          ],
+          answer: "Approximately 300-400 million golf balls are lost annually in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many elevators are there in New York City?",
+          hints: [
+            "New York City has approximately 1 million buildings, with about 47,000 being high-rises or mid-rises.",
+            "Manhattan alone has about 10,000 buildings over 6 stories tall."
+          ],
+          answer: "Approximately 70,000-80,000 elevators operate in New York City.",
+          category: "Test"
+        },
+        {
+          question: "How many accountants are employed in the United Kingdom?",
+          hints: [
+            "The UK has a population of approximately 67 million people.",
+            "The UK is known as a global financial center with London being one of the world's largest financial hubs."
+          ],
+          answer: "Approximately 350,000-400,000 accountants are employed in the United Kingdom.",
+          category: "Test"
+        },
+        {
+          question: "How many cups of coffee are consumed daily in the United States?",
+          hints: [
+            "About 65% of American adults drink coffee daily.",
+            "The average coffee drinker consumes about 3 cups per day."
+          ],
+          answer: "Approximately 400-500 million cups of coffee are consumed daily in the US.",
+          category: "Test"
+        },
+        {
+          question: "How many McDonald's restaurants are there worldwide?",
+          hints: [
+            "McDonald's operates in over 100 countries.",
+            "The United States alone has approximately 14,000 McDonald's locations."
+          ],
+          answer: "Approximately 40,000 McDonald's restaurants operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many plumbers are there in Germany?",
+          hints: [
+            "Germany has a population of approximately 83 million people.",
+            "Germany has about 42 million households, and plumbing services are needed regularly for maintenance and repairs."
+          ],
+          answer: "Approximately 50,000-60,000 plumbers work in Germany.",
+          category: "Test"
+        },
+        {
+          question: "How many taxis operate in London?",
+          hints: [
+            "London has a population of approximately 9 million people.",
+            "The famous black cabs require drivers to pass 'The Knowledge' test, which takes 2-4 years to complete."
+          ],
+          answer: "Approximately 21,000 licensed black cabs operate in London, plus about 90,000 private hire vehicles.",
+          category: "Test"
+        },
+        {
+          question: "How many emails are sent globally each day?",
+          hints: [
+            "There are approximately 4 billion email users worldwide.",
+            "The average office worker receives about 120 emails per day."
+          ],
+          answer: "Approximately 300-350 billion emails are sent globally each day.",
+          category: "Test"
+        },
+        {
+          question: "How many restaurants are there in Tokyo?",
+          hints: [
+            "Tokyo has a population of approximately 14 million in the city proper and 37 million in the greater metropolitan area.",
+            "Tokyo has more Michelin-starred restaurants than any other city in the world."
+          ],
+          answer: "Approximately 80,000-90,000 restaurants operate in Tokyo.",
+          category: "Test"
+        },
+        {
+          question: "How many teachers work in public schools in the United States?",
+          hints: [
+            "There are approximately 50 million K-12 students in US public schools.",
+            "The average class size in the US is about 15-20 students."
+          ],
+          answer: "Approximately 3.2-3.5 million teachers work in US public schools.",
+          category: "Test"
+        },
+        {
+          question: "How many ATMs are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million people.",
+            "Banks, convenience stores, and many retail locations have ATMs, with major banks having ATMs at most of their branches."
+          ],
+          answer: "Approximately 450,000-500,000 ATMs operate in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many veterinarians practice in the United States?",
+          hints: [
+            "There are approximately 90 million pet dogs and 74 million pet cats in the US.",
+            "A typical veterinary practice might have 2-3 veterinarians and serve a few thousand pet-owning households."
+          ],
+          answer: "Approximately 120,000-130,000 veterinarians practice in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many hotel rooms are there in Las Vegas?",
+          hints: [
+            "Las Vegas hosts approximately 40 million visitors per year.",
+            "Some of the largest hotels in the world are located in Las Vegas, with properties like the Venetian having over 7,000 rooms."
+          ],
+          answer: "Approximately 150,000-170,000 hotel rooms are available in Las Vegas.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of bananas are consumed annually worldwide?",
+          hints: [
+            "Bananas are the world's most popular fruit and are a dietary staple in many tropical countries.",
+            "The average American eats about 27 pounds of bananas per year."
+          ],
+          answer: "Approximately 100-115 million metric tons of bananas are consumed annually worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many real estate agents are licensed in California?",
+          hints: [
+            "California has a population of approximately 39 million people.",
+            "California has one of the most active real estate markets in the US, with median home prices over $700,000."
+          ],
+          answer: "Approximately 400,000-450,000 real estate agents are licensed in California.",
+          category: "Test"
+        },
+        {
+          question: "How many gas stations are there in the United States?",
+          hints: [
+            "There are approximately 280 million registered vehicles in the United States.",
+            "The average driver fills up about once per week, and a busy gas station might serve 1,000 customers per day."
+          ],
+          answer: "Approximately 145,000-150,000 gas stations operate in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many firefighters are there in the United States?",
+          hints: [
+            "The US has approximately 30,000 fire departments serving communities of all sizes.",
+            "About 70% of firefighters in the US are volunteers, primarily serving rural areas."
+          ],
+          answer: "Approximately 1.1 million firefighters serve in the United States, with about 370,000 career and 745,000 volunteer firefighters.",
+          category: "Test"
+        },
+        {
+          question: "How many books are published worldwide each year?",
+          hints: [
+            "The United States alone publishes approximately 300,000 new titles per year.",
+            "China and the UK are also major publishing markets, each producing over 100,000 titles annually."
+          ],
+          answer: "Approximately 2.2-2.5 million books are published worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many hairdressers and hair stylists work in the United States?",
+          hints: [
+            "The US population is approximately 330 million, with roughly half being women who visit salons more frequently.",
+            "A typical hair salon has 3-5 stylists, and there are salons in virtually every neighborhood."
+          ],
+          answer: "Approximately 650,000-700,000 hairdressers and hair stylists work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many ski resorts are there in the world?",
+          hints: [
+            "Europe, particularly the Alps, has the highest concentration of ski resorts globally.",
+            "The United States has approximately 470 ski resorts, and Japan has around 500."
+          ],
+          answer: "Approximately 5,000-6,000 ski resorts operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many lawyers are there in the United States?",
+          hints: [
+            "The US is known for having one of the highest numbers of lawyers per capita in the world.",
+            "Law schools in the US graduate approximately 35,000 new lawyers each year."
+          ],
+          answer: "Approximately 1.3-1.4 million lawyers are licensed in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many grocery stores are there in the United States?",
+          hints: [
+            "The US population is approximately 330 million spread across urban, suburban, and rural areas.",
+            "Major chains like Walmart, Kroger, and Albertsons operate thousands of locations each."
+          ],
+          answer: "Approximately 40,000-45,000 grocery stores operate in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many commercial ships are sailing the world's oceans?",
+          hints: [
+            "About 90% of world trade is carried by sea.",
+            "The global shipping fleet includes container ships, bulk carriers, tankers, and cargo vessels."
+          ],
+          answer: "Approximately 50,000-55,000 commercial ships are actively sailing the world's oceans.",
+          category: "Test"
+        },
+        {
+          question: "How many nurses are employed in the United Kingdom?",
+          hints: [
+            "The UK has a population of approximately 67 million people.",
+            "The National Health Service (NHS) is one of the world's largest employers."
+          ],
+          answer: "Approximately 700,000-750,000 nurses are employed in the United Kingdom.",
+          category: "Test"
+        },
+        {
+          question: "How many Starbucks locations are there worldwide?",
+          hints: [
+            "Starbucks originated in Seattle and has expanded to over 80 countries.",
+            "The United States has approximately 16,000 Starbucks locations."
+          ],
+          answer: "Approximately 35,000-38,000 Starbucks locations operate worldwide.",
+          category: "Test"
+        },
+        {
+          question: "How many weddings take place in the United States each year?",
+          hints: [
+            "The US population is approximately 330 million, with roughly 130 million adults who are unmarried.",
+            "The average wedding in the US costs around $30,000."
+          ],
+          answer: "Approximately 2.0-2.5 million weddings take place in the United States each year.",
+          category: "Test"
+        },
+        {
+          question: "How many police officers serve in the United States?",
+          hints: [
+            "The US has approximately 18,000 law enforcement agencies at federal, state, and local levels.",
+            "New York City alone has approximately 36,000 police officers."
+          ],
+          answer: "Approximately 700,000-800,000 sworn police officers serve in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of chocolate are consumed worldwide each year?",
+          hints: [
+            "Switzerland has the highest per capita chocolate consumption at about 9 kg per person per year.",
+            "The global chocolate market is worth over $130 billion annually."
+          ],
+          answer: "Approximately 7-8 million metric tons of chocolate are consumed worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many movie theaters are there in the United States?",
+          hints: [
+            "Major chains like AMC, Regal, and Cinemark operate hundreds of locations each.",
+            "The average movie theater has about 8-10 screens."
+          ],
+          answer: "Approximately 5,500-6,000 movie theaters operate in the United States, with about 40,000 screens total.",
+          category: "Test"
+        },
+        {
+          question: "How many chefs and head cooks work in the United States?",
+          hints: [
+            "There are approximately 660,000 restaurants in the United States.",
+            "Fine dining restaurants typically have multiple chefs, while smaller establishments may have one or two."
+          ],
+          answer: "Approximately 150,000-160,000 chefs and head cooks work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many bicycles are sold worldwide each year?",
+          hints: [
+            "China is both the largest producer and consumer of bicycles in the world.",
+            "The Netherlands has more bicycles than people, with about 23 million bikes for 17 million people."
+          ],
+          answer: "Approximately 100-130 million bicycles are sold worldwide each year.",
+          category: "Test"
+        },
+        {
+          question: "How many pharmacists work in the United States?",
+          hints: [
+            "There are approximately 40,000 retail pharmacies in the United States.",
+            "Pharmacists also work in hospitals, clinics, and pharmaceutical companies."
+          ],
+          answer: "Approximately 320,000-340,000 pharmacists work in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many bridges are there in the United States?",
+          hints: [
+            "The US has an extensive highway system spanning over 4 million miles of roads.",
+            "Many bridges are small structures over streams and creeks, not just major river crossings."
+          ],
+          answer: "Approximately 600,000-620,000 bridges are in the United States.",
+          category: "Test"
+        },
+        {
+          question: "How many software developers work in India?",
+          hints: [
+            "India has a population of approximately 1.4 billion people.",
+            "India is a major global hub for IT services and software development, with cities like Bangalore, Hyderabad, and Pune being tech centers."
+          ],
+          answer: "Approximately 5-5.5 million software developers work in India.",
+          category: "Test"
+        },
+        {
+          question: "How many tons of rice are produced globally each year?",
+          hints: [
+            "Rice is a staple food for more than half of the world's population.",
+            "China and India are the two largest rice producers, together accounting for over half of global production."
+          ],
+          answer: "Approximately 500-520 million metric tons of rice are produced globally each year.",
+          category: "Test"
+        },
+        {
+          question: "How many architects are licensed in the United States?",
+          hints: [
+            "Becoming a licensed architect requires a professional degree, internship, and passing the ARE exam.",
+            "The US constructs approximately 1 million new housing units per year."
+          ],
+          answer: "Approximately 115,000-120,000 licensed architects practice in the United States.",
+          category: "Test"
         }
       ]
     }

@@ -32,6 +32,11 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
   const buttonRef = useRef(null);
   const rulesButtonRef = useRef(null);
   const stepperRef = useRef(null);
+  const skipButtonRef = useRef(null);
+  const skipButtonPlaceholderRef = useRef(null);
+
+  // State for skip button positioning
+  const [isSkipButtonFixed, setIsSkipButtonFixed] = useState(false);
 
   // Function to collect questions from a category and all its subcategories
   const collectQuestionsFromCategory = (category) => {
@@ -257,6 +262,41 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
     setTimeout(scrollActiveStepIntoView, 100);
   }, [overlayPhase]);
 
+  // Check if skip button should be fixed (when it would be outside viewport on desktop)
+  useEffect(() => {
+    const checkButtonPosition = () => {
+      // Only apply this logic on desktop (>= 640px)
+      if (window.innerWidth < 640) {
+        setIsSkipButtonFixed(true); // Always fixed on mobile
+        return;
+      }
+
+      const placeholder = skipButtonPlaceholderRef.current;
+      if (!placeholder) return;
+
+      const rect = placeholder.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const buttonHeight = 58; // Button height
+      const bottomMargin = 16; // 1rem margin
+
+      // Check if button would be outside viewport when page is at scroll position 0
+      // Use the element's position relative to the document, not current viewport
+      const elementTopFromDocument = rect.top + window.scrollY;
+      const wouldBeOutOfView = elementTopFromDocument + buttonHeight + bottomMargin > viewportHeight;
+      setIsSkipButtonFixed(wouldBeOutOfView);
+    };
+
+    // Check on mount and when content changes
+    checkButtonPosition();
+
+    // Only check on resize, not scroll
+    window.addEventListener('resize', checkButtonPosition);
+
+    return () => {
+      window.removeEventListener('resize', checkButtonPosition);
+    };
+  }, [overlayPhase, showBettingRules, showHint1Dropdown, showHint2Dropdown, showAnswerDropdown]);
+
   // Fisher-Yates shuffle algorithm
   const shuffleArray = (array) => {
     const newArray = [...array];
@@ -323,7 +363,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step first-step ${overlayPhase === 'guessing' ? 'active' : 'completed'}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'guessing' || overlayPhase !== 'guessing') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -340,7 +380,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting' ? 'active' : (overlayPhase === 'guessing' ? '' : 'completed')}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting' || (overlayPhase !== 'guessing' && overlayPhase !== 'betting')) ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -357,7 +397,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'hint' ? 'active' : (overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'hint' || overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -374,7 +414,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting2' ? 'active' : (overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -391,7 +431,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'hint2' ? 'active' : (overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -408,7 +448,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting3' ? 'active' : (overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -425,7 +465,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'answer' ? 'active' : (overlayPhase === 'betting4' || overlayPhase === 'showdown') ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -442,7 +482,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'betting4' ? 'active' : overlayPhase === 'showdown' ? 'completed' : ''}`}>
                   <div className="stepper-circle">
                     {(overlayPhase === 'betting4' || overlayPhase === 'showdown') ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -459,7 +499,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 <div className={`stepper-step ${overlayPhase === 'showdown' ? 'active' : ''}`}>
                   <div className="stepper-circle">
                     {overlayPhase === 'showdown' ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="stepper-icon" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     ) : (
@@ -486,22 +526,30 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                'Instructions - Showdown'}
             </h2>
             {overlayPhase === 'guessing' ? (
-              <p className="text-base leading-normal mt-0">
-                Write down your secret guesses as a range (e.g., "10-100" or "1,000-10,000"). 
-                When everyone has written their estimates, start with the first betting round.
-              </p>
+              <div className="text-base leading-normal">
+                <p className="mb-3 mt-0">
+                  Before guessing, everyone makes a mandatory bet (starting at 1/40th of your initial chips, doubling every 30 minutes).
+                </p>
+                <p className="mt-3">
+                  Secretly write your guess as a range (e.g., "10–100" or "100K–1M"). Once everyone is ready, the first betting round begins.
+                </p>
+              </div>
             ) : overlayPhase === 'betting' ? (
               <div className="text-base leading-normal">
                 <p className="mb-3 mt-0">
                   Betting moves clockwise around the table, with each player being able to:
                 </p>
                 <ul className="list-disc text-left mx-auto inline-block mb-3">
+                  <li><strong>Check:</strong> Pass without betting (only if no one has bet yet)</li>
+                  <li><strong>Call:</strong> Match the current highest bet</li>
                   <li><strong>Raise:</strong> Increase the bet amount</li>
-                  <li><strong>Call:</strong> Match the highest bet</li>
-                  <li><strong>Fold:</strong> Give up and lose your bet</li>
+                  <li><strong>Fold:</strong> Give up and lose what you've bet so far</li>
                 </ul>
-                <p className="mt-3">
-                  Continue until all active players have matched the highest bet or folded.
+                <p className="mb-3 mt-3">
+                  Continue until all remaining players have matched the highest bet or folded.
+                </p>
+                <p className="mt-0">
+                  Note: The starting bettor also rotates clockwise with each new question.
                 </p>
               </div>
             ) : overlayPhase === 'hint' ? (
@@ -512,15 +560,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                   </div>
                 </div>
                 <p className="mb-3">
-                  Now that you have the first hint, consider how this new information affects the probability that your original guess was accurate:
+                  Now that you've seen the first hint, take a moment to reflect on your guess:
                 </p>
                 <ul className="list-disc text-left mx-auto inline-block mb-3">
-                  <li>Does this hint make your estimate seem too high or too low?</li>
-                  <li>How confident are you now compared to your initial guess?</li>
-                  <li>Should you adjust your betting strategy for the next round?</li>
+                  <li>Does this new information make your guess seem unrealistic?</li>
+                  <li>How does it affect your confidence?</li>
+                  <li>How are other players reacting? Are they sweating?</li>
+                  <li>Should you adjust your betting strategy?</li>
                 </ul>
                 <p>
-                  Use this information to guide your decisions in the second betting round.
+                  When ready, continue to the second betting round!
                 </p>
               </div>
             ) : overlayPhase === 'betting2' ? (
@@ -573,15 +622,16 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
             ) : overlayPhase === 'answer' ? (
               <div className="text-base leading-normal">
                 <div className="bg-answer-back border border-answer-border rounded-lg p-4 mb-4">
+                  {/*
                   <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
                     <div className="flex items-center">
                       <div className="answer-letter-small mr-2">A</div>
                       <span>Answer</span>
                     </div>
                     {currentQuestion.source && (
-                      <a 
-                        href={currentQuestion.source.url} 
-                        target="_blank" 
+                      <a
+                        href={currentQuestion.source.url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="source-link"
                       >
@@ -592,6 +642,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                       </a>
                     )}
                   </div>
+                  */}
                   <div className="text-base">
                     {currentQuestion.answer}
                   </div>
@@ -667,7 +718,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           
           {/* Betting Rules Dropdown - Only show during hint phase */}
           {overlayPhase === 'hint' && (
-            <div className="question-overlay-instructions rounded-xl p-4 mb-20">
+            <div className="question-overlay-instructions rounded-xl p-4 mb-3">
               <button
                 onClick={() => setShowBettingRules(!showBettingRules)}
                 className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
@@ -683,7 +734,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showBettingRules && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="mb-3">
                     <h3 className="font-bold mb-2">Basic Betting Actions:</h3>
                     <ul className="list-disc text-left mx-auto inline-block mb-3">
@@ -733,27 +784,29 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showAnswerDropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-answer-back border border-answer-border rounded-lg p-4">
-    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
-      <div className="flex items-center">
-        <div className="answer-letter-small mr-2">A</div>
-        <span>Answer</span>
-      </div>
-      {currentQuestion.source && (
-        <a 
-          href={currentQuestion.source.url} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="source-link"
-        >
-          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {/*
+                    <div className="font-medium mb-1 border-b border-answer-border pb-1.5 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="answer-letter-small mr-2">A</div>
+                        <span>Answer</span>
+                      </div>
+                      {currentQuestion.source && (
+                        <a
+                          href={currentQuestion.source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="source-link"
+                        >
+                          <span className="text-1xs font-medium">{currentQuestion.source.name}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
-      )}
-    </div>
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                    */}
                     <div className="text-base">
       {currentQuestion.answer}
     </div>
@@ -781,12 +834,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showHint2Dropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
-                    <div className="font-medium mb-2 flex items-center">
-                      <div className="hint-number-small mr-2">2</div>
-                      <span>Second Hint</span>
-                    </div>
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[1]}
                     </div>
@@ -798,7 +847,7 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
 
           {/* Hint #1 Dropdown - Show after hint phase */}
           {(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && (
-            <div className={`question-overlay-instructions rounded-xl p-4 ${(overlayPhase === 'betting2' || overlayPhase === 'hint2' || overlayPhase === 'betting3' || overlayPhase === 'answer' || overlayPhase === 'betting4' || overlayPhase === 'showdown') && overlayPhase !== 'hint' ? 'mb-20' : 'mb-3'}`}>
+            <div className="question-overlay-instructions rounded-xl p-4 mb-3">
               <button
                 onClick={() => setShowHint1Dropdown(!showHint1Dropdown)}
                 className="w-full flex items-center justify-between text-lg font-display font-bold mb-0"
@@ -814,12 +863,8 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
                 </svg>
               </button>
               {showHint1Dropdown && (
-                <div className="mt-3 pt-3 border-t text-base leading-normal">
+                <div className="mt-3 pt-3 text-base leading-normal">
                   <div className="bg-hint-back border border-hint-border rounded-lg p-4">
-                    <div className="font-medium mb-2 flex items-center">
-                      <div className="hint-number-small mr-2">1</div>
-                      <span>First Hint</span>
-                    </div>
                     <div className="text-base">
                       {currentQuestion.hints && currentQuestion.hints[0]}
           </div>
@@ -829,11 +874,12 @@ const FermiPokerGame = ({ questionSets, darkMode }) => {
           </div>
           )}
       
-          {/* Fixed Skip Button at Bottom */}
+          {/* Skip Button at Bottom */}
+          <div ref={skipButtonPlaceholderRef} className={isSkipButtonFixed ? 'skip-button-placeholder' : ''} />
           <button
+            ref={skipButtonRef}
             onClick={skipOverlayTimer}
-            className="fixed left-1/2 transform -translate-x-1/2 px-3.5 py-1.5 rounded-lg text-1rem font-medium transition-all shadow-md flex items-center question-overlay-skip-btn z-50"
-            style={{ bottom: '1rem' }}
+            className={`px-3.5 py-1.5 rounded-lg text-1rem font-medium shadow-md flex items-center question-overlay-skip-btn z-50 ${isSkipButtonFixed ? 'skip-button-fixed' : 'skip-button-inline'}`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
