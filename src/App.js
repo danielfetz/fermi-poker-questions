@@ -9,7 +9,7 @@ import './styles.css';
 
 const App = () => {
   const questionSets = createQuestionSets();
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
   
   // Refs for handling clicks outside the settings menu
@@ -44,7 +44,7 @@ const App = () => {
     if (themeColorMeta) {
       themeColorMeta.setAttribute(
         'content', 
-        newDarkMode ? '#1F1A15' : '#FBFAF4'  // dark-bg or cream-tan
+        newDarkMode ? '#05051f' : '#100d29'  // darker art-deco palette
       );
     }
   };
